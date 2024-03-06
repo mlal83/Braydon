@@ -16,7 +16,7 @@ import dj_database_url
 
 if os.path.isfile("env.py"):
     import env
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -153,7 +153,3 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import os
-import dj_database_url
-if os.path.isfile('env.py'):
-    import env
