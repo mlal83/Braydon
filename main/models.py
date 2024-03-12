@@ -3,11 +3,12 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 
+
 # Create your models here.
 
 STATUS = ((0, "Draft"), (1, "Published"))
 RATING = ((1, "1 Star"), (2, "2 Stars"), (3, "3 Stars"), (4, "4 Stars"), (5, "5 Stars"))
-class Story(models.Model):
+class Article(models.Model):
     """
     Stores a single blog post entry related to  :model:`auth.User`
     """
