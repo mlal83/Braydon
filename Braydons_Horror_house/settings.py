@@ -48,10 +48,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'shop',
     'main',
     'stories',
-    'User',
     'cloudinary_storage',
     'cloudinary',
 
