@@ -1,8 +1,9 @@
-from . import views
 from django.urls import path
-
+from . import views
 
 urlpatterns = [
-    path('', views.story_list, name='story_list'),
-    path('<int:stories_id>/', views.story_detail, name='stories_detail'),
+    path('', views.post_list, name='home'),
+    path('<slug:slug>/', views.post_detail, name="stories_detail"),
+    path('<slug:slug>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
+    path('<slug:slug>/delete_comment/<int:comment_id>/', views.comment_delete, name='comment_delete'),
 ]

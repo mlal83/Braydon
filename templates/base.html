@@ -49,11 +49,7 @@
 
           </li>
           
-          
-          <li class="nav-item">
-            <a class="nav-link {% if request.path == event_url %}active{% endif %}" aria-current="page"
-              href="{% url 'events' %}">Buy Books</a>
-          </li>
+        
           {% if user.is_authenticated %}
           <li class="nav-item">
 
@@ -97,7 +93,7 @@
                 {% if user.is_authenticated %}
                 <p class="text-end m-3">User: {{ user }}</p>
                 {% else %}
-                <p class="text-end m-3">HEY! Log in to book in.</p>
+                <p class="text-end m-3">HEY! Log in.</p>
                 {% endif %}
   
     </div>

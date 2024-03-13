@@ -1,53 +1,60 @@
-from django.shortcuts import render, get_object_or_404, reverse
-from django.views import generic
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from .models import Comment
-from .models import Story
-
+from .models import Story, Comment
 from .forms import CommentForm
 
+def post_list(request):
+    queryset = Story.objects.all()  # Change the queryset to fetch all stories
+    return render(request, 'stories/stories.html', {'object_list': queryset})
 
+def post_detail(request, slug):
+    post = get_object_or_404(Story, slug=slug)
+    comments = post.comments.all().order_by("-created_at")
+    comment_count = post.comments.filter(approved=True).count()
+    
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.author = request.user
+            comment.story = post
+            comment.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment submitted and awaiting approval'
+            )
+            return redirect('stories_detail', slug=post.slug)
 
-# Views for Article model
-def article_detail(request, slug):
-    article = get_object_or_404(Stories, slug=slug)
-    return render(request, 'articles_detail.html', {'articles': articles})
+    comment_form = CommentForm()
 
-@login_required
-def article_create(request):
-    if request.method == 'POST':
-        form = ArticleForm(request.POST)
+    return render(
+        request,
+        "stories/stories_detail.html",
+        {
+            "post": post,
+            "comments": comments,
+            "comment_count": comment_count,
+            "comment_form": comment_form
+        },
+    )
+
+def comment_edit(request, slug, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
-            article = form.save(commit=False)
-            article.author = request.user
-            article.save()
-            return redirect('article_detail', slug=article.slug)
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.save()
+            messages.success(request, 'Comment updated successfully.')
+            return redirect('stories_detail', slug=slug)
     else:
-        form = ArticleForm()
-    return render(request, 'article_form.html', {'form': form})
+        form = CommentForm(instance=comment)
+    return render(request, 'stories/stories_detail.html', {'form': form})
 
-@login_required
-def article_update(request, slug):
-    article = get_object_or_404(Article, slug=slug)
+def comment_delete(request, slug, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
     if request.method == 'POST':
-        form = ArticleForm(request.POST, instance=article)
-        if form.is_valid():
-            form.save()
-            return redirect('article_detail', slug=article.slug)
-    else:
-        form = ArticleForm(instance=article)
-    return render(request, 'article_form.html', {'form': form})
-
-@login_required
-def article_delete(request, slug):
-    article = get_object_or_404(Article, slug=slug)
-    if request.method == 'POST':
-        article.delete()
-        return redirect('home')
-    return render(request, 'article_confirm_delete.html', {'article': article})
-
-def story_list(request):
-    stories = Story.objects.all()
-    return render(request, 'stories/story_list.html', {'stories': stories})
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully.')
+    return redirect('stories_detail', slug=slug)
