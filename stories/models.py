@@ -2,7 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
+
 class Story(models.Model):
+    STATUS_CHOICES = (
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+        ('archived', 'Archived'),
+    )
+    
     title = models.CharField(max_length=200)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories")

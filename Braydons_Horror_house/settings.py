@@ -33,7 +33,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io', '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io', '.herokuapp.com', "braydons-horror-house-5e9401912ad6.herokuapp.com"]
-
+CSRF_COOKIE_DOMAIN = '.ws-eu109.gitpod.io'
+CSRF_TRUSTED_ORIGINS = [
+    'http://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io',
+    'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io',
+]
 
 # Application definition
 
@@ -48,7 +52,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'main',
     'stories',
     'cloudinary_storage',
     'cloudinary',
