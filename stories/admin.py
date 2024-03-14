@@ -5,3 +5,5 @@ from .models import Story, Comment, Review
 admin.site.register(Story)
 admin.site.register(Comment)
 admin.site.register(Review)
+
+

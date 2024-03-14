@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Story, Comment
-from .forms import CommentForm
+from .forms import CommentForm, HorrorGenreForm, ReviewForm  # Import forms instead of models
+from .models import Story 
 
 def post_list(request):
     queryset = Story.objects.all()  # Change the queryset to fetch all stories
@@ -26,6 +26,8 @@ def post_detail(request, slug):
             return redirect('stories_detail', slug=post.slug)
 
     comment_form = CommentForm()
+    review_form = ReviewForm()
+    genre_form = HorrorGenreForm()
 
     return render(
         request,
@@ -34,7 +36,9 @@ def post_detail(request, slug):
             "post": post,
             "comments": comments,
             "comment_count": comment_count,
-            "comment_form": comment_form
+            "comment_form": comment_form,
+            "review_form": review_form,
+            "genre_form": genre_form
         },
     )
 
