@@ -1,5 +1,6 @@
 from django import forms
 
+
 class HorrorGenreForm(forms.Form):
     GENRE_CHOICES = [
         ('supernatural', 'Supernatural Horror'),

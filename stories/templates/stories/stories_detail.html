@@ -30,6 +30,7 @@ crispy_forms_tags %}
     </div>
   </div>
 </div>
+
 <div class="container">
   <div class="row">
     <div class="col card mb-4 mt-3 left top">
@@ -39,6 +40,7 @@ crispy_forms_tags %}
       </div>
     </div>
   </div>
+
   <!-- Displaying count of comments -->
   <div class="row">
     <div class="col-12">
@@ -50,6 +52,7 @@ crispy_forms_tags %}
       <hr />
     </div>
   </div>
+
   <!-- Displaying Comments -->
   <div class="row">
     <div class="col-md-8 card mb-4 mt-3">
@@ -84,6 +87,7 @@ crispy_forms_tags %}
         {% endfor %}
       </div>
     </div>
+
     <!-- Creating New Comments -->
     <div class="col-md-4 card mb-4 mt-3">
       <div class="card-body">
@@ -97,52 +101,7 @@ crispy_forms_tags %}
           </button>
         </form>
 
-        <h3>Change Avatar:</h3>
-        <form method="post" action="{% url 'set_avatar' %}">
-          {% csrf_token %}
-          <!-- Your form fields for selecting/uploading avatar -->
-          <input type="text" name="avatar_url" placeholder="Enter avatar URL" />
-          <button type="submit">Submit</button>
-        </form>
-        {% else %}
-        <p>Log in to leave a comment</p>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Delete confirmation modal -->
-<div
-  class="modal fade"
-  id="deleteModal"
-  tabindex="-1"
-  aria-labelledby="deleteModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete your comment? This action cannot be
-        undone.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
-      </div>
-    </div>
-  </div>
-</div>
+    
 
 {% endblock content %} {% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>

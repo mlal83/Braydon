@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div>
+  <!-- Change Avatar Form -->
+  <h3>Change Avatar:</h3>
+  <form method="post" action="{% url 'set_avatar' %}">
+    {% csrf_token %}
+    <!-- selecting/uploading avatar -->
+    <input type="text" name="avatar_url" placeholder="Enter avatar URL" />
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- Profile Information -->
+  <h3>Profile Information:</h3>
+  <p>Bio: {{ user.profile.bio }}</p>
+  {% if user.profile.website_url %}
+  <p>
+    Website:
+    <a href="{{ user.profile.website_url }}">{{ user.profile.website_url }}</a>
+  </p>
+  {% endif %} {% if user.profile.facebook_url %}
+  <p>
+    Facebook:
+    <a href="{{ user.profile.facebook_url }}"
+      >{{ user.profile.facebook_url }}</a
+    >
+  </p>
+  {% endif %} {% if user.profile.twitter_url %}
+  <p>
+    Twitter:
+    <a href="{{ user.profile.twitter_url }}">{{ user.profile.twitter_url }}</a>
+  </p>
+  {% endif %} {% if user.profile.instagram_url %}
+  <p>
+    Instagram:
+    <a href="{{ user.profile.instagram_url }}"
+      >{{ user.profile.instagram_url }}</a
+    >
+  </p>
+  {% endif %}
+</div>
+
+{% endblock %}

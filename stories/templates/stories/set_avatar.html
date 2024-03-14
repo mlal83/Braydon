@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+    <h2>Change Avatar</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <!-- Your form fields for selecting/uploading avatar -->
+      <label for="avatar_file">Choose an image:</label>
+      <input type="file" id="avatar_file" name="avatar_file" accept="image/*" />
+      <button type="submit">Submit</button>
+    </form>
+
+{% endblock %}
