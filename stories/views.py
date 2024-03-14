@@ -76,4 +76,4 @@ def set_avatar(request):
     else:
         context = {'csrf_token': csrf.get_token(request)} 
         # Handle GET request (e.g., render a form for avatar selection/upload)
-        return render(request, 'stories_detail.html')
+        return render(request, '_detail.html')
