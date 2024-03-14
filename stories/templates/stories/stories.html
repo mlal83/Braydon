@@ -11,9 +11,23 @@
     <div class="story-image">
       <!-- Replace 'placeholder_image.jpg' with the actual image URL from your story model -->
       <img src="{{ story.featured_image.url }}" alt="{{ story.title }}" />
+      <div class="image-flash">
+        {% if "placeholder" in story.featured_image.url %}
+        <img
+          class="card-img-top"
+          src="{% static 'images/default.jpg' %}"
+          alt="placeholder image"
+        />
+        {% else %}
+        <img
+          class="card-img-top"
+          src="{{ story.featured_image.url }}"
+          alt="{{ story.title }}"
+        />
+        {% endif %}
+      </div>
     </div>
   </div>
   {% endfor %}
 </div>
-
 {% endblock %}
