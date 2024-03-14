@@ -7,6 +7,14 @@
     <div class="story-text">
       <h2>{{ story.title }}</h2>
       <p>{{ story.content }}</p>
+      <!-- Display author's profile picture -->
+      <img
+        src="{{ story.author.profile.profile_picture.url }}"
+        width="100"
+        height="100"
+        class="rounded-circle"
+        alt="{{ story.author.username }} Profile Picture"
+      />
     </div>
     <div class="story-image">
       <!-- Replace 'placeholder_image.jpg' with the actual image URL from your story model -->

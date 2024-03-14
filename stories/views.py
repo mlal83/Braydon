@@ -74,5 +74,6 @@ def set_avatar(request):
         profile.set_avatar(avatar_url)
         return redirect('profile')  # Redirect to the user's profile page
     else:
+        context = {'csrf_token': csrf.get_token(request)} 
         # Handle GET request (e.g., render a form for avatar selection/upload)
-        return render(request, 'avatar_form.html')
+        return render(request, 'stories_detail.html')
