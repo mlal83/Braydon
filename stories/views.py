@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .forms import CommentForm, HorrorGenreForm, ReviewForm  # Import forms instead of models
 from .models import Story 
+from django.contrib.auth.decorators import login_required
 
 def post_list(request):
     queryset = Story.objects.all()  # Change the queryset to fetch all stories
@@ -62,3 +63,16 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.success(request, 'Comment deleted successfully.')
     return redirect('stories_detail', slug=slug)
+
+
+@login_required
+def set_avatar(request):
+    if request.method == 'POST':
+        # Assuming you have a form where users can select/upload their avatar
+        avatar_url = request.POST.get('avatar_url')
+        profile = request.user.profile
+        profile.set_avatar(avatar_url)
+        return redirect('profile')  # Redirect to the user's profile page
+    else:
+        # Handle GET request (e.g., render a form for avatar selection/upload)
+        return render(request, 'avatar_form.html')

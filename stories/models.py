@@ -5,8 +5,20 @@ from cloudinary.models import CloudinaryField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(max_length=255, blank=True, null=True)
     profile_picture = CloudinaryField('image', blank=True, null=True)
-    
+    website_url = models.CharField(max_length=255, blank=True, null=True)
+    facebook_url = models.CharField(max_length=255, blank=True, null=True)
+    twitter_url = models.CharField(max_length=255, blank=True, null=True)
+    instagram_url = models.CharField(max_length=255, blank=True, null=True)
+
+    # Add a method to handle avatar selection or upload
+    def set_avatar(self, avatar_url):
+        self.profile_picture = avatar_url
+        self.save()
+
+    def __str__(self):
+        return str(self.user)
 class Story(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
