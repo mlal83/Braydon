@@ -61,8 +61,8 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/stories/'
+LOGOUT_REDIRECT_URL = '/stories/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
