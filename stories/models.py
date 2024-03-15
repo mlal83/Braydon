@@ -1,3 +1,4 @@
+from django.shortcuts import HttpResponse, redirect
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
@@ -19,10 +20,17 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
-        
+
 def profile_picture_upload(request):
-    # Your view logic for profile picture upload
-    return HttpResponse("Profile picture uploaded successfully!")
+    if request.method == 'POST':
+        # Assuming the form field for the uploaded image is named 'profile_picture'
+        profile_picture = request.FILES.get('profile_picture')
+        if profile_picture:
+            request.user.profile.profile_picture = profile_picture
+            request.user.profile.save()
+            return HttpResponse("Profile picture uploaded successfully!")
+    # Handle GET request or invalid form submission
+    return HttpResponse("Profile picture upload failed!")  # You may want to render a template instead
 
 
 class Story(models.Model):

@@ -120,3 +120,15 @@ def profile_view(request):
         stories = []  # Empty list if profile doesn't exist
 
     return render(request, 'profile.html', {'profile': profile, 'stories': stories})
+ 
+def submit_story(request):
+    if request.method == 'POST':
+        form = StoryForm(request.POST)
+        if form.is_valid():
+            story = form.save(commit=False)
+            story.author = request.user
+            story.save()
+            return redirect('post_list')  # Redirect to a page showing list of stories after submission
+    else:
+        form = StoryForm()
+    return render(request, 'submit_story.html', {'form': form})

@@ -1,55 +1,83 @@
 {% extends "base.html" %} {% load static %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <!-- Change Avatar and Profile Information Form -->
+      <h3 class="mb-4">Change Avatar and Profile Information:</h3>
+      <form
+        method="post"
+        enctype="multipart/form-data"
+        action="{% url 'set_avatar' %}"
+      >
+        {% csrf_token %}
+        <!-- Allow users to upload an image file -->
+        <div class="mb-3">
+          <label for="avatar_file" class="form-label">Avatar:</label>
+          <input
+            type="file"
+            class="form-control"
+            id="avatar_file"
+            name="avatar_file"
+            accept="image/*"
+          />
+        </div>
 
-<div>
-  <!-- Change Avatar and Profile Information Form -->
-  <h3>Change Avatar and Profile Information:</h3>
-  <form
-    method="post"
-    enctype="multipart/form-data"
-    action="{% url 'set_avatar' %}"
-  >
-    {% csrf_token %}
-    <!-- Allow users to upload an image file -->
-    <input type="file" name="avatar_file" accept="image/*" />
+        <!-- Profile Information Fields -->
+        <div class="mb-3">
+          <label for="bio" class="form-label">Bio:</label>
+          <textarea class="form-control" id="bio" name="bio">
+{{ request.user.profile.bio }}</textarea
+          >
+        </div>
 
-    <!-- Profile Information Fields -->
-    <label for="bio">Bio:</label>
-    <textarea id="bio" name="bio">{{ request.user.profile.bio }}</textarea>
+        <div class="mb-3">
+          <label for="website_url" class="form-label">Website URL:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="website_url"
+            name="website_url"
+            value="{{ request.user.profile.website_url }}"
+          />
+        </div>
 
-    <label for="website_url">Website URL:</label>
-    <input
-      type="text"
-      id="website_url"
-      name="website_url"
-      value="{{ request.user.profile.website_url }}"
-    />
+        <div class="mb-3">
+          <label for="facebook_url" class="form-label">Facebook URL:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="facebook_url"
+            name="facebook_url"
+            value="{{ request.user.profile.facebook_url }}"
+          />
+        </div>
 
-    <label for="facebook_url">Facebook URL:</label>
-    <input
-      type="text"
-      id="facebook_url"
-      name="facebook_url"
-      value="{{ request.user.profile.facebook_url }}"
-    />
+        <div class="mb-3">
+          <label for="twitter_url" class="form-label">Twitter URL:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="twitter_url"
+            name="twitter_url"
+            value="{{ request.user.profile.twitter_url }}"
+          />
+        </div>
 
-    <label for="twitter_url">Twitter URL:</label>
-    <input
-      type="text"
-      id="twitter_url"
-      name="twitter_url"
-      value="{{ request.user.profile.twitter_url }}"
-    />
+        <div class="mb-3">
+          <label for="instagram_url" class="form-label">Instagram URL:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="instagram_url"
+            name="instagram_url"
+            value="{{ request.user.profile.instagram_url }}"
+          />
+        </div>
 
-    <label for="instagram_url">Instagram URL:</label>
-    <input
-      type="text"
-      id="instagram_url"
-      name="instagram_url"
-      value="{{ request.user.profile.instagram_url }}"
-    />
-
-    <!-- Submit Button -->
-    <button type="submit">Submit</button>
-  </form>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock %}

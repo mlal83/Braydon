@@ -1,5 +1,6 @@
 from django import forms
 from .models import Comment, Review
+from .models import Story
 
 class HorrorGenreForm(forms.Form):
     GENRE_CHOICES = [
@@ -36,7 +37,10 @@ def edit_profile(request):
         form = ProfileForm(instance=profile)  # Remove instance argument
 
     return render(request, 'edit_profile.html', {'form': form})
-    
+class StoryForm(forms.ModelForm):
+    class Meta:
+        model = Story
+        fields = ['title', 'content']     
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
