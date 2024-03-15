@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io', 
 
 CSRF_TRUSTED_ORIGINS = [
 
-    'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
+     'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu111.gitpod.io', 
 
 ]
