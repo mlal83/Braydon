@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=255, blank=True, null=True)
@@ -12,13 +11,14 @@ class Profile(models.Model):
     twitter_url = models.CharField(max_length=255, blank=True, null=True)
     instagram_url = models.CharField(max_length=255, blank=True, null=True)
 
-    # Add a method to handle avatar selection or upload
+    # avatar selection or upload own pic
     def set_avatar(self, avatar_url):
         self.profile_picture = avatar_url
         self.save()
 
     def __str__(self):
         return str(self.user)
+
 class Story(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),

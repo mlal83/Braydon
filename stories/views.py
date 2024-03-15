@@ -79,3 +79,9 @@ def set_avatar(request):
         return redirect('profile')  # Redirect to the user's profile page
     else:
         return render(request, 'set_avatar.html')
+
+@login_required
+def profile_view(request):
+    # Retrieve user's profile
+    profile = request.user.profile
+    return render(request, 'profile.html', {'profile': profile})

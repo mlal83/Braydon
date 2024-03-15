@@ -1,9 +1,11 @@
+
 {% url 'home' as home_url %}
 {% url 'events' as event_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
 {% url 'about' as about_url %}
+{% url 'profile' as profile_url %}  <!-- New line: Define the profile URL -->
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -47,6 +49,15 @@
               href="{% url 'home' %}">Home</a>
           </li>
 
+          <!-- Add Profile Link -->
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == profile_url %}active{% endif %}" aria-current="page"
+              href="{% url 'profile' %}">Profile</a>
+          </li>
+          {% endif %}
+          <!-- End Profile Link -->
+
           </li>
           
         
@@ -87,7 +98,6 @@
   </div>
 </div>
   <!--Main page content, "hero image", articles-->
-
   <main class="flex-shrink-0 main-bg">
     {% if user.is_authenticated %}
     <p class="text-end m-3">You are logged in as {{ user }}</p>
