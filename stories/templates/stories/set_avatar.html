@@ -1,12 +1,76 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
-    <h2>Change Avatar</h2>
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <!-- Your form fields for selecting/uploading avatar -->
-      <label for="avatar_file">Choose an image:</label>
-      <input type="file" id="avatar_file" name="avatar_file" accept="image/*" />
-      <button type="submit">Submit</button>
-    </form>
+<div class="container">
+  <h2 class="mt-4">Change Avatar and Profile Information</h2>
+  <form method="post" enctype="multipart/form-data" class="mt-4">
+    {% csrf_token %}
+    <!-- Your form fields for selecting/uploading avatar -->
+    <div class="mb-3">
+      <label for="avatar_file" class="form-label">Choose an image:</label>
+      <input
+        type="file"
+        id="avatar_file"
+        name="avatar_file"
+        class="form-control"
+        accept="image/*"
+      />
+    </div>
+
+    <!-- Profile Information Fields -->
+    <div class="mb-3">
+      <label for="bio" class="form-label">Bio:</label>
+      <textarea id="bio" name="bio" class="form-control">
+{{ request.user.profile.bio }}</textarea
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="website_url" class="form-label">Website URL:</label>
+      <input
+        type="text"
+        id="website_url"
+        name="website_url"
+        class="form-control"
+        value="{{ request.user.profile.website_url }}"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="facebook_url" class="form-label">Facebook URL:</label>
+      <input
+        type="text"
+        id="facebook_url"
+        name="facebook_url"
+        class="form-control"
+        value="{{ request.user.profile.facebook_url }}"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="twitter_url" class="form-label">Twitter URL:</label>
+      <input
+        type="text"
+        id="twitter_url"
+        name="twitter_url"
+        class="form-control"
+        value="{{ request.user.profile.twitter_url }}"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="instagram_url" class="form-label">Instagram URL:</label>
+      <input
+        type="text"
+        id="instagram_url"
+        name="instagram_url"
+        class="form-control"
+        value="{{ request.user.profile.instagram_url }}"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 
 {% endblock %}

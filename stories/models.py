@@ -19,6 +19,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
+        
+def profile_picture_upload(request):
+    # Your view logic for profile picture upload
+    return HttpResponse("Profile picture uploaded successfully!")
+
 
 class Story(models.Model):
     STATUS_CHOICES = (

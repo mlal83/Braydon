@@ -4,6 +4,8 @@ from .forms import CommentForm, HorrorGenreForm, ReviewForm
 from .models import Story, Profile  # Import the Profile model
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import ProfileForm
+
 
 def post_list(request):
     queryset = Story.objects.all()
@@ -79,6 +81,33 @@ def set_avatar(request):
         return redirect('profile')
     else:
         return render(request, 'set_avatar.html')
+def profile_picture_upload(request):
+    # Your view logic for profile picture upload
+    return HttpResponse("Profile picture uploaded successfully!")
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully.')
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'edit_profile.html', {'form': form})
+
+def upload_profile_picture(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']  # Assuming 'picture' is the name of the field in the form
+            profile.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'upload_profile_picture.html', {'form': form})
 
 @login_required
 def profile_view(request):

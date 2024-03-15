@@ -1,43 +1,55 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
 <div>
-  <!-- Change Avatar Form -->
-  <h3>Change Avatar:</h3>
-  <form method="post" action="{% url 'set_avatar' %}">
+  <!-- Change Avatar and Profile Information Form -->
+  <h3>Change Avatar and Profile Information:</h3>
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    action="{% url 'set_avatar' %}"
+  >
     {% csrf_token %}
-    <!-- selecting/uploading avatar -->
-    <input type="text" name="avatar_url" placeholder="Enter avatar URL" />
+    <!-- Allow users to upload an image file -->
+    <input type="file" name="avatar_file" accept="image/*" />
+
+    <!-- Profile Information Fields -->
+    <label for="bio">Bio:</label>
+    <textarea id="bio" name="bio">{{ request.user.profile.bio }}</textarea>
+
+    <label for="website_url">Website URL:</label>
+    <input
+      type="text"
+      id="website_url"
+      name="website_url"
+      value="{{ request.user.profile.website_url }}"
+    />
+
+    <label for="facebook_url">Facebook URL:</label>
+    <input
+      type="text"
+      id="facebook_url"
+      name="facebook_url"
+      value="{{ request.user.profile.facebook_url }}"
+    />
+
+    <label for="twitter_url">Twitter URL:</label>
+    <input
+      type="text"
+      id="twitter_url"
+      name="twitter_url"
+      value="{{ request.user.profile.twitter_url }}"
+    />
+
+    <label for="instagram_url">Instagram URL:</label>
+    <input
+      type="text"
+      id="instagram_url"
+      name="instagram_url"
+      value="{{ request.user.profile.instagram_url }}"
+    />
+
+    <!-- Submit Button -->
     <button type="submit">Submit</button>
   </form>
-
-  <!-- Profile Information -->
-  <h3>Profile Information:</h3>
-  <p>Bio: {{ user.profile.bio }}</p>
-  {% if user.profile.website_url %}
-  <p>
-    Website:
-    <a href="{{ user.profile.website_url }}">{{ user.profile.website_url }}</a>
-  </p>
-  {% endif %} {% if user.profile.facebook_url %}
-  <p>
-    Facebook:
-    <a href="{{ user.profile.facebook_url }}"
-      >{{ user.profile.facebook_url }}</a
-    >
-  </p>
-  {% endif %} {% if user.profile.twitter_url %}
-  <p>
-    Twitter:
-    <a href="{{ user.profile.twitter_url }}">{{ user.profile.twitter_url }}</a>
-  </p>
-  {% endif %} {% if user.profile.instagram_url %}
-  <p>
-    Instagram:
-    <a href="{{ user.profile.instagram_url }}"
-      >{{ user.profile.instagram_url }}</a
-    >
-  </p>
-  {% endif %}
 </div>
-
 {% endblock %}
