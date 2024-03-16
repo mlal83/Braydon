@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block content %} 
 <div class="hero-box">
   <div class="hero-box-outline-white">
     <div class="inner-box">
@@ -18,8 +18,8 @@
       <h2>Share Your Story</h2>
       <form method="post" action="{% url 'submit_story' %}">
         {% csrf_token %}
-        <!-- Include genre dropdown form -->
-        <div class="mb-3">
+        <!-- genre dropdown form -->
+        <div class="mb-3"> 
           <label for="genre" class="form-label">Genre:</label>
           <select name="genre" id="genre" class="form-select">
             {% for key, value in genre_form.fields.genre.choices %}

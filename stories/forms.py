@@ -1,6 +1,6 @@
 from django import forms
-from .models import Comment, Review
-from .models import Story
+from .models import Story, Comment, Review
+
 
 class HorrorGenreForm(forms.Form):
     GENRE_CHOICES = [

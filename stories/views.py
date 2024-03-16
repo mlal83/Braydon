@@ -5,45 +5,46 @@ from .models import Story, Profile
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm
+from .forms import StoryForm
 
-
-def post_list(request):
+def story_list(request):
     queryset = Story.objects.all().order_by('-created_at')
     return render(request, 'stories/stories.html', {'object_list': queryset})
 
-def post_detail(request, slug):
-    post = get_object_or_404(Story, slug=slug)
-    comments = post.comments.all().order_by("-created_at")
-    comment_count = post.comments.filter(approved=True).count()
+def stories_detail(request, slug):
+    story = get_object_or_404(Story, slug=slug)
+    comments = story.comments.all().order_by("-created_at")
+    comment_count = story.comments.filter(approved=True).count()
 
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.author = request.user
-            comment.story = post
+            comment.story = story
             comment.save()
             messages.add_message(
                 request, messages.SUCCESS,
                 'Comment submitted and awaiting approval'
             )
-            return redirect('post_detail', slug=post.slug)
+            return redirect('stories_detail', slug=post.slug)
     else:
         comment_form = CommentForm()
         review_form = ReviewForm()
         genre_form = HorrorGenreForm()
 
+
     return render(
         request,
         "stories/stories_detail.html",
         {
-            "post": post,
+            "story": story,
             "comments": comments,
             "comment_count": comment_count,
             "comment_form": comment_form,
             "review_form": review_form,
-            "genre_form": genre_form
-        },
+            "genre_form": genre_form,
+        }
     )
 
 def comment_edit(request, slug, comment_id):
@@ -55,7 +56,7 @@ def comment_edit(request, slug, comment_id):
             comment.author = request.user
             comment.save()
             messages.success(request, 'Comment updated successfully.')
-            return redirect('post_detail', slug=slug)
+            return redirect('stories_detail', slug=slug)
     else:
         form = CommentForm(instance=comment)
     return render(request, 'stories/stories_detail.html', {'form': form})
@@ -65,7 +66,7 @@ def comment_delete(request, slug, comment_id):
     if request.method == 'POST':
         comment.delete()
         messages.success(request, 'Comment deleted successfully.')
-    return redirect('post_detail', slug=slug)
+    return redirect('stories_detail', slug=slug)
 
 @login_required
 def set_avatar(request):
@@ -129,7 +130,10 @@ def submit_story(request):
             story = form.save(commit=False)
             story.author = request.user
             story.save()
-            return redirect('post_list')  # Redirect to a page showing list of stories after submission
+            messages.success(request, 'Story submitted successfully.')
+            return redirect('home')  
+        else:
+            messages.error(request, 'Form submission failed. Please check the errors below.')
     else:
         form = StoryForm()
     return render(request, 'submit_story.html', {'form': form})
