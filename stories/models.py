@@ -23,14 +23,13 @@ class Profile(models.Model):
 
 def profile_picture_upload(request):
     if request.method == 'POST':
-        # Assuming the form field for the uploaded image is named 'profile_picture'
         profile_picture = request.FILES.get('profile_picture')
         if profile_picture:
             request.user.profile.profile_picture = profile_picture
             request.user.profile.save()
             return HttpResponse("Profile picture uploaded successfully!")
     # Handle GET request or invalid form submission
-    return HttpResponse("Profile picture upload failed!")  # You may want to render a template instead
+    return HttpResponse("Profile picture upload failed!") 
 
 
 class Story(models.Model):
@@ -41,16 +40,16 @@ class Story(models.Model):
     )
     
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)  # Add a slug field
+    slug = models.SlugField(unique=True) 
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories")
     created_at = models.DateTimeField(auto_now_add=True)
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')  # Add status field
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')  
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)  # Auto-generate slug from title
+            self.slug = slugify(self.title) 
         super().save(*args, **kwargs)
    
     

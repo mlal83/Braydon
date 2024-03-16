@@ -14,6 +14,7 @@ class HorrorGenreForm(forms.Form):
     ]
 
     genre = forms.ChoiceField(choices=GENRE_CHOICES)
+    
 
 class ProfileForm(forms.Form):
     picture = forms.ImageField(label='Upload Profile Picture', required=False)

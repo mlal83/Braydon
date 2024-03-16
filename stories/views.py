@@ -1,14 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .forms import CommentForm, HorrorGenreForm, ReviewForm
-from .models import Story, Profile  # Import the Profile model
+from .models import Story, Profile  
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm
 
 
 def post_list(request):
-    queryset = Story.objects.all()
+    queryset = Story.objects.all().order_by('-created_at')
     return render(request, 'stories/stories.html', {'object_list': queryset})
 
 def post_detail(request, slug):
@@ -81,6 +81,8 @@ def set_avatar(request):
         return redirect('profile')
     else:
         return render(request, 'set_avatar.html')
+
+
 def profile_picture_upload(request):
     # Your view logic for profile picture upload
     return HttpResponse("Profile picture uploaded successfully!")
@@ -113,11 +115,10 @@ def upload_profile_picture(request):
 def profile_view(request):
     try:
         profile = request.user.profile
-        # Assuming you have a ForeignKey relationship between Profile and Story
         stories = Story.objects.filter(author=request.user)
     except Profile.DoesNotExist:
         profile = Profile.objects.create(user=request.user)
-        stories = []  # Empty list if profile doesn't exist
+        stories = [] 
 
     return render(request, 'profile.html', {'profile': profile, 'stories': stories})
  

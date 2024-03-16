@@ -39,6 +39,98 @@
             required
           ></textarea>
         </div>
+        {% extends "base.html" %} {% load static %} {% block content %}
+
+        <div class="hero-box">
+          <div class="hero-box-outline-white">
+            <div class="inner-box">
+              <div class="inner-inner-box">
+                <div class="hero-text">
+                  <h1 id="hero-text">Welcome To Braydons Horror House.</h1>
+                  <p>Share Your Thrilling Stories With Us</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 offset-md-2">
+              <h2>Share Your Story</h2>
+              <form method="post" action="{% url 'submit_story' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="storyTitle" class="form-label">Title:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="storyTitle"
+                    name="title"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="storyContent" class="form-label"
+                    >Your Story:</label
+                  >
+                  <textarea
+                    class="form-control"
+                    id="storyContent"
+                    name="content"
+                    rows="6"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-container">
+          <!-- Dynamic stories from Django -->
+          {% for story in stories %}
+          <div class="story-item">
+            <div class="story-text">
+              <h2>{{ story.title }}</h2>
+              <p>{{ story.content }}</p>
+              <!-- Display author's profile picture -->
+              <img
+                src="{{ story.author.profile.profile_picture.url }}"
+                width="100"
+                height="100"
+                class="rounded-circle"
+                alt="{{ story.author.username }} Profile Picture"
+              />
+            </div>
+            <div class="story-image">
+             
+              <img
+                src="{{ story.featured_image.url }}"
+                alt="{{ story.title }}"
+              />
+              <div class="image-flash">
+                {% if "placeholder" in story.featured_image.url %}
+                <img
+                  class="card-img-top"
+                  src="{% static 'images/default.jpg' %}"
+                  alt="placeholder image"
+                />
+                {% else %}
+                <img
+                  class="card-img-top"
+                  src="{{ story.featured_image.url }}"
+                  alt="{{ story.title }}"
+                />
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endblock %}
+
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
@@ -62,7 +154,6 @@
       />
     </div>
     <div class="story-image">
-      <!-- Replace 'placeholder_image.jpg' with the actual image URL from your story model -->
       <img src="{{ story.featured_image.url }}" alt="{{ story.title }}" />
       <div class="image-flash">
         {% if "placeholder" in story.featured_image.url %}
