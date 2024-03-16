@@ -1,9 +1,6 @@
 body {
 
-  background-image: url("/static/images/braydon-logo.png");
-  background-size: cover; 
-  background-repeat: no-repeat;
-  background-position: center; 
+  background-color: #e84610;
 }
 
 .brand {
