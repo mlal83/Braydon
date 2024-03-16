@@ -1,5 +1,50 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-<h1>hello</h1>
+
+<div class="hero-box">
+  <div class="hero-box-outline-white">
+    <div class="inner-box">
+      <div class="inner-inner-box">
+        <div class="hero-text">
+          <h1 id="hero-text">Welcome To Braydons Horror House.</h1>
+          <p>Share Your Thrilling Stories With Us</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2>Share Your Story</h2>
+      <form method="post" action="{% url 'submit_story' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="storyTitle" class="form-label">Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="storyTitle"
+            name="title"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="storyContent" class="form-label">Your Story:</label>
+          <textarea
+            class="form-control"
+            id="storyContent"
+            name="content"
+            rows="6"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="story-container">
   <!-- Dynamic stories from Django -->
   {% for story in stories %}
@@ -33,37 +78,6 @@
           alt="{{ story.title }}"
         />
         {% endif %}
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <h2>Share Your Story</h2>
-        <form method="post" action="{% url 'submit_story' %}">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="storyTitle" class="form-label">Title:</label>
-            <input
-              type="text"
-              class="form-control"
-              id="storyTitle"
-              name="title"
-              required
-            />
-          </div>
-          <div class="mb-3">
-            <label for="storyContent" class="form-label">Your Story:</label>
-            <textarea
-              class="form-control"
-              id="storyContent"
-              name="content"
-              rows="6"
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
       </div>
     </div>
   </div>

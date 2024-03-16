@@ -45,12 +45,14 @@ class Story(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories")
     created_at = models.DateTimeField(auto_now_add=True)
-    rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00) 
+    rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')  # Add status field
     
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)  # Auto-generate slug from title
         super().save(*args, **kwargs)
+   
     
     def __str__(self):
         return self.title

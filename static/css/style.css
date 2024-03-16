@@ -1,8 +1,10 @@
-
 body {
-  background-color: red;
-}
 
+  background-image: url("/static/images/braydon-logo.png");
+  background-size: cover; 
+  background-repeat: no-repeat;
+  background-position: center; 
+}
 
 .brand {
   font-family: Lato, sans-serif;
