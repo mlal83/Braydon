@@ -1,12 +1,10 @@
-
+{% load static %}
 {% url 'home' as home_url %}
-{% url 'events' as event_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
 {% url 'about' as about_url %}
 {% url 'profile' as profile_url %}  
-{% load static %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -43,7 +41,7 @@
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="/static/images/braydon-logo.png" alt="Logo" style="max-width: 150px; height: auto;">
+            <img src="/static/images/braydon-logo.png" alt="Logo" class="navbar-logo">
         </a>
   
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -161,9 +159,9 @@
   </footer>
 
 
-
     {% block extras %}
     {% endblock %}
+
 </body>
 
 </html>

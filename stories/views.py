@@ -7,9 +7,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm
 from .forms import StoryForm
 
+
 def story_list(request):
     queryset = Story.objects.all().order_by('-created_at')
     return render(request, 'stories/stories.html', {'object_list': queryset})
+
+
 
 def stories_detail(request, slug):
     story = get_object_or_404(Story, slug=slug)
@@ -27,7 +30,7 @@ def stories_detail(request, slug):
                 request, messages.SUCCESS,
                 'Comment submitted and awaiting approval'
             )
-            return redirect('stories_detail', slug=post.slug)
+            return redirect('stories_detail', slug=story.slug)
     else:
         comment_form = CommentForm()
         review_form = ReviewForm()
@@ -123,6 +126,7 @@ def profile_view(request):
 
     return render(request, 'profile.html', {'profile': profile, 'stories': stories})
  
+@login_required
 def submit_story(request):
     if request.method == 'POST':
         form = StoryForm(request.POST)
