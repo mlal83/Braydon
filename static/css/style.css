@@ -1,6 +1,3 @@
-body {
-  background-color: #e84610;
-}
 
 .brand {
   font-family: Lato, sans-serif;
@@ -9,10 +6,38 @@ body {
   color: #4a4a4f;
 }
 
+.family-image {
+  background-image: url(/static/images/scaryfamily1.jpg);
+}
+.navbar {
+  background: linear-gradient(to bottom, #ffffff, #8a2be2);
+}
+.text-centre {
+  text-align: center;
+}
+
+.library {
+  background-image: url(/static/images/purple-library.jpg);
+  text-align: center;
+  color: white;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 .red-o {
   color: #e84610;
 }
 
+.form-label {
+  opacity: 1;
+  background-color: black;
+}
+
+.user-share {
+  opacity: 1;
+  background-color: black;
+}
 .thin {
   font-weight: 300;
 }
@@ -168,4 +193,15 @@ body {
   max-width: 100px; /* Adjust the maximum width as needed */
   max-height: 100px; /* Adjust the maximum height as needed */
   border-radius: 50%; /* Optional: Add a border-radius for circular avatar */
+}
+.footer {
+  font-weight: 500;
+  background-image: linear-gradient(to left, #553c9a, #b393d3);
+  margin-bottom: 70px;
+  font-size: 1em;
+  padding: 15px;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
 }

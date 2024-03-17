@@ -1,25 +1,35 @@
-{% extends "base.html" %} {% load static %} {% block content %} 
-<div class="hero-box">
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div class="hero-box text-centre">
   <div class="hero-box-outline-white">
     <div class="inner-box">
       <div class="inner-inner-box">
         <div class="hero-text">
           <h1 id="hero-text">Welcome To Braydons Horror House.</h1>
-          <p>Share Your Thrilling Stories With Us</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container text-centre family-image">
   <div class="row">
     <div class="col-md-8 offset-md-2">
-      <h2>Share Your Story</h2>
+      <div class="django-text">
+        <h1 id="hero-text">Stories.</h1>
+        <p>Tales from my library, share your own!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container library">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="user-share">Share Your Story</h2>
       <form method="post" action="{% url 'submit_story' %}">
         {% csrf_token %}
         <!-- genre dropdown form -->
-        <div class="mb-3"> 
+        <div class="mb-3">
           <label for="genre" class="form-label">Genre:</label>
           <select name="genre" id="genre" class="form-select">
             {% for key, value in genre_form.fields.genre.choices %}
