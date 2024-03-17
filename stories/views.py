@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.views.generic import ListView, DetailView
 from .forms import CommentForm, HorrorGenreForm, ReviewForm
 from .models import Story, Profile  
 from django.contrib.auth.decorators import login_required
@@ -13,6 +14,23 @@ def story_list(request):
     return render(request, 'stories/stories.html', {'object_list': queryset})
 
 
+class StoryDetailView(ListView):
+    model = Story
+    template_name = 'stories/stories_detail.html'
+    context_object_name = 'story'
+
+    def get_queryset(self):
+        slug = self.kwargs.get('slug')
+        return Story.objects.filter(slug=slug)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comments.all().order_by("-created_at")
+        context['comment_count'] = self.object.comments.filter(approved=True).count()
+        context['comment_form'] = CommentForm()
+        context['review_form'] = ReviewForm()
+        context['genre_form'] = HorrorGenreForm()
+        return context
 
 def stories_detail(request, slug):
     story = get_object_or_404(Story, slug=slug)
@@ -125,6 +143,7 @@ def profile_view(request):
         stories = [] 
 
     return render(request, 'profile.html', {'profile': profile, 'stories': stories})
+
  
 @login_required
 def submit_story(request):

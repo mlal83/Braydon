@@ -104,6 +104,21 @@ crispy_forms_tags %}
       </div>
     </div>
   </div>
+
+  <!-- List of other stories -->
+  <div class="row">
+    <div class="col-12">
+      <h2>Other Stories</h2>
+      {% for other_story in object_list %}
+      <div>
+        <h3>{{ other_story.title }}</h3>
+        <!-- Add other details of the story here if needed -->
+      </div>
+      {% empty %}
+      <p>No other stories available.</p>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 <!-- Delete confirmation modal -->
 <div
