@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
-<!-- events.html content starts here -->
+<!-- stories.html content starts here -->
 <div class="container-fluid">
   <div class="row">
-    <!-- Event Entries Column -->
+    <!-- stories Entries Column -->
     <div class="col-12 mt-3 left">
       <div class="row">
         {% for Story in object_list %}
@@ -20,15 +20,15 @@
                 {% else %}
                 <img
                   class="card-img-top"
-                  src=" {{ event.featured_image.url }}"
-                  alt="{{ event.title }}"
+                  src=" {{ story.featured_image.url }}"
+                  alt="{{ story.title }}"
                 />
                 {% endif %}
                 <div class="image-flash">
                   <p class="author">Author: {{ story.author }}</p>
                 </div>
               </div>
-              <a href="{% url 'event_detail' event.slug %}" class="post-link">
+              <a href="{% url 'story_detail' story.slug %}" class="post-link">
                 <h2 class="card-title">{{ story.title }}</h2>
               </a>
               <hr />

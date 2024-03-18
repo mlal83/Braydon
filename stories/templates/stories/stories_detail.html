@@ -11,7 +11,7 @@ crispy_forms_tags %}
         <p class="post-subtitle">{{ story.author }} | {{ story.created_on }}</p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
-        {% if "placeholder" in post.featured_image.url %}
+        {% if "placeholder" in story.featured_image.url %}
         <img
           class="card-img-top"
           src="{% static 'images/default.jpg' %}"

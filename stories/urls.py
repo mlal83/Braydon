@@ -7,7 +7,6 @@ from .views import StoryDetailView
 urlpatterns = [
     path('', views.story_list, name='home'),  
     path('profile/', views.profile_view, name='profile'),
-    path('', views.story_list, name='home'),
     path('profile_picture_upload/', views.profile_picture_upload, name='profile_picture_upload'),
     path('set_avatar/', views.set_avatar, name='set_avatar'),
     path('accounts/', include('allauth.urls')),
