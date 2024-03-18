@@ -2,11 +2,13 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+from .views import display_stories
 
 
 urlpatterns = [
 
     path('story/<slug:slug>/', views.StoryDetailView.as_view(), name='stories_detail'),
+    path('stories/', display_stories, name='display_stories'), 
     path('', views.StoryList.as_view(), name='home'),  
     path('story/', views.StoryList.as_view(), name='story'),
     path('profile/', views.profile_view, name='profile'),
