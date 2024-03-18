@@ -7,21 +7,33 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm
 from .forms import StoryForm
+from django.views.generic import ListView
 
 
-def story_list(request):
-    queryset = Story.objects.all().order_by('-created_at')
-    return render(request, 'stories/stories.html', {'object_list': queryset})
+
+class StoryList(ListView):
+    """
+    Display a list of :model:`story.Story`
+
+    **Context**
+
+    ``story``
+        An instance of :model:`story.Story`.
+
+    **Template:**
+
+    :template:`stories.list.html`
+    """
+    queryset = Story.objects.all()
+    template_name = "stories.list.html"
+    context_object_name = "stories.list"
 
 
-class StoryDetailView(ListView):
+
+class StoryDetailView(DetailView):
     model = Story
-    template_name = 'stories/stories.list.html'
+    template_name = 'stories/stories_detail.html'
     context_object_name = 'story'
-
-    def get_queryset(self):
-        slug = self.kwargs.get('slug')
-        return Story.objects.filter(slug=slug)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
