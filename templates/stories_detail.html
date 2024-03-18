@@ -1,11 +1,11 @@
-{% extends 'base.html' %} {% block content %} {% load static %} {% load
-crispy_forms_tags %}
+{% extends 'base.html' %} {% block content %} {% load static %} 
+
+{% load crispy_forms_tags %}
 <h1>hello world</h1>
 
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
-    
       <div class="col-md-6 masthead-text">
         <!-- Post title -->
         <h1 class="post-title">{{ story.title }}</h1>
@@ -92,7 +92,7 @@ crispy_forms_tags %}
         <h3>Leave a comment:</h3>
         <p>Posting as: {{ user.username }}</p>
         <form id="commentForm" method="post" style="margin-top: 1.3em">
-          {{ comment_form | crispy }} {% csrf_token %}
+          {{ comment_form }} {% csrf_token %}
           <button id="submitButton" type="submit" class="btn btn-signup btn-lg">
             Submit
           </button>
@@ -115,7 +115,6 @@ crispy_forms_tags %}
       </div>
       {% empty %}
       <p>No other stories available.</p>
-  
     </div>
   </div>
 </div>

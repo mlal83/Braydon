@@ -7,7 +7,7 @@ from .views import display_stories
 
 urlpatterns = [
 
-    path('story/<slug:slug>/', views.StoryDetailView.as_view(), name='stories_detail'),
+    path('story/<slug:pk>/', views.StoryDetailView.as_view(), name='stories_detail'),
     path('stories/', display_stories, name='display_stories'), 
     path('', views.StoryList.as_view(), name='home'),  
     path('story/', views.StoryList.as_view(), name='story'),

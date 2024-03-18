@@ -10,9 +10,12 @@ from .forms import StoryForm
 from django.views.generic import ListView
 
 
+
 def display_stories(request):
     stories = Story.objects.all()
-    context = {'stories': stories}
+    context = {
+        'stories': stories
+        }
     return render(request, 'stories/stories.html', context)
 
 class StoryList(ListView):
@@ -130,13 +133,18 @@ def edit_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
+            cleaned_data = form.cleaned_data
+            picture = cleaned_data.get('picture')
+            if picture:
+                # Save the selected avatar as the user's profile picture
+                request.user.profile.profile_picture = picture
+                request.user.profile.save()
             form.save()
             messages.success(request, 'Profile updated successfully.')
             return redirect('profile')
     else:
         form = ProfileForm(instance=request.user.profile)
     return render(request, 'edit_profile.html', {'form': form})
-
 def upload_profile_picture(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)

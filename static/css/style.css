@@ -4,7 +4,9 @@
   font-weight: 700;
   color: #4a4a4f;
 }
-
+.avatar-options {
+  display: flex;
+}
 .stories-input {
   text-align: center;
   color: red;

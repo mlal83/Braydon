@@ -1,5 +1,5 @@
 from django import forms
-from .models import Story, Comment, Review
+from .models import Story, Comment, Review, Profile
 
 
 class HorrorGenreForm(forms.Form):
@@ -16,28 +16,29 @@ class HorrorGenreForm(forms.Form):
     genre = forms.ChoiceField(choices=GENRE_CHOICES)
     
 
-class ProfileForm(forms.Form):
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio', 'website_url', 'facebook_url', 'twitter_url', 'instagram_url']
+
     picture = forms.ImageField(label='Upload Profile Picture', required=False)
+    avatar = forms.ChoiceField(label='Select Avatar', choices=[], required=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Dynamically populate choices for avatar field
+        self.fields['avatar'].choices = [(avatar.url, avatar.url) for avatar in Avatar.objects.all()]
 
     def clean(self):
         cleaned_data = super().clean()
         picture = cleaned_data.get('picture')
-        if picture:
-            # Handle picture upload logic here (using Cloudinary)
-            pass
+        avatar = cleaned_data.get('avatar')
+        
+        if not picture and not avatar:
+            raise forms.ValidationError('Please upload a photo or select an avatar.')
+
         return cleaned_data
-def edit_profile(request):
-    profile = Profile.objects.get(user=request.user)
 
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)  # Remove instance argument
-        if form.is_valid():
-            form.save()
-            return redirect('profile_view')
-    else:
-        form = ProfileForm(instance=profile)  # Remove instance argument
-
-    return render(request, 'edit_profile.html', {'form': form})
 class StoryForm(forms.ModelForm):
     class Meta:
         model = Story

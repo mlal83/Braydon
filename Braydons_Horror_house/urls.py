@@ -21,7 +21,7 @@ from stories import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('stories/', include('stories.urls')),
+    path('', include('stories.urls')),
     ##path('main/', include('main.urls')),  
     path("accounts/", include("allauth.urls")),
     path('summernote/', include('django_summernote.urls')),
