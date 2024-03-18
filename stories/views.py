@@ -10,6 +10,10 @@ from .forms import StoryForm
 from django.views.generic import ListView
 
 
+def display_stories(request):
+    stories = Story.objects.all()
+    context = {'stories': stories}
+    return render(request, 'stories/stories.html', context)
 
 class StoryList(ListView):
     """
@@ -24,8 +28,9 @@ class StoryList(ListView):
 
     :template:`stories.list.html`
     """
-    queryset = Story.objects.all()
-    template_name = "stories.list.html"
+    ##queryset = Story.objects.all()
+    queryset = Story.objects.prefetch_related('comments').all() 
+    template_name = "stories/stories.html"
     context_object_name = "stories.list"
 
 
