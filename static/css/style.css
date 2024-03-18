@@ -5,8 +5,7 @@
   color: #4a4a4f;
 }
 
-.family-image {
-  background-image: url(/static/images/scaryfamily1.jpg);
+.stories-input {
   text-align: center;
   color: white;
   border: 2px solid #ccc;
@@ -17,7 +16,13 @@
 
 .sign-up-pic {
   background-image: url(/static/images/scaryfamily1.jpg);
+  color: #fff;
 }
+
+.sign-up-txt {
+  opacity: 1;
+}
+
 .navbar {
   background: linear-gradient(to bottom, #ffffff, #8a2be2);
   display: flex;

@@ -5,6 +5,7 @@ crispy_forms_tags %}
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
+    
       <div class="col-md-6 masthead-text">
         <!-- Post title -->
         <h1 class="post-title">{{ story.title }}</h1>
@@ -26,6 +27,7 @@ crispy_forms_tags %}
         />
         {% endif %}
       </div>
+      {% endfor %}
     </div>
   </div>
 </div>
@@ -113,7 +115,7 @@ crispy_forms_tags %}
       </div>
       {% empty %}
       <p>No other stories available.</p>
-      {% endfor %}
+  
     </div>
   </div>
 </div>

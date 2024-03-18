@@ -16,7 +16,7 @@ def story_list(request):
 
 class StoryDetailView(ListView):
     model = Story
-    template_name = 'stories/stories_detail.html'
+    template_name = 'stories/stories.html'
     context_object_name = 'story'
 
     def get_queryset(self):

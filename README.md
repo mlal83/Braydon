@@ -1,14 +1,11 @@
-# ALL'S WELL PROJECT README
-## By The CODING QUAD
+# Braydon's Horror House PROJECT README
 ### Author Manjula Lal,
 
 ## Contents
 
 - Brief
 - External user’s goal:
-- Students
-- Therapists/Instructors
-- Food Vendors
+
 - Site owner's goal
 - Potential features to include
 - Project Initial ERD and data base design
@@ -29,36 +26,23 @@
 
 ## Brief -- Project  3: Learner Wellness
 
-Welcome to the All’s WELL platform. Our platform aims to promote mental health and physical well by providing easy access to resources, services, and healthy dining options on campus.
+Welcome to the Braydon's Horror House platform. Our platform aims to promote an entertaining experience for horror enthusiasts who wish to share there stories and experiences. 
 
 ![iamresponsive](/assets/images/readme/iamresponsive.png)
 
 ### External user’s goal:
 
-#### Students: 
+#### 
 
-Access resources and services that promote mental and physical well-being. Book sessions or join classes easily.
+#### 
 
-#### Therapists/Instructors: 
+#### 
 
-Create profiles, offer services, and manage bookings. Engage with the student community and get feedback.
-
-#### Food Vendors: 
-
-List healthy food options and attract health-conscious students.
 
 ### Site owner's goal:
 
-Foster a healthy campus environment by centralising wellness resources.
+Create and entertainment platform
 
-### Potential features to include:
-
-User registration.
-Therapist/Instructor profiles: For students to read about and book sessions.
-Event/Session booking: For therapy, yoga, meditation, or fitness classes.
-Food section: ~~Highlighting healthy dining options on campus with ratings, reviews, and menu options.~~
-Give healthy eating and diet advice
-Resources: Articles, videos, and podcasts related to mental and physical wellness
 
 ### Project Initial ERD and data base design 
 
@@ -74,17 +58,14 @@ The Miro Board was the initial tool we used for iteration. The board allowed us 
 ## Balsamiq
 Balsamiq was used to design the initial idea of the All Well’s website which entailed all user features, navigation and placeholders for pictures that would be incorporated within the website. We had made minor alterations in the finished project to support user friendliness and responsivness
 
-![Balsamiq homepage](/assets/images/readme/Balsamiq-Home.png)
-
-![Balsamiq Booking](/assets/images/readme/Balsamiq-S&T.png)
-
-![Project Login](/assets/images/readme/Balsamiq-login.png)
-
+![Balsamiq homepage]
+![Balsamiq Booking]
+![Project Login]
 ## Lucid Chart
 
 We decided to create a visual map of the website so we could clearly conceptualise the project as a whole.  
 
-![Lucid Chart](/assets/images/readme/Lucid1.png)
+![Lucid Chart]
 
 ## Github project
 
@@ -116,9 +97,7 @@ For our User Stories, we had decided to use Github project whereby 12 out of the
 
 ## Styling frontend development
 
-Styling font pairing - Raleway & Merriweather. A pastel colour palette of 3 shades of blue/green and beige was used.  The intention for the MVP styling was to convey an identity that was  Lighthearted, "fun" and warm theme to appeal to people of all ages.
-
-We had used, CSS, Bootstrap and HTML for this.
+Styling font pairing -
 
 ## Fixed Bugs
 
@@ -141,9 +120,6 @@ was causing a "TemplateSyntaxError" at /accounts/logout/ which we had fixed
 
 ## Unfixed Bug
 
-In the forms for Comments and Reviews, The text  "Body** appears, we have been unable to find it and remove it.
-
-![unfixed comments bug](/assets/images/readme/userreviews.png)
 
 ## Testing
 
@@ -189,10 +165,9 @@ Cloudinary used for online static file storage.
 
 We would like to give a huge thanks to our facilitator David Calikes and our coding coaches Kevin and Martin at the Code institute for there exceptional guidance and support.
 
-The blog project designed by code institute was used to help design the Django framework.
 
 Leonardo.ai was used to create our images for the website.
 
 chat gpt was used to enhance our knowledge within this project.
 
-Miro was used for ideation for the front end and backend of AllsWell.
+Miro was used for ideation for the front end and backend.

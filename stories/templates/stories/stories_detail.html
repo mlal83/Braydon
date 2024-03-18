@@ -1,44 +1,42 @@
 {% extends 'base.html' %} {% block content %} {% load static %} {% load
 crispy_forms_tags %}
-<h1>hello world</h1>
 
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
       <div class="col-md-6 masthead-text">
-        <!-- Post title -->
+        <!-- Post title goes in these h1 tags -->
         <h1 class="post-title">{{ story.title }}</h1>
-        <!--  post's created date -->
+        <!-- Post author goes before the | the post's created date goes after -->
         <p class="post-subtitle">{{ story.author }} | {{ story.created_on }}</p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
-        {% if story.featured_image %}
-        <img
-          class="card-img-top"
-          src="{{ story.featured_image.url }}"
-          alt="{{ story.title }}"
-        />
-        {% else %}
+        {% if "placeholder" in post.featured_image.url %}
         <img
           class="card-img-top"
           src="{% static 'images/default.jpg' %}"
           alt="placeholder image"
+        />
+        {% else %}
+        <img
+          class="card-img-top"
+          src=" {{ story.featured_image.url }}"
+          alt="{{ event.title }}"
         />
         {% endif %}
       </div>
     </div>
   </div>
 </div>
-
 <div class="container">
   <div class="row">
     <div class="col card mb-4 mt-3 left top">
       <div class="card-body-wide">
+        <!-- Use the | safe filter inside the template tags -->
         <p class="card-text-wide">{{ story.content | safe }}</p>
       </div>
     </div>
   </div>
-
   <!-- Displaying count of comments -->
   <div class="row">
     <div class="col-12">
@@ -50,12 +48,13 @@ crispy_forms_tags %}
       <hr />
     </div>
   </div>
-
   <!-- Displaying Comments -->
   <div class="row">
     <div class="col-md-8 card mb-4 mt-3">
       <h3>Comments:</h3>
       <div class="card-body">
+        <!-- We want a for loop inside the empty control tags
+          to iterate through each comment in comments -->
         {% for comment in comments %}
         <div
           class="p-2 comments {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}"
@@ -79,10 +78,10 @@ crispy_forms_tags %}
           </button>
           {% endif %}
         </div>
+        <!-- Our for loop ends here -->
         {% endfor %}
       </div>
     </div>
-
     <!-- Creating New Comments -->
     <div class="col-md-4 card mb-4 mt-3">
       <div class="card-body">
@@ -101,23 +100,7 @@ crispy_forms_tags %}
       </div>
     </div>
   </div>
-
-  <!-- List of other stories -->
-  <div class="row">
-    <div class="col-12">
-      <h2>Other Stories</h2>
-      {% for other_story in object_list %}
-      <div>
-        <h3>{{ other_story.title }}</h3>
-        <!-- Add other details of the story here if needed -->
-      </div>
-      {% empty %}
-      <p>No other stories available.</p>
-      {% endfor %}
-    </div>
-  </div>
 </div>
-
 <!-- Delete confirmation modal -->
 <div
   class="modal fade"
@@ -150,7 +133,6 @@ crispy_forms_tags %}
     </div>
   </div>
 </div>
-
 {% endblock content %} {% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}
