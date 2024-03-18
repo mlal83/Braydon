@@ -6,7 +6,7 @@
     <!-- stories Entries Column -->
     <div class="col-12 mt-3 left">
       <div class="row">
-        {% for story in stories.list %}
+        {% for story in stories %}
         <div class="col-md-4">
           <div class="card mb-4">
             <div class="card-body">
@@ -28,7 +28,7 @@
                   <p class="author">Author: {{ story.author }}</p>
                 </div>
               </div>
-              <a href="{% url 'story.list' story.slug %}" class="post-link">
+              <a href="{% url 'story' story.slug %}" class="post-link">
                 <h2 class="card-title">{{ story.title }}</h2>
               </a>
               <hr />
