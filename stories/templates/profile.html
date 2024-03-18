@@ -80,4 +80,21 @@
     </div>
   </div>
 </div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3 class="mb-4">Your Stories:</h3>
+      {% if stories %}
+      <ul>
+        {% for story in stories %}
+        <li>{{ story.title }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>You haven't submitted any stories yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
 {% endblock %}

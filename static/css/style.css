@@ -6,7 +6,7 @@
 }
 
 .family-image {
-  /*background-image: url(/static/images/scaryfamily1.jpg);*/
+  background-image: url(/static/images/scaryfamily1.jpg);
   text-align: center;
   color: white;
   border: 2px solid #ccc;
@@ -14,8 +14,14 @@
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+.sign-up-pic {
+  background-image: url(/static/images/scaryfamily1.jpg);
+}
 .navbar {
   background: linear-gradient(to bottom, #ffffff, #8a2be2);
+  display: flex;
+  justify-content: flex-end;
 }
 
 .navbar-logo {
@@ -28,7 +34,7 @@
 }
 
 .library {
-  /*background-image: url(/static/images/purple-library.jpg);*/
+  background-image: url(/static/images/purple-library.jpg);
   text-align: center;
   color: white;
   border: 2px solid #ccc;
