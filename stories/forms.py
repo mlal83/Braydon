@@ -2,8 +2,8 @@ from django import forms
 from .models import Story, Comment, Review, Profile
 
 
-class HorrorGenreForm(forms.Form):
-    GENRE_CHOICES = [
+
+GENRE_CHOICES = [
         ('supernatural', 'Supernatural Horror'),
         ('psychological', 'Psychological Horror'),
         ('slasher', 'Slasher'),
@@ -12,9 +12,10 @@ class HorrorGenreForm(forms.Form):
         ('monster', 'Monster'),
         ('survival', 'Survival Horror'),
     ]
-
-    genre = forms.ChoiceField(choices=GENRE_CHOICES)
-    
+    ##genre = forms.ChoiceField(choices=GENRE_CHOICES)
+class HorrorGenreForm(forms.Form):
+    genre = forms.ChoiceField(label='Select Genre', choices=GENRE_CHOICES)
+        
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -22,8 +23,7 @@ class ProfileForm(forms.ModelForm):
         fields = ['bio', 'website_url', 'facebook_url', 'twitter_url', 'instagram_url']
 
     picture = forms.ImageField(label='Upload Profile Picture', required=False)
-    avatar = forms.ChoiceField(label='Select Avatar', choices=[], required=False)
-
+   
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Dynamically populate choices for avatar field
@@ -52,3 +52,4 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('body',)
+

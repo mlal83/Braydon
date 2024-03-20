@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
 <!-- stories.html content starts here -->
-<div class="container-fluid">
+<div class="container-fluid full-background">
   <div class="row">
     <!-- stories Entries Column -->
     <div class="col-12 mt-3 left">
@@ -84,24 +84,12 @@
       <h2 class="user-share">Share Your Story</h2>
       <form method="post" action="{% url 'submit_story' %}">
         {% csrf_token %}
-        <!-- genre dropdown form -->
+        <!-- Django will render the genre dropdown with choices -->
         <div class="mb-3">
-          <label for="genre" class="form-label">Genre:</label>
-          <select name="genre" id="genre" class="form-select">
-            {% for key, value in genre_form.fields.genre.choices %}
-            <option value="{{ key }}">{{ value }}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="storyTitle" class="form-label">Title:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="storyTitle"
-            name="title"
-            required
-          />
+          {{ genre_form.genre.label_tag }}
+          <!-- This will render the label for the genre dropdown -->
+          {{ genre_form.genre }}
+          <!-- This will render the dropdown itself -->
         </div>
         <div class="mb-3">
           <label for="storyContent" class="form-label">Your Story:</label>
@@ -113,49 +101,10 @@
             required
           ></textarea>
         </div>
-
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 </div>
 
-<div class="story-container">
-  <!-- Dynamic stories from Django -->
-  {% for story in stories %}
-  <div class="story-item">
-    <div class="story-text">
-      <h2>{{ story.title }}</h2>
-      <p>{{ story.content }}</p>
-      <!-- Display author's profile picture -->
-      <img
-        src="{{ story.author.profile.profile_picture.url }}"
-        width="100"
-        height="100"
-        class="rounded-circle"
-        alt="{{ story.author.username }} Profile Picture"
-      />
-    </div>
-    <div class="story-image">
-      <!-- Replace 'placeholder_image.jpg' with the actual image URL from your story model -->
-      <img src="{{ story.featured_image.url }}" alt="{{ story.title }}" />
-      <div class="image-flash">
-        {% if "placeholder" in story.featured_image.url %}
-        <img
-          class="card-img-top"
-          src="{% static 'images/default.jpg' %}"
-          alt="placeholder image"
-        />
-        {% else %}
-        <img
-          class="card-img-top"
-          src="{{ story.featured_image.url }}"
-          alt="{{ story.title }}"
-        />
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-</div>
 {% endblock %}

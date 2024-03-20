@@ -1,20 +1,5 @@
 {% extends "base.html" %} {% load static %} {% block content %}
 
-<div class="container">
-  <h2 class="mt-4">Change Avatar and Profile Information</h2>
-  <form method="post" enctype="multipart/form-data" class="mt-4">
-    {% csrf_token %}
-    <!-- Your form fields for selecting/uploading avatar -->
-    <div class="mb-3">
-      <label for="avatar_file" class="form-label">Choose an image:</label>
-      <input
-        type="file"
-        id="avatar_file"
-        name="avatar_file"
-        class="form-control"
-        accept="image/*"
-      />
-    </div>
 
     <!-- Profile Information Fields -->
     <div class="mb-3">

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm, HorrorGenreForm, ReviewForm
 from .models import Story, Profile  
@@ -10,38 +11,62 @@ from .forms import StoryForm
 from django.views.generic import ListView
 
 
-
 def display_stories(request):
+    """
+    Displays all stories
+    """
     stories = Story.objects.all()
     context = {
         'stories': stories
         }
     return render(request, 'stories/stories.html', context)
+   
 
 class StoryList(ListView):
-    """
-    Display a list of :model:`story.Story`
-
-    **Context**
-
-    ``story``
-        An instance of :model:`story.Story`.
-
-    **Template:**
-
-    :template:`stories.list.html`
-    """
-    ##queryset = Story.objects.all()
-    queryset = Story.objects.prefetch_related('comments').all() 
+    model = Story
     template_name = "stories/stories.html"
-    context_object_name = "stories.list"
+    context_object_name = "stories"
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the genre form
+        context['genre_form'] = HorrorGenreForm()
+        return context
 
 
+class StoryList(ListView):
+    model = Story
+    template_name = "stories/stories.html"
+    context_object_name = "stories"
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the genre form
+        context['genre_form'] = HorrorGenreForm()
+        return context
+
+
+def select_genre(request):
+    if request.method == 'POST':
+        genre_form = HorrorGenreForm(request.POST)
+        if genre_form.is_valid():
+            pass  # Handle the valid form.
+    else:
+        genre_form = HorrorGenreForm()
+    
+    context = {
+        'genre_form': genre_form,
+    }
+    return render(request, 'stories.html', context)
+
+    
 class StoryDetailView(DetailView):
     model = Story
     template_name = 'stories/stories_detail.html'
     context_object_name = 'story'
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -109,25 +134,18 @@ def comment_delete(request, slug, comment_id):
         messages.success(request, 'Comment deleted successfully.')
     return redirect('stories_detail', slug=slug)
 
-@login_required
-def set_avatar(request):
-    if request.method == 'POST':
-        try:
-            avatar_file = request.FILES['avatar_file']
-            profile = request.user.profile
-            profile.profile_picture = avatar_file
-            profile.save()
-            messages.success(request, 'Avatar updated successfully.')
-        except (KeyError, ObjectDoesNotExist):
-            messages.error(request, 'Failed to update avatar. Please try again.')
-        return redirect('profile')
-    else:
-        return render(request, 'set_avatar.html')
-
 
 def profile_picture_upload(request):
-    # Your view logic for profile picture upload
-    return HttpResponse("Profile picture uploaded successfully!")
+    if request.method == 'POST':
+        profile_picture = request.FILES.get('profile_picture')
+        if profile_picture:
+            request.user.profile.profile_picture = profile_picture
+            request.user.profile.save()
+            return HttpResponse("Profile picture uploaded successfully!")
+    # Handle GET request or invalid form submission 
+    return HttpResponse("Profile picture upload failed!") 
+
+
 
 def edit_profile(request):
     if request.method == 'POST':
@@ -151,12 +169,12 @@ def upload_profile_picture(request):
         if form.is_valid():
             profile = form.save(commit=False)
             if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']  # Assuming 'picture' is the name of the field in the form
+                profile.picture = request.FILES['picture']  
             profile.save()
             return redirect('profile')
     else:
         form = ProfileForm()
-    return render(request, 'upload_profile_picture.html', {'form': form})
+    return render(request, 'profile.html', {'form': form})
 
 @login_required
 def profile_view(request):
@@ -173,6 +191,7 @@ def profile_view(request):
 @login_required
 def submit_story(request):
     if request.method == 'POST':
+        (request.POST, request.FILES)
         form = StoryForm(request.POST)
         if form.is_valid():
             story = form.save(commit=False)
@@ -184,4 +203,4 @@ def submit_story(request):
             messages.error(request, 'Form submission failed. Please check the errors below.')
     else:
         form = StoryForm()
-    return render(request, 'submit_story.html', {'form': form})
+    return render(request, 'stories.html', {'form': form})

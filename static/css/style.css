@@ -4,9 +4,13 @@
   font-weight: 700;
   color: #4a4a4f;
 }
-.avatar-options {
+.avatar-img {
   display: flex;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
+
 .stories-input {
   text-align: center;
   color: red;
@@ -55,6 +59,7 @@
 
 .form-label {
   opacity: 1;
+  color: #f9fafc;
 }
 
 .user-share {
@@ -79,6 +84,14 @@
 .card {
   border: none;
   background-color: pink;
+}
+
+.card-body {
+  background-image: url("https://res.cloudinary.com/dlzeoq67k/image/upload/v1710884273/fngkuyzvjeie8dexvlv1.jpg");
+  color: #fff;
+  text-align: right;
+  height: 200px;
+  border-radius: 10px;
 }
 
 .image-container {

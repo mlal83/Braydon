@@ -7,30 +7,15 @@ from django.utils.text import slugify
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=255, blank=True, null=True)
-    profile_picture = CloudinaryField('image', blank=True, null=True)
+    profile_picture_upload = CloudinaryField('image', blank=True, null=True)
     website_url = models.CharField(max_length=255, blank=True, null=True)
     facebook_url = models.CharField(max_length=255, blank=True, null=True)
     twitter_url = models.CharField(max_length=255, blank=True, null=True)
     instagram_url = models.CharField(max_length=255, blank=True, null=True)
 
-    # avatar selection or upload own pic
-    def set_avatar(self, avatar_url):
-        self.profile_picture = avatar_url
-        self.save()
 
     def __str__(self):
         return str(self.user)
-
-def profile_picture_upload(request):
-    if request.method == 'POST':
-        profile_picture = request.FILES.get('profile_picture')
-        if profile_picture:
-            request.user.profile.profile_picture = profile_picture
-            request.user.profile.save()
-            return HttpResponse("Profile picture uploaded successfully!")
-    # Handle GET request or invalid form submission
-    return HttpResponse("Profile picture upload failed!") 
-
 
 class Story(models.Model):
     STATUS_CHOICES = (
