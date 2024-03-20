@@ -32,12 +32,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io', '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io','8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io', '.herokuapp.com', "braydons-horror-house-5e9401912ad6.herokuapp.com"]
+ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io', '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io','8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io', '.herokuapp.com', "braydons-horror-house-5e9401912ad6.herokuapp.com", '8000-tariq845-braydonshorror-f5vr4i4d8e6.ws-eu110.gitpod.io']
 
 CSRF_TRUSTED_ORIGINS = [
 
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu111.gitpod.io', 
+     'https://8000-tariq845-braydonshorror-f5vr4i4d8e6.ws-eu110.gitpod.io',
 
 ]
 
