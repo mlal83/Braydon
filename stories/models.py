@@ -23,6 +23,15 @@ class Story(models.Model):
         ('published', 'Published'),
         ('archived', 'Archived'),
     )
+    GENRE_CHOICES = [
+        ('supernatural', 'Supernatural Horror'),
+        ('psychological', 'Psychological Horror'),
+        ('slasher', 'Slasher'),
+        ('zombie', 'Zombie Apocalypse'),
+        ('found_footage', 'Found Footage'),
+        ('monster', 'Monster'),
+        ('survival', 'Survival Horror'),
+    ]
     
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True) 
@@ -30,14 +39,14 @@ class Story(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="stories")
     created_at = models.DateTimeField(auto_now_add=True)
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')  
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
+    genre = models.CharField(max_length=20, choices=GENRE_CHOICES, default=0) 
     
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title) 
         super().save(*args, **kwargs)
    
-    
     def __str__(self):
         return self.title
 
@@ -51,7 +60,7 @@ class Comment(models.Model):
         ('monster', 'Monster'),
         ('survival', 'Survival Horror'),
     ]
-    genre = models.CharField(max_length=20, choices=GENRE_CHOICES)
+    genre = models.CharField(max_length=20, choices=GENRE_CHOICES, default=0)
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     body = models.TextField()

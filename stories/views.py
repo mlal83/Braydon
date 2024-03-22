@@ -15,16 +15,21 @@ from django.views.generic import ListView
 
 def display_stories(request):
     """
-    Displays all stories
+    This view displays all the user stories
     """
     stories = Story.objects.all()
     context = {
         'stories': stories
         }
     return render(request, 'stories/stories.html', context)
+
    
-
 class StoryList(ListView):
+
+    """
+    This StoryList view Lists the storys in a more userfriendly way were the user
+    can click in to the story car which expands to the story 
+    """
     model = Story
     template_name = "stories/stories.html"
     context_object_name = "stories"
@@ -35,22 +40,13 @@ class StoryList(ListView):
         # Add in the genre form
         context['genre_form'] = HorrorGenreForm()
         return context
-
-
-class StoryList(ListView):
-    model = Story
-    template_name = "stories/stories.html"
-    context_object_name = "stories"
-
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in the genre form
-        context['genre_form'] = HorrorGenreForm()
-        return context
-
 
 def select_genre(request):
+
+    """
+    when the user submits a story, they are asked to select the genre from the drop down
+    bar which showcases the story type.
+    """  
     if request.method == 'POST':
         genre_form = HorrorGenreForm(request.POST)
         if genre_form.is_valid():
@@ -65,11 +61,15 @@ def select_genre(request):
 
     
 class StoryDetailView(DetailView):
+    """
+    The storyDetail view retrieves the story, query the user, counts the number of comments and 
+    displays there reviews and provides the option to rate the story 
+    """ 
+
     model = Story
     template_name = 'stories/stories_detail.html'
     context_object_name = 'story'
-    
-    
+      
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         story = self.get_object()
@@ -86,43 +86,12 @@ class StoryDetailView(DetailView):
         context['genre_form'] = HorrorGenreForm()
         return context
 
-##def stories_detail(request, slug):
-##    story = get_object_or_404(Story, slug=slug)
-##    comments = story.comments.all().order_by("-created_at")
-##    comment_count = story.comments.filter(approved=True).count()
-
-##    if request.method == "POST":
-##        comment_form = CommentForm(data=request.POST)
-##        if comment_form.is_valid():
-##            comment = comment_form.save(commit=False)
-##            comment.author = request.user
-##            comment.story = story
-##            comment.save()
-##            messages.add_message(
-##                request, messages.SUCCESS,
-##                'Comment submitted and awaiting approval'
-##            )
-##            return redirect('stories_detail', slug=story.slug)
-##    else:
-##        comment_form = CommentForm()
-##        review_form = ReviewForm()
-##        genre_form = HorrorGenreForm()
-
-
-##    return render(
-##        request,
-##        "stories/stories_detail.html",
-##        {
-##            "story": story,
-##            "comments": comments,
-##            "comment_count": comment_count,
-##            "comment_form": comment_form,
-##            "review_form": review_form,
-##            "genre_form": genre_form,
-##        }
-##    )
 
 def comment_edit(request, slug, comment_id):
+    """
+    The comment edit view attempts to update data and sends a message that the comment
+    is updated successfully
+    """ 
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
@@ -137,6 +106,10 @@ def comment_edit(request, slug, comment_id):
     return render(request, 'stories/stories_detail.html', {'form': form})
 
 def comment_delete(request, slug, comment_id):
+    """
+    The comment delete view deletes data and also provides a success message that comment 
+    successfully deleted
+    """ 
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.method == 'POST':
         comment.delete()
@@ -144,9 +117,11 @@ def comment_delete(request, slug, comment_id):
     return redirect('stories_detail', slug=slug)
 
 
-
-
 def edit_profile_form(request):
+
+    """
+    The edit profile view attempts to update data on the user profile
+    """ 
     if request.method =='POST':
         form=profile_view (request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
@@ -158,6 +133,10 @@ def edit_profile_form(request):
 
     
 @login_required
+
+    """
+    This view manages the user profile, whether its present or creating a new user
+    """ 
 def profile_view(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
 
@@ -176,13 +155,17 @@ def profile_view(request):
     
 
 @login_required
+
+    """
+    The submit story view handles the submission of the story
+    """ 
 def submit_story(request):
     if request.method == 'POST':
-        # Create story form and comment form instances from POST data
+       
         story_form = StoryForm(request.POST, request.FILES)
         comment_form = CommentForm(request.POST)
 
-        # Validate story form first
+       
         if story_form.is_valid():
             story = story_form.save(commit=False)
             story.author = request.user
@@ -206,11 +189,15 @@ def submit_story(request):
         # If request method is not POST, create empty forms
         story_form = StoryForm()
         comment_form = CommentForm()
+        genre_form = HorrorGenreForm()
 
     # Pass the forms to the template
-    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form})
+    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form  'genre_form':  genre_form})
 
 def view_profile (request, profile_id):
+ """
+ This view retrieves user profiles but looking up profile ID
+ """ 
     profile=get_object_or_404(UserProfile, id=profile_id) 
     return render (request, 'profile.html', {'profile': profile})
 

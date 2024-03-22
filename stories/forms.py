@@ -43,7 +43,7 @@ class ProfileForm(forms.ModelForm):
 class StoryForm(forms.ModelForm):
     class Meta:
         model = Story
-        fields = ['title', 'content']     
+        fields = ['title', 'content', 'genre']     
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
