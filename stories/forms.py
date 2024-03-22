@@ -18,26 +18,27 @@ class HorrorGenreForm(forms.Form):
         
 
 class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['bio', 'website_url', 'facebook_url', 'twitter_url', 'instagram_url']
+    profile_picture_upload = forms.ImageField(label='Upload Profile Picture', required=False)
 
-    picture = forms.ImageField(label='Upload Profile Picture', required=False)
-   
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Dynamically populate choices for avatar field
-        self.fields['avatar'].choices = [(avatar.url, avatar.url) for avatar in Avatar.objects.all()]
+
+        for field_name in self.fields:
+            self.fields[field_name].required = False
 
     def clean(self):
         cleaned_data = super().clean()
-        picture = cleaned_data.get('picture')
-        avatar = cleaned_data.get('avatar')
-        
-        if not picture and not avatar:
-            raise forms.ValidationError('Please upload a photo or select an avatar.')
+        picture = cleaned_data.get('profile_picture_upload')
+
+        if not picture:
+            raise forms.ValidationError('Please upload a picture')
 
         return cleaned_data
+
+    class Meta:
+        model = Profile
+        fields = ['bio', 'profile_picture_upload', 'website_url', 'facebook_url', 'twitter_url', 'instagram_url']
+
 
 class StoryForm(forms.ModelForm):
     class Meta:

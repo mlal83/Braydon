@@ -54,86 +54,42 @@
                     <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
                         href="{% url 'home' %}">Home</a>
                 </li>
-                <!-- Add Profile Link -->
-                {% if user.is_authenticated %}
-   <li class="nav-item">
-                    <a class="nav-link {% if request.path == profile_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'profile' %}">View Profile</a>
-                </li>
+<!-- Add Profile Link -->
+{% if user.is_authenticated %}
+<li class="nav-item">
+    <a class="nav-link {% if request.path == profile_url %}active{% endif %}" aria-current="page"
+        href="{% url 'profile' %}">View Profile</a>
+</li>
+{% endif %}
 
-                    <!-- Display the avatar image -->
-                    <div class="avatar">
-                        {% if user.profile.profile_picture %}
-                        <img src="{{ user.profile.profile_picture.url }}" alt="Avatar" style="max-width: 100px; max-height: 100px;">
-                        {% else %}
-                        <!-- Default avatar image if profile picture is not available -->
-                        <img src="{% static 'path_to_default_avatar_image.jpg' %}" alt="Avatar" style="max-width: 100px; max-height: 100px;">
-                        {% endif %}
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <!-- Profile picture upload form -->  
-                    <form method="post" enctype="multipart/form-data" action="{% url 'profile_picture_upload' %}">
-                     {% csrf_token %}
-                    <input type="file" name="profile_picture">
-                    <button type="submit">Upload Picture</button>
-                    </form>
-                </li>
+<!-- Display profile picture if available -->
+{% if user.profile.profile_picture_upload %}
+    <li class="nav-item">
+        <img src="{{ user.profile.profile_picture_upload.url }}" alt="Profile Picture" style="max-width: 100px; max-height: 100px;">
+    </li>
+{% endif %}
 
-                {% endif %}
-                <!-- End Profile Link -->
-                {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'account_logout' %}">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'account_signup' %}">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-                        href="{% url 'account_login' %}">Login</a>
-                </li>
-                {% endif %}
-            </ul>
-            <span class="navbar-text text-muted"> </span>
-        </div>
-    </div>
+<!-- Profile Link -->
+{% if user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
+            href="{% url 'account_logout' %}">Logout</a>
+    </li>
+{% else %}
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+            href="{% url 'account_signup' %}">Register</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+            href="{% url 'account_login' %}">Login</a>
+    </li>
+{% endif %}
+
+       </ul>
+        </div> 
+    </div> 
 </nav>
-
-<!-- displaying Django messages -->
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      {% for message in messages %}
-      <div class="alert {{ message.tags }} alert-dismissible
-        fade show" id="msg" role="alert">
-        {{ message | safe }}
-        <button type="button" class="btn-close"
-          data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</div>
-  <!--Main page content, "hero image", stories-->
-  <main class="flex-shrink-0 main-bg">
-    {% if user.is_authenticated %}
-    <p class="text-end m-3">You are logged in as {{ user }}</p>
-    {% else %}
-    <p class="text-end m-3">You are not logged in</p>
-    {% endif %}
-
-    <div class="login-user-text text-end">
-      {% if user.is_authenticated %}
-        <p class="text-end m-3">User: {{ user }}</p>
-      {% else %}
-        <p class="text-end m-3">Log in.</p>
-      {% endif %}
-    </div>
- </div>
     <!--Dynamiq content-->
     <div >
     {% block content %}

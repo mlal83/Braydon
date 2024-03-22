@@ -29,6 +29,17 @@ for (let button of editButtons) {
     });
 }
 
+function editProfile() {
+    document.getElementById("displayProfileForm").style.display = "none";
+    document.getElementById("editProfileForm").style.display = "block";
+}
+
+function cancelEdit (){
+    document.getElementById("editProfileForm").style.display = "none";
+    document.getElementById("displayProfileForm").style.display = "block";
+
+}
+
 /*
  * Initializes deletion functionality for the provided delete buttons.
  * 

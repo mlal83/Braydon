@@ -7,7 +7,10 @@
         <!-- Post title goes in these h1 tags -->
         <h1 class="post-title">{{ story.title }}</h1>
         <!-- Post author goes before the | the post's created date goes after -->
-        <p class="post-subtitle">{{ story.author }} | {{ story.created_on }}</p>
+        <p class="post-subtitle">
+          {{ story.author }} | {{ story.created_on }} | {{ bio }} | {{
+          profile_picture_upload }} | {{ message }}
+        </p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
         {% if "placeholder" in story.featured_image.url %}

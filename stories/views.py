@@ -4,10 +4,12 @@ from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm, HorrorGenreForm, ReviewForm
 from .models import Story, Profile  
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProfileForm
-from .forms import StoryForm
+from .forms import ProfileForm, StoryForm, forms
 from django.views.generic import ListView
 
 
@@ -67,11 +69,18 @@ class StoryDetailView(DetailView):
     template_name = 'stories/stories_detail.html'
     context_object_name = 'story'
     
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = self.object.comments.all().order_by("-created_at")
-        context['comment_count'] = self.object.comments.filter(approved=True).count()
+        story = self.get_object()
+        user_profile = Profile.objects.filter(user=story.author).first()
+        if user_profile:
+            context['bio'] = user_profile.bio
+            context['website_url'] = user_profile.website_url
+            context['profile_picture_upload'] = user_profile.profile_picture_upload
+            
+        context['comments'] = story.comments.all().order_by("-created_at")
+        context['comment_count'] = story.comments.filter(approved=True).count()
         context['comment_form'] = CommentForm()
         context['review_form'] = ReviewForm()
         context['genre_form'] = HorrorGenreForm()
@@ -135,72 +144,73 @@ def comment_delete(request, slug, comment_id):
     return redirect('stories_detail', slug=slug)
 
 
-def profile_picture_upload(request):
-    if request.method == 'POST':
-        profile_picture = request.FILES.get('profile_picture')
-        if profile_picture:
-            request.user.profile.profile_picture = profile_picture
-            request.user.profile.save()
-            return HttpResponse("Profile picture uploaded successfully!")
-    # Handle GET request or invalid form submission 
-    return HttpResponse("Profile picture upload failed!") 
 
 
-
-def edit_profile(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+def edit_profile_form(request):
+    if request.method =='POST':
+        form=profile_view (request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
-            cleaned_data = form.cleaned_data
-            picture = cleaned_data.get('picture')
-            if picture:
-                # Save the selected avatar as the user's profile picture
-                request.user.profile.profile_picture = picture
-                request.user.profile.save()
-            form.save()
-            messages.success(request, 'Profile updated successfully.')
-            return redirect('profile')
+            form.save ()
+
     else:
         form = ProfileForm(instance=request.user.profile)
-    return render(request, 'edit_profile.html', {'form': form})
-def upload_profile_picture(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
-        if form.is_valid():
-            profile = form.save(commit=False)
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']  
-            profile.save()
-            return redirect('profile')
-    else:
-        form = ProfileForm()
-    return render(request, 'profile.html', {'form': form})
+        (request, 'profile.html', {'form': form})
 
+    
 @login_required
 def profile_view(request):
-    try:
-        profile = request.user.profile
-        stories = Story.objects.filter(author=request.user)
-    except Profile.DoesNotExist:
-        profile = Profile.objects.create(user=request.user)
-        stories = [] 
+    profile, created = Profile.objects.get_or_create(user=request.user)
 
-    return render(request, 'profile.html', {'profile': profile, 'stories': stories})
+    stories = Story.objects.filter(author=request.user)
 
- 
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form })
+    
+
 @login_required
 def submit_story(request):
     if request.method == 'POST':
-        (request.POST, request.FILES)
-        form = StoryForm(request.POST)
-        if form.is_valid():
-            story = form.save(commit=False)
+        # Create story form and comment form instances from POST data
+        story_form = StoryForm(request.POST, request.FILES)
+        comment_form = CommentForm(request.POST)
+
+        # Validate story form first
+        if story_form.is_valid():
+            story = story_form.save(commit=False)
             story.author = request.user
             story.save()
-            messages.success(request, 'Story submitted successfully.')
-            return redirect('home')  
+
+            # If story form is valid, validate and save comment form
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.story = story
+                comment.save()
+                messages.success(request, 'Story and comment submitted successfully.')
+                return redirect('home')
+            else:
+                # If comment form is invalid, display error message
+                messages.error(request, 'Comment form submission failed. Please check the errors below.')
         else:
-            messages.error(request, 'Form submission failed. Please check the errors below.')
+            # If story form is invalid, display error message
+            messages.error(request, 'Story form submission failed. Please check the errors below.')
     else:
-        form = StoryForm()
-    return render(request, 'stories.html', {'form': form})
+        # If request method is not POST, create empty forms
+        story_form = StoryForm()
+        comment_form = CommentForm()
+
+    # Pass the forms to the template
+    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form})
+
+def view_profile (request, profile_id):
+    profile=get_object_or_404(UserProfile, id=profile_id) 
+    return render (request, 'profile.html', {'profile': profile})
+

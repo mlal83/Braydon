@@ -46,14 +46,14 @@
                   />
                   {% endif %}
                   <div class="image-flash">
-                    <p class="author">Author: {{ story.author }}</p>
+                    <p class="author">Author:{{ story.author }} ></p>
                   </div>
                 </div>
                 <a href="{% url 'stories_detail' story.pk %}" class="post-link">
-                  <h2 class="card-title">{{ story.title }}</h2>
+                  <h2 class="card-title">{{ story.title}}</h2>
                 </a>
                 <hr />
-                <p class="card-text text-muted h6">{{ story.created_on}}</p>
+                <p class="card-text text-muted h6">{{created_on}}</p>
               </div>
             </div>
           </div>

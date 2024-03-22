@@ -26,5 +26,6 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path('summernote/', include('django_summernote.urls')),
     path('profile/', views.profile_view, name='profile'),
+    path('profile/<str:username>/', views.profile_view, name='profile'),
 
 ]

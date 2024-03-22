@@ -1,33 +1,45 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} {% load static %} 
+
+{% block content %}
+
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
-    
       <h3 class="mb-4">Profile Information:</h3>
+      <!-- Edit Profile Button -->
+      <button onclick="editProfile()">Edit profile</button>
 
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
         <!-- Allow users to upload an image file -->
         <div class="mb-3">
-          <label for="avatar_url"> Upload Your Picture:</label>
+          <label for="profile_picture_upload">Upload Profile Picture:</label>
+          {% if request.user.profile.profile_picture %}
+          <img
+            src="{{ request.user.profile.profile_picture.url }}"
+            alt="Profile Picture"
+            style="max-width: 100px; max-height: 100px"
+          />
+          {% endif %}
           <input
             type="file"
-            class="form-control"
-            id="avatar_url"
-            name="avatar_url"
+            class="form-control rounded-circle"
+            id="profile_picture_upload"
+            name="profile_picture_upload"
             accept="image/*"
-            class="rounded-circle"
           />
         </div>
 
         <!-- Profile Information Fields -->
         <div class="mb-3">
-          <label for="bio" class="form-label">Bio:</label>
+          <label for="bio" class="profile_heading">Bio:</label>
           <textarea class="form-control" id="bio" name="bio">
           {{ request.user.profile.bio }}</textarea
           >
         </div>
 
         <div class="mb-3">
-          <label for="website_url" class="form-label">Website URL:</label>
+          <label for="website_url" class="profile_heading">Website URL:</label>
           <input
             type="text"
             class="form-control"
@@ -38,7 +50,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="facebook_url" class="form-label">Facebook URL:</label>
+          <label for="facebook_url" class="profile_heading">Facebook URL:</label>
           <input
             type="text"
             class="form-control"
@@ -49,7 +61,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="twitter_url" class="form-label">Twitter URL:</label>
+          <label for="twitter_url" class="profile_heading">Twitter URL:</label>
           <input
             type="text"
             class="form-control"
@@ -60,7 +72,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="instagram_url" class="form-label">Instagram URL:</label>
+          <label for="instagram_url" class="profile_heading">Instagram URL:</label>
           <input
             type="text"
             class="form-control"
@@ -93,4 +105,7 @@
     </div>
   </div>
 </div>
+
+{% endblock %} {% block extras %}
+<script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}
