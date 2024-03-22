@@ -133,11 +133,10 @@ def edit_profile_form(request):
 
     
 @login_required
-
+def profile_view(request):
     """
     This view manages the user profile, whether its present or creating a new user
     """ 
-def profile_view(request):
     profile, created = Profile.objects.get_or_create(user=request.user)
 
     stories = Story.objects.filter(author=request.user)
@@ -155,11 +154,11 @@ def profile_view(request):
     
 
 @login_required
-
+   
+def submit_story(request):
     """
     The submit story view handles the submission of the story
     """ 
-def submit_story(request):
     if request.method == 'POST':
        
         story_form = StoryForm(request.POST, request.FILES)
@@ -192,12 +191,13 @@ def submit_story(request):
         genre_form = HorrorGenreForm()
 
     # Pass the forms to the template
-    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form  'genre_form':  genre_form})
+    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form, 'genre_form': genre_form})
+ 
 
-def view_profile (request, profile_id):
- """
- This view retrieves user profiles but looking up profile ID
- """ 
-    profile=get_object_or_404(UserProfile, id=profile_id) 
-    return render (request, 'profile.html', {'profile': profile})
+def view_profile(request, profile_id):
+    profile = get_object_or_404(UserProfile, id=profile_id) 
+    return render(request, 'profile.html', {'profile': profile})
 
+
+
+ 

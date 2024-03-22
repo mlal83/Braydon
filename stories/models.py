@@ -40,7 +40,7 @@ class Story(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
-    genre = models.CharField(max_length=20, choices=GENRE_CHOICES, default=0) 
+    genre = models.CharField(max_length=50, choices=GENRE_CHOICES, default=0)  
     
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -60,7 +60,7 @@ class Comment(models.Model):
         ('monster', 'Monster'),
         ('survival', 'Survival Horror'),
     ]
-    genre = models.CharField(max_length=20, choices=GENRE_CHOICES, default=0)
+    genre = models.CharField(max_length=50, choices=GENRE_CHOICES, default=0)
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name="comments")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comments")
     body = models.TextField()
