@@ -4,20 +4,17 @@
   font-weight: 700;
   color: #4a4a4f;
 }
-.avatar-img {
-  display: flex;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
 
 .stories-input {
   text-align: center;
-  color: red;
+  color: purple;
   border: 2px solid #ccc;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Quattrocento", serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .sign-up-pic {
@@ -27,19 +24,65 @@
 
 .sign-up-txt {
   opacity: 1;
+  font-family: "Quattrocento", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.inner-box {
+  background-image: url(/static/images/scaryhouse2.jpg);
+  text-shadow: 0px 0px 5px #b393d3, 0px 0px 10px #b393d3, 0px 0px 10px #b393d3,
+    0px 0px 20px #b393d3;
 }
 
 .navbar {
-  background: linear-gradient(to bottom, #ffffff, #8a2be2);
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #958e69 74%);
   display: flex;
   justify-content: flex-end;
+  font-family: "Quattrocento", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.login {
+  font-family: "Quattrocento", serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.post-subtitle {
+  color: white;
+}
+
+.upload-pic-in-story {
+  width: 58px;
+  height: 58px;
 }
 
 .navbar-logo {
   height: 100px;
   width: auto;
 }
-
+.full-bg {
+  background-color: #d7d7d7;
+  background-image: linear-gradient(147deg, #d7d7d7 0%, #353535 74%);
+  font-family: "Quattrocento", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+#hero-text {
+  text-align: center;
+  color: purple;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: "Quattrocento", serif;
+  font-weight: 800;
+  font-style: normal;
+  text-decoration: underline;
+}
 .text-centre {
   text-align: center;
 }
@@ -69,7 +112,6 @@
   font-weight: 300;
 }
 
-
 .light-bg {
   background-color: #fff;
 }
@@ -86,13 +128,18 @@
   border: none;
   background-color: pink;
 }
-
+.card-text-wide {
+  margin-top: 20px;
+}
 .card-body {
   background-image: url("https://res.cloudinary.com/dlzeoq67k/image/upload/v1710884273/fngkuyzvjeie8dexvlv1.jpg");
   color: #fff;
   text-align: right;
   height: 200px;
   border-radius: 10px;
+  font-family: "Quattrocento", serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .image-container {
@@ -104,7 +151,8 @@
   bottom: 5%;
   min-width: 30%;
   left: -2px;
-  background-color: #188181;
+  opacity: 1;
+  font-weight: bold;
 }
 
 .scale {
@@ -129,12 +177,18 @@
   display: inline-block;
   height: 33vh;
   width: 100%;
+  font-family: "Quattrocento", serif;
+  font-weight: 800;
+  font-style: normal;
 }
 
 .masthead-text {
   background-color: #445261;
   color: white;
   position: relative;
+  font-family: "Quattrocento", serif;
+  font-weight: 800;
+  font-style: normal;
 }
 
 .masthead-image {
@@ -180,6 +234,11 @@
   color: lightgray;
 }
 
+.card-text-wide {
+  font-family: "Quattrocento", serif;
+  font-weight: 800;
+  font-style: normal;
+}
 .btn-signup,
 .btn-edit {
   background-color: #188181;
@@ -229,14 +288,12 @@
   color: rgb(222, 146, 168);
 }
 
-.avatar {
-  max-width: 100px; /* Adjust the maximum width as needed */
-  max-height: 100px; /* Adjust the maximum height as needed */
-  border-radius: 50%; /* Optional: Add a border-radius for circular avatar */
-}
 .footer {
-  background-image: linear-gradient(to left, #553c9a, #b393d3);
+  background-image: linear-gradient(315deg, #000000 0%, #958e69 74%);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.masthead-image {
+  background-color: #23bbbb;
 }

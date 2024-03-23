@@ -1,97 +1,99 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-
-<div class="hero-box text-centre">
-  <div class="hero-box-outline-white">
-    <div class="inner-box">
-      <div class="inner-inner-box">
-        <div class="hero-text">
-          <h1 id="hero-text">Welcome To Braydons Horror House.</h1>
+<div class="full-bg">
+  <div class="hero-box text-centre">
+    <div class="hero-box-outline-white">
+      <div class="inner-box">
+        <div class="inner-inner-box">
+          <div>
+            <h1 id="hero-text">Welcome To Braydons Horror House.</h1>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container text-centre stories-input">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <div class="django-text">
-        <h1 id="hero-text">Stories.</h1>
-        <p>Tales from my library, share your own!</p>
+  <div class="container text-centre stories-input">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="django-text">
+          <h1 id="hero-text">Stories.</h1>
+          <p>Tales from my library, share your own!</p>
+          <p class="about">
+            Join our sanctuary where we are dedicated to bring together you
+            horror enthusiasts to build Braydons selection of horror storys.
+            Immerse yourself in horrifying tales from supernatural horror to
+            psychologial thrillers.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- stories.html content starts here -->
-  <div class="container-fluid full-background">
-    <div class="row">
-      <!-- stories Entries Column -->
-      <div class="col-12 mt-3 left">
-        <div class="row">
-          {% for story in stories %}
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-body">
-                <div class="image-container">
-                  {% if "placeholder" in story.featured_image.url %}
-                  <img
-                    class="card-img-top"
-                    src="{% static 'images/default.jpg' %}"
-                    alt="placeholder image"
-                  />
-                  {% else %}
-                  <img
-                    class="card-img-top"
-                    src=" {{ story.featured_image.url }}"
-                    alt="{{ story.title }}"
-                  />
-                  {% endif %}
-                  <div class="image-flash">
-                    <p class="author">Author:{{ story.author }} ></p>
+    <!-- stories.html content starts here -->
+    <div class="container-fluid full-background">
+      <div class="row">
+        <!-- stories Entries Column -->
+        <div class="col-12 mt-3 left">
+          <div class="row">
+            {% for story in stories %}
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="image-container">
+                    {% if "placeholder" in story.featured_image.url %}
+                    <img
+                      class="card-img-top"
+                      src="{% static 'images/default.jpg' %}"
+                      alt="placeholder image"
+                    />
+
+                    {% endif %}
                   </div>
+                  <a
+                    href="{% url 'stories_detail' story.pk %}"
+                    class="post-link"
+                  >
+                    <h2 class="card-title">{{ story.title}}</h2>
+                  </a>
+                  <hr />
+                  <p class="card-text text-muted h6">{{created_on}}</p>
                 </div>
-                <a href="{% url 'stories_detail' story.pk %}" class="post-link">
-                  <h2 class="card-title">{{ story.title}}</h2>
-                </a>
-                <hr />
-                <p class="card-text text-muted h6">{{created_on}}</p>
               </div>
             </div>
+            {% if forloop.counter|divisibleby:3 %}
           </div>
-          {% if forloop.counter|divisibleby:3 %}
+          <div class="row">{% endif %} {% endfor %}</div>
         </div>
-        <div class="row">{% endif %} {% endfor %}</div>
       </div>
+      {% if is_paginated %}
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_next %}
+          <li>
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+              NEXT &raquo;</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% endif %}
     </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-center">
-        {% if page_obj.has_next %}
-        <li>
-          <a href="?page={{ page_obj.next_page_number }}" class="page-link">
-            NEXT &raquo;</a
-          >
-        </li>
-        {% endif %}
-      </ul>
-    </nav>
-    {% endif %}
   </div>
-</div>
 
-<div class="container library">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <h2 class="user-share">Share Your Story</h2>
-      <form method="post" action="{% url 'submit_story' %}">
-        {% csrf_token %}
-        <!-- Django will render the genre dropdown with choices -->
-        <div class="mb-3">
-          <!-- This will render the label for the genre dropdown -->
-          {{ story_form.as_p }}
-          <!-- This will render the dropdown itself -->
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+  <div class="container library">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2 class="user-share">Share Your Story</h2>
+        <form method="post" action="{% url 'submit_story' %}">
+          {% csrf_token %}
+          <!-- Django will render the genre dropdown with choices -->
+          <div class="mb-3">
+            <!-- This will render the label for the genre dropdown -->
+            {{ story_form.as_p }}
+            <!-- This will render the dropdown itself -->
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

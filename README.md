@@ -158,3 +158,5 @@ https://gencraft.com/generate
 https://docs.djangoproject.com/en/5.0/ref/models/fields/
 https://lucid.app/users/login#/login?folder_id=recent
 https://app.diagrams.net/
+https://www.eggradients.com/gradient/moon-spot
+https://blog.logrocket.com/css-header-styles-cross-browser-compatibility/

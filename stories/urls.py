@@ -8,15 +8,10 @@ from .views import display_stories
 urlpatterns = [
 
     path('story/<slug:pk>/', views.StoryDetailView.as_view(), name='stories_detail'),
-    ##path('', views.display_stories, name='home'),
     path('stories/', display_stories, name='display_stories'), 
     path('', views.StoryList.as_view(), name='home'),  
-    ##path('story/', views.StoryList.as_view(), name='story'),
-    ##path('profile/<str:username>/', views.profile_view, name='profile'),
     path('profile/<int:profile_id>/', views.view_profile, name='view_profile'),
     path('profile/', views.profile_view, name='profile'),
-    # path('select_genre/', views.select_genre, name='select_genre'),
-    ##path('profile_picture_upload/', views.profile_picture_upload, name='profile_picture_upload'),
     path('accounts/', include('allauth.urls')),
     path('<slug:slug>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
     path('<slug:slug>/delete_comment/<int:comment_id>/', views.comment_delete, name='comment_delete'),

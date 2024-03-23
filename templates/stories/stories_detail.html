@@ -6,9 +6,17 @@
       <div class="col-md-6 masthead-text">
         <!-- Post title goes in these h1 tags -->
         <h1 class="post-title">{{ story.title }}</h1>
+        <img
+          class="upload-pic-in-story"
+          src="{{ profile_picture_upload.url }}"
+          alt="author-pic"
+          style="max-width: 100%; height: auto; max-height: 200px"
+        />
         <!-- Post author goes before the | the post's created date goes after -->
         <p class="post-subtitle">
-          {{ story.author }} | {{ story.created_on }} | {{ bio }} | {{ profile_picture_upload.url }} | {{ message }}
+          {{ story.author }} | {{ story.created_on }} | {{ bio }} | |
+          {{Instagram_URL}} | {{Website_URL}} | {{Facebook_URL}} |
+          {{Twitter_URL}}
         </p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
@@ -29,6 +37,9 @@
     </div>
   </div>
 </div>
+
+<!-- Post author goes before the | the post's created date goes after -->
+
 <div class="container">
   <div class="row">
     <div class="col card mb-4 mt-3 left top">

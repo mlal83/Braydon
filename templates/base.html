@@ -15,11 +15,9 @@
 
 
 <!-- Google Fonts CSS -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- Font Awesome CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -41,7 +39,7 @@
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="{% url 'home' %}">
-            <img src="/static/images/braydon-logo.png" alt="Logo" class="navbar-logo">
+            <img src="/static/images/scaryhouse2.jpg" alt="Logo" class="navbar-logo">
         </a>
   
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -65,7 +63,7 @@
 <!-- Display profile picture if available -->
 {% if user.profile.profile_picture_upload %}
     <li class="nav-item">
-        <img src="{{ user.profile.profile_picture_upload.url }}" alt="Profile Picture" style="max-width: 100px; max-height: 100px;">
+        <img src="{{ user.profile.profile_picture_upload.url }}" alt="Profile Picture" style="max-width: 100px; max-height: 100px; border-radius: 50%;">
     </li>
 {% endif %}
 
@@ -101,13 +99,22 @@
   </main>
 
   <!---Footer--->
-  <footer class="footer mt-auto py-3 light-bg">
+  <footer class="footer mt-auto py-3">
     <div class="footer-box">
       <div class="footer-inner-box">
        <div class="footer-content">
         <p class="m-0">
           <p class="github-link-text">All rights reserved 2024 </p>
           <a href="https://github.com/mlal83" target="_blank" class="github-link-text"><i class="fab fa-github ms-3 github-link"></i><span class="small-spacer"></span>Manjula</a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                            aria-label="Visit our Facebook page (opens in a new tab)">
+                            <i class="fa-brands fa-facebook"></i> Facebook</a>
+        <a href="https://www.twitter.com/" target="_blank" rel="noopener"
+                            aria-label="Visit our Twitter page (opens in a new tab)">
+                            <i class="fa-brands fa-twitter-square"></i>Twitter</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                            aria-label="Visit our Instagram page (opens in a new tab)">
+                            <i class="fa-brands fa-instagram"></i> Instagram</a>
         </p>
        </div>
     </div>

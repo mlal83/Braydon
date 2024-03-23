@@ -2,16 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
-from .forms import CommentForm, StoryForm, ReviewForm
-from .models import Story, Profile  
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.contrib.auth.models import User
+from .forms import CommentForm, StoryForm, ReviewForm, ProfileForm
+from .models import Story, Profile, Comment, Review  
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProfileForm, StoryForm, forms
-from django.views.generic import ListView
-
 
 def display_stories(request):
     """
@@ -40,24 +33,6 @@ class StoryList(ListView):
         # Add in the genre form
         context['story_form'] = StoryForm()
         return context
-
-# def select_genre(request):
-
-#     """
-#     when the user submits a story, they are asked to select the genre from the drop down
-#     bar which showcases the story type.
-#     """  
-#     if request.method == 'POST':
-#         genre_form = HorrorGenreForm(request.POST)
-#         if genre_form.is_valid():
-#             pass  # Handle the valid form.
-#     else:
-#         genre_form = HorrorGenreForm()
-    
-#     context = {
-#         'genre_form': genre_form,
-#     }
-#     return render(request, 'stories.html', context)
 
     
 class StoryDetailView(DetailView):
