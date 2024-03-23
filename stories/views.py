@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
-from .forms import CommentForm, HorrorGenreForm, ReviewForm
+from .forms import CommentForm, StoryForm, ReviewForm
 from .models import Story, Profile  
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -38,26 +38,26 @@ class StoryList(ListView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in the genre form
-        context['genre_form'] = HorrorGenreForm()
+        context['story_form'] = StoryForm()
         return context
 
-def select_genre(request):
+# def select_genre(request):
 
-    """
-    when the user submits a story, they are asked to select the genre from the drop down
-    bar which showcases the story type.
-    """  
-    if request.method == 'POST':
-        genre_form = HorrorGenreForm(request.POST)
-        if genre_form.is_valid():
-            pass  # Handle the valid form.
-    else:
-        genre_form = HorrorGenreForm()
+#     """
+#     when the user submits a story, they are asked to select the genre from the drop down
+#     bar which showcases the story type.
+#     """  
+#     if request.method == 'POST':
+#         genre_form = HorrorGenreForm(request.POST)
+#         if genre_form.is_valid():
+#             pass  # Handle the valid form.
+#     else:
+#         genre_form = HorrorGenreForm()
     
-    context = {
-        'genre_form': genre_form,
-    }
-    return render(request, 'stories.html', context)
+#     context = {
+#         'genre_form': genre_form,
+#     }
+#     return render(request, 'stories.html', context)
 
     
 class StoryDetailView(DetailView):
@@ -83,7 +83,7 @@ class StoryDetailView(DetailView):
         context['comment_count'] = story.comments.filter(approved=True).count()
         context['comment_form'] = CommentForm()
         context['review_form'] = ReviewForm()
-        context['genre_form'] = HorrorGenreForm()
+        context['story_form'] = StoryForm()
         return context
 
 
@@ -158,7 +158,7 @@ def profile_view(request):
 def submit_story(request):
     """
     The submit story view handles the submission of the story
-    """ 
+    """
     if request.method == 'POST':
        
         story_form = StoryForm(request.POST, request.FILES)
@@ -188,10 +188,9 @@ def submit_story(request):
         # If request method is not POST, create empty forms
         story_form = StoryForm()
         comment_form = CommentForm()
-        genre_form = HorrorGenreForm()
 
     # Pass the forms to the template
-    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form, 'genre_form': genre_form})
+    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form})
  
 
 def view_profile(request, profile_id):

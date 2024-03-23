@@ -1,6 +1,4 @@
-{% extends "base.html" %} {% load static %} 
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
 <div class="container">
   <div class="row">
@@ -14,9 +12,9 @@
         <!-- Allow users to upload an image file -->
         <div class="mb-3">
           <label for="profile_picture_upload">Upload Profile Picture:</label>
-          {% if request.user.profile.profile_picture %}
+          {% if request.user.profile.profile_picture_upload %}
           <img
-            src="{{ request.user.profile.profile_picture.url }}"
+            src="{{ request.user.profile.profile_picture_upload.url }}"
             alt="Profile Picture"
             style="max-width: 100px; max-height: 100px"
           />
@@ -50,7 +48,9 @@
         </div>
 
         <div class="mb-3">
-          <label for="facebook_url" class="profile_heading">Facebook URL:</label>
+          <label for="facebook_url" class="profile_heading"
+            >Facebook URL:</label
+          >
           <input
             type="text"
             class="form-control"
@@ -72,7 +72,9 @@
         </div>
 
         <div class="mb-3">
-          <label for="instagram_url" class="profile_heading">Instagram URL:</label>
+          <label for="instagram_url" class="profile_heading"
+            >Instagram URL:</label
+          >
           <input
             type="text"
             class="form-control"

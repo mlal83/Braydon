@@ -86,20 +86,9 @@
         {% csrf_token %}
         <!-- Django will render the genre dropdown with choices -->
         <div class="mb-3">
-          {{ genre_form.genre.label_tag }}
           <!-- This will render the label for the genre dropdown -->
-          {{ genre_form.genre }}
+          {{ story_form.as_p }}
           <!-- This will render the dropdown itself -->
-        </div>
-        <div class="mb-3">
-          <label for="storyContent" class="form-label">Your Story:</label>
-          <textarea
-            class="form-control"
-            id="storyContent"
-            name="content"
-            rows="6"
-            required
-          ></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
