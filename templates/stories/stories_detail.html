@@ -14,9 +14,9 @@
         />
         <!-- Post author goes before the | the post's created date goes after -->
         <p class="post-subtitle">
-          {{ story.author }} | {{ story.created_on }} | {{ bio }} | |
-          {{Instagram_URL}} | {{Website_URL}} | {{Facebook_URL}} |
-          {{Twitter_URL}}
+          Author: {{ story.author }} {{ story.created_on }} Bio: {{ bio }}
+          Genre: {{story.genre }} Instagram: {{story.Instagram_URL}} Website: {{story.Website_URL}}
+          Facebook: {{story.Facebook_URL}} Twitter: {{story.Twitter_URL}}
         </p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
