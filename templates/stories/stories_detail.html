@@ -15,8 +15,9 @@
         <!-- Post author goes before the | the post's created date goes after -->
         <p class="post-subtitle">
           Author: {{ story.author }} {{ story.created_on }} Bio: {{ bio }}
-          Genre: {{story.genre }} Instagram: {{story.Instagram_URL}} Website: {{story.Website_URL}}
-          Facebook: {{story.Facebook_URL}} Twitter: {{story.Twitter_URL}}
+          Genre: {{story.genre }} Instagram: {{story.Instagram_URL}} Website:
+          {{story.Website_URL}} Facebook: {{story.Facebook_URL}} Twitter:
+          {{story.Twitter_URL}}
         </p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
@@ -42,7 +43,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col card mb-4 mt-3 left top">
+    <div class="col card mb-4 mt-3 left top story-bg">
       <div class="card-body-wide">
         <!-- Use the | safe filter inside the template tags -->
         <p class="card-text-wide">{{ story.content | safe }}</p>
@@ -50,7 +51,7 @@
     </div>
   </div>
   <!-- Displaying count of comments -->
-  <div class="row">
+  <div class="row story-bg">
     <div class="col-12">
       <strong class="text-secondary">
         <i class="fa fa-comments"></i> {{ comment_count }}
@@ -113,11 +114,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
 
 <!-- Delete confirmation modal -->
 <div
