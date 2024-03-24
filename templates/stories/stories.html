@@ -51,7 +51,9 @@
                     href="{% url 'stories_detail' story.pk %}"
                     class="post-link"
                   >
-                    <h2 class="card-title">{{ story.title}}</h2>
+                    <h2 class="main-story-title card-title">
+                      {{ story.title}}
+                    </h2>
                   </a>
                   <hr />
                   <p class="card-text text-muted h6">{{created_on}}</p>

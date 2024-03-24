@@ -50,6 +50,9 @@
   font-weight: 800;
   font-style: normal;
 }
+h2.main-story-title {
+  color: #fff !important;
+}
 
 .post-subtitle {
   color: white;
@@ -175,7 +178,7 @@
   overflow: hidden;
   position: relative;
   display: inline-block;
-  height: 33vh;
+  height: auto;
   width: 100%;
   font-family: "Quattrocento", serif;
   font-weight: 800;
@@ -241,14 +244,14 @@
 }
 .btn-signup,
 .btn-edit {
-  background-color: #188181;
+  background-color: plum;
   color: #fff;
 }
 
 .btn-signup:hover,
 .btn-signup:active {
   background-color: #fff;
-  color: #23bbbb;
+  color: plum;
 }
 
 .link {
@@ -258,24 +261,24 @@
 
 .link:hover,
 .link:active {
-  color: #445261;
+  color: plum;
   text-decoration: underline;
 }
 
 .btn-like {
-  color: #e84610;
+  color: plum;
   border: none;
   background: transparent;
 }
 
 .btn-delete {
-  color: #fff;
+  color: plum;
   background: #e84610;
 }
 
 .btn-like:hover,
 .btn-like:active {
-  color: #e84610;
+  color: plum;
   background: transparent;
   border: none;
 }

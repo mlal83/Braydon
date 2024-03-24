@@ -30,14 +30,15 @@ Welcome to the Braydon's Horror House platform. Our platform aims to promote an 
 
 ### External user’s goal:
 
-The user requires engaging content that is entertaining to which they would like to visit the site again. Also to be a part of a community with people with the same interests,which will also give them the opportunity to share there own content and have there details, so other users know who put the post up, which will give the user a very personal touch to the content they provide.
+The user requires engaging content that is entertaining to which they would like to visit the site again. Also they want to be a part of a community with people with the same interests,which will also give them the opportunity to share there own content and have there details available, so other users know who put the post up, which will give the user a very personal touch to the website.
 
 ### Site owner's goal:
 
-My goal was aimed to entertain users to engage within a community with similar interests. When it comes to spooky stories, there is a very big market for people who find this of interest and my aim was to include some features that are very different to what you see in modern website and want to continue to develop this site as there is alot of potential for growth in this website. What I wanted to do was to have a wesbite that was not to overpowering so it appeals to the masses, and didnt want people to be left too overwhelmed and stresesd in the enviroment they are reading stories, so I focused purely on the mental aspect alongside creativity.
+My goal was aimed to entertain users to engage within a community within similar interests. When it comes to spooky stories, there is a very big market for people who find this of interest and my aim was to include some features that are very different to what you see in modern websites and want to continue to develop this site as there is alot of potential for growth. What I wanted to do was to have a wesbite that was not to overpowering so it appeals to the masses, and didnt want people to be left too overwhelmed and stresesd in the enviroment they are reading stories, so I focused purely on the mental aspect alongside creativity.
 
 ### Project Initial ERD and data base design
 
+I had created this ERD prior to creating the models so I knew exactly how to design my database which is the vore of this website. 
 ![Project ERD](/static/images/erd3.png)
 
 ## Develop strategy and Wireframe
@@ -48,7 +49,7 @@ The Miro Board was the initial tool we used for iteration. The board allowed us 
 
 ## Balsamiq
 
-Balsamiq was used to design the initial idea of the All Well’s website which entailed all user features, navigation and placeholders for pictures that would be incorporated within the website. We had made minor alterations in the finished project to support user friendliness and responsivness
+Balsamiq was used to design the initial idea of the Braydon's Jorrow House website which entailed all user features, navigation and placeholders for pictures that would be incorporated within the website. We had made minor alterations in the finished project to support user friendliness and responsivness
 
 ![Balsamiq Wireframe](/static/images/wireframe.png)
 
@@ -70,10 +71,10 @@ When the user comes to this website, they will see a list of stories which they 
 The submit story option and drop down form are below the stories section. The user must be logged in to write there story. If they are not, after they have wrote the story and submitted, they will be redirected to the login page.  
 ![submit story and dropdown](/static/images/story-dropdown.png)
 
-The Sign-up page, consist of a disclaimer and functionality to allow the user to create there account sucessfully.
-![Sign Up Page](/static/images/sign-up-page.png)
+The register page, consist of a disclaimer and functionality to allow the user to create there account sucessfully.
+![register Page](/static/images/sign-up-page.png)
 
-The navbar has the option of a homepage, login and sign-up. When logged in to the website, the navbar has the option to view profile. If the user uploads a pictures, it will be shown in the navbar until the user signs out.
+The navbar has the option of a homepage, login and register. When logged in to the website, the navbar has the option to view profile. If the user uploads a pictures, it will be shown in the navbar until the user signs out.
 ![navbar](/static/images/navbar.png)
 
 The profile allows the user a more personalised connection to the website and also attract other users to connect with them via there social links, a bio and upload a picture. All these are optional as uploading stories and giving comments only requires the user to be logged in. Also at the bottom of the profile page, the user can see which stories they have added to the website.
