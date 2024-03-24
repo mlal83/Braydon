@@ -1,5 +1,4 @@
 body {
-
   background-color: #e84610;
 }
 
@@ -165,8 +164,7 @@ body {
   color: rgb(222, 146, 168);
 }
 
-.avatar {
-  max-width: 100px; /* Adjust the maximum width as needed */
-  max-height: 100px; /* Adjust the maximum height as needed */
-  border-radius: 50%; /* Optional: Add a border-radius for circular avatar */
+.footer {
+  display: flex;
+  justify-content: center;
 }

@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 from .forms import CommentForm, StoryForm, ReviewForm, ProfileForm
 from .models import Story, Profile, Comment, Review  
 from django.contrib.auth.decorators import login_required
+from django.utils.text import slugify
 
 def display_stories(request):
     """
@@ -75,7 +76,7 @@ def comment_edit(request, slug, comment_id):
             comment.author = request.user
             comment.save()
             messages.success(request, 'Comment updated successfully.')
-            return redirect('stories_detail', slug=slug)
+            return redirect('stories_detail', slug=pk)
     else:
         form = CommentForm(instance=comment)
     return render(request, 'stories/stories_detail.html', {'form': form})
@@ -89,7 +90,7 @@ def comment_delete(request, slug, comment_id):
     if request.method == 'POST':
         comment.delete()
         messages.success(request, 'Comment deleted successfully.')
-    return redirect('stories_detail', slug=slug)
+    return redirect('stories_detail', slug=pk)
 
 
 def edit_profile_form(request):
@@ -128,49 +129,93 @@ def profile_view(request):
     return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form })
     
 
-@login_required
+##@login_required
+   
+##def submit_story(request):
+##    """
+##    The submit story view handles the submission of the story
+##    """
+##    if request.method == 'POST':
+       
+##        story_form = StoryForm(request.POST, request.FILES)
+##        comment_form = CommentForm(request.POST)
+
+       
+#        if story_form.is_valid():
+##            story = story_form.save(commit=False)
+##            story.author = request.user
+##            story.save()
+
+            # If story form is valid, validate and save comment form
+##            if comment_form.is_valid():
+##                comment = comment_form.save(commit=False)
+##                comment.author = request.user
+##                comment.story = story
+##                comment.save()
+##                messages.success(request, 'Story and comment submitted successfully.')
+##                return redirect('home')
+##            else:
+                # If comment form is invalid, display error message
+##                messages.error(request, 'Comment form submission failed. Please check the errors below.')
+##        else:
+            # If story form is invalid, display error message
+##            messages.error(request, 'Story form submission failed. Please check the errors below.')
+##    else:
+        # If request method is not POST, create empty forms
+##        story_form = StoryForm()
+##        comment_form = CommentForm()
+
+    # Pass the forms to the template
+##    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form})
+ 
+def Comment (request, story_id):
+    """
+    The submit comment view handles the submission of comments for a specific story
+    """
+    story = Story.objects.get(pk=story_id)
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.author = request.user
+            comment.story = story
+            comment.save()
+            messages.success(request, 'Comment submitted successfully.')
+            return redirect('stories_detail', slug=story.slug)
+          ##  return redirect('stories/stories.html', slug=story.slug)
+        else:
+            messages.error(request, 'Comment form submission failed. Please check the errors below.')
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'stories/stories.html', {'comment_form': comment_form, 'story': story})
    
 def submit_story(request):
     """
     The submit story view handles the submission of the story
     """
     if request.method == 'POST':
-       
         story_form = StoryForm(request.POST, request.FILES)
-        comment_form = CommentForm(request.POST)
-
-       
         if story_form.is_valid():
             story = story_form.save(commit=False)
             story.author = request.user
             story.save()
-
-            # If story form is valid, validate and save comment form
-            if comment_form.is_valid():
-                comment = comment_form.save(commit=False)
-                comment.author = request.user
-                comment.story = story
-                comment.save()
-                messages.success(request, 'Story and comment submitted successfully.')
-                return redirect('home')
-            else:
-                # If comment form is invalid, display error message
-                messages.error(request, 'Comment form submission failed. Please check the errors below.')
+            messages.success(request, 'Story submitted successfully.')
+            return redirect('home')
         else:
-            # If story form is invalid, display error message
             messages.error(request, 'Story form submission failed. Please check the errors below.')
     else:
-        # If request method is not POST, create empty forms
         story_form = StoryForm()
-        comment_form = CommentForm()
 
-    # Pass the forms to the template
-    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form})
- 
+    return render(request, 'stories/stories.html', {'story_form': story_form})
 
+    
 def view_profile(request, profile_id):
     profile = get_object_or_404(UserProfile, id=profile_id) 
     return render(request, 'profile.html', {'profile': profile})
+
+
 
 
 
