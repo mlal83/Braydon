@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 from .forms import CommentForm, StoryForm, ReviewForm, ProfileForm
 from .models import Story, Profile, Comment, Review  
 from django.contrib.auth.decorators import login_required
-from django.utils.text import slugify
+
 
 def display_stories(request):
     """

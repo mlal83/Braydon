@@ -177,3 +177,4 @@ https://app.diagrams.net/
 https://www.eggradients.com/gradient/moon-spot
 https://blog.logrocket.com/css-header-styles-cross-browser-compatibility/
 https://dyatmika.org/students/my-favourite-short-scary-stories/
+https://reintech.io/blog/implementing-profiles-in-django-tutorial 
