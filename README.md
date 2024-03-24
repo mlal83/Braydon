@@ -7,13 +7,12 @@
 - Brief
 - External user’s goal:
 - Site owner's goal
-- Potential features to include
 - Project Initial ERD and data base design
 - Develop strategy and Wireframe
 - Miro Board
 - Balsamiq
 - Lucid Chart
-- Github project
+- Github project and Milestones
 - Features
 - Styling frontend development
 - Fixed Bugs
@@ -27,9 +26,11 @@
 
 Welcome to the Braydon's Horror House platform. Our platform aims to promote an entertaining experience for horror enthusiasts who wish to share there stories and experiences and to build a community where people can engage with each other.
 
-![iamresponsive](/static/images/amIResponsivePP.png)
+![iamresponsive](/static/images/iamresponsiveppp.png)
 
 ### External user’s goal:
+
+The user requires engaging content that is entertaining to which they would like to visit the site again. Also to be a part of a community with people with the same interests,which will also give them the opportunity to share there own content and have there details, so other users know who put the post up, which will give the user a very personal touch to the content they provide.
 
 ### Site owner's goal:
 
@@ -55,31 +56,38 @@ Balsamiq was used to design the initial idea of the All Well’s website which e
 
 I decided to create a visual map of the website so we could clearly conceptualise the project as a whole. As you can see there alot of work left to do for this website and alot of potential of scope.
 
-![Lucid Chart]
+![Lucid Chart](/static/images/lucidPP.png)
 
 ## Github project
 
-For our User Stories, we had decided to use Github project whereby 12 out of the 14 user stories were completed leaving the food section to the next iteration.
-
-![Git Hub Project]
+For our User Stories, I had decided to use Github project whereby I had designed, based on user requirements, what should be entailed within this project and what I could save for the next iteration. To support this I had also created milestones and issues, which are avilable on Github for you to view.
 
 ## Features
 
+When the user comes to this website, they will see a list of stories which they can click into to read the story. These stories were created via users and which will be in rows of three. The pictures on the car are automated, so whatever the story, the card will contain the same picture as this will create a good consistancy throughout the website.
 ![stories](/static/images/stories.png)
 
+The submit story option and drop down form are below the stories section. The user must be logged in to write there story. If they are not, after they have wrote the story and submitted, they will be redirected to the login page.  
 ![submit story and dropdown](/static/images/story-dropdown.png)
 
+The Sign-up page, consist of a disclaimer and functionality to allow the user to create there account sucessfully.
+![Sign Up Page](/static/images/sign-up-page.png)
+
+The navbar has the option of a homepage, login and sign-up. When logged in to the website, the navbar has the option to view profile. If the user uploads a pictures, it will be shown in the navbar until the user signs out.
 ![navbar](/static/images/navbar.png)
 
+The profile allows the user a more personalised connection to the website and also attract other users to connect with them via there social links, a bio and upload a picture. All these are optional as uploading stories and giving comments only requires the user to be logged in. Also at the bottom of the profile page, the user can see which stories they have added to the website.
 ![profile](/static/images/profile.png)
 
+When the user uploads a story, when the user clicks on the story title, it brings the user to this page where the full story is available for the viewer. Under the story title will be the details of the user and there picture.
 ![inside card](/static/images/inside-card.png)
 
+The comments section, allows the user to write comments under the stories, where they can also edit and delete there comments. This section also calculates how many comments this story has had.
 ![comments](/static/images/comments.png)
 
 ## Styling frontend development
 
-Styling font pairing -
+I had decided to use a gradient for the Nav bar, footer and background. I wanted to have an eerie look, but also wanted it to be warm and welcoming so for the navbar and footer, I used the 'moons spot' gradient and then I chose a purple gradient for the rest of the website. I had also used pictures created by AI to give my website a more original and personalised look that would differ it from other sites who attempt to attempt to foster the same entertainment. My attempt to have a both eerie and welcoming website has been successful.
 
 ## Fixed Bugs
 
@@ -105,6 +113,8 @@ Before adding the slug field, there were duplicated field declarations within th
 
 ## Unfixed Bug
 
+Though the profile page can be updated as many times as the user wants, the edit button will not work. It is something that will be improved for the next iteration.
+
 ## Testing
 
 - All top level links works as expected.
@@ -115,13 +125,9 @@ Before adding the slug field, there were duplicated field declarations within th
 
 - User comments and reviews have full CRUD functionality.
 
-- External links to calendar provider (Calendly) work as expected.
-
 ## Future features and modifications
 
-Give users the option to make payments using stripe so they can pay for deposit online before appointment date.
-
-A shop feature to buy health equipment and books.
+Eventually this website will allow users the option to pick an avatar instead of uploading a picture. The decoration of the website is still in working progress whereby the wesite wants to provide the user the ability to listen to the content aswell as reading it. Alongside this, an online shop where users can buy and sell there horror merchandise alongise Braydons merchandise which will consists of books. They will Braydon will act as an intermediary for payments where Braydon will get a share of the price the users items are sold at.
 
 ## Tools and Technology used
 
