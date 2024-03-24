@@ -181,11 +181,8 @@ def view_profile(request, profile_id):
 
 def comment(request, slug):
     """
-    Display an individual story with comments.
-
-    **Template:**
-
-    :template:`stories_detail.html`
+    Displays an individual comment for the story
+   
     """
     queryset = Story.objects.filter(status=1)
     story = get_object_or_404(queryset, slug=slug)

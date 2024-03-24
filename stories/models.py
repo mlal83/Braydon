@@ -5,6 +5,10 @@ from cloudinary.models import CloudinaryField
 from django.utils.text import slugify
 
 class Profile(models.Model):
+
+    """
+    This model represents a users profile
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=255, blank=True, null=True)
     profile_picture_upload = CloudinaryField('image', blank=True, null=True)
@@ -18,6 +22,11 @@ class Profile(models.Model):
         return str(self.user)
 
 class Story(models.Model):
+    """
+    Model representing horror story choices
+
+    2 key attributes in this model are STATUS_CHOICES and Genre_Choice
+    """
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published'),
@@ -51,6 +60,11 @@ class Story(models.Model):
         return self.title
 
 class Comment(models.Model):
+    """
+  Model representing a comment on a horror story.
+
+  Key attributes: GENRE_CHOICES (list): Choices for the genre of the comment.
+    """
     GENRE_CHOICES = [
         ('supernatural', 'Supernatural Horror'),
         ('psychological', 'Psychological Horror'),
@@ -73,6 +87,11 @@ class Comment(models.Model):
 RATING = ((1, "1 Star"), (2, "2 Stars"), (3, "3 Stars"), (4, "4 Stars"), (5, "5 Stars"))
 
 class Review(models.Model):
+    """
+     Model representing a review of a horror story.
+
+     RATING: Choices for the rating of the review
+    """
     story = models.ForeignKey(Story, on_delete=models.CASCADE, related_name="reviews")
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="reviews")
     body = models.TextField()

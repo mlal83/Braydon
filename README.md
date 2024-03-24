@@ -30,26 +30,28 @@ Welcome to the Braydon's Horror House platform. Our platform aims to promote an 
 
 ### External user’s goal:
 
-The user requires engaging content that is entertaining to which they would like to visit the site again. Also they want to be a part of a community with people with the same interests,which will also give them the opportunity to share there own content and have there details available, so other users know who put the post up, which will give the user a very personal touch to the website.
+"The user seeks engaging content that entertains and encourages return visits to the site. Additionally, they desire to be part of a community where they can interact with other users who share similar interests. Providing the option for users to contribute their own content personalizes their experience, fostering a sense of ownership and connection. Optional user details are available to enhance the personalization of the website, adding a key personal touch."
 
 ### Site owner's goal:
 
-My goal was aimed to entertain users to engage within a community within similar interests. When it comes to spooky stories, there is a very big market for people who find this of interest and my aim was to include some features that are very different to what you see in modern websites and want to continue to develop this site as there is alot of potential for growth. What I wanted to do was to have a wesbite that was not to overpowering so it appeals to the masses, and didnt want people to be left too overwhelmed and stresesd in the enviroment they are reading stories, so I focused purely on the mental aspect alongside creativity.
+"My goal is to entertain users and encourage them to engage within a community centered around shared interests, particularly in spooky stories. I've noticed a significant market for people interested in this genre, and my aim is to differentiate my website by offering unique features not commonly found on modern platforms. I am committed to continuing the development of this site, recognizing its potential for growth.
+
+I wanted to create a website that strikes a balance, appealing to a wide audience without overwhelming them. It's important to me that users don't feel stressed or overwhelmed when reading stories, so I've focused on creating an environment that stimulates the mind while fostering creativity."
 
 ### Project Initial ERD and data base design
 
-I had created this ERD prior to creating the models so I knew exactly how to design my database which is the vore of this website.
+I had created this ERD to design my database prior to creating the models, so I had a physical plan on how my database would be structured.
 ![Project ERD](/static/images/erd3.png)
 
 ## Develop strategy and Wireframe
 
 ## Miro Board
 
-The Miro Board was the initial tool we used for iteration. The board allowed us to quicky communicate how the over project will be worked on, start until finished, placed all articles and pictures we will be using and the technology that will be used.
+I initially used the Miroboard for the initial iteration. start until finished, placed all articles and pictures we will be using and the technology that will be used.
 
 ## Balsamiq
 
-Balsamiq was used to design the initial idea of the Braydon's Jorrow House website which entailed all user features, navigation and placeholders for pictures that would be incorporated within the website. We had made minor alterations in the finished project to support user friendliness and responsivness
+I utilized Balsamiq to design the initial concept of the 'Braydon's Horror House' website, encompassing all user features, navigation elements, and placeholders for images to be integrated into the website. Throughout the design process, I made minor adjustments to enhance user-friendliness and ensure responsiveness."
 
 ![Balsamiq Wireframe](/static/images/wireframe.png)
 
@@ -61,66 +63,67 @@ I decided to create a visual map of the website so we could clearly conceptualis
 
 ## Github project
 
-For our User Stories, I had decided to use Github project whereby I had designed, based on user requirements, what should be entailed within this project and what I could save for the next iteration. To support this I had also created milestones and issues, which are avilable on Github for you to view.
+I utilized the GitHub project feature to craft our User Stories based on user requirements, outlining the project scope and identifying tasks for future iterations. Additionally, I established milestones and created corresponding issues, all of which are accessible on GitHub for review.
 
 ## Features
 
-- When the user comes to this website, they will see a list of stories which they can click into to read the story. These stories were created via users and which will be in rows of three. The pictures on the car are automated, so whatever the story, the card will contain the same picture as this will create a good consistancy throughout the website.
+- When users visit the website, they will encounter a list of stories displayed in rows of three. Clicking on a story will allow them to read it. Each story card features an automated picture, ensuring consistency across the website's design and providing a seamless user experience.
 
 ![stories](/static/images/stories.png)
 
-- The submit story option and drop down form are below the stories section. The user must be logged in to write there story. If they are not, after they have wrote the story and submitted, they will be redirected to the login page.
+- The 'Submit Story' option and dropdown form are located below the stories section. To write their story, users must be logged in. If they are not logged in and attempt to submit a story, they will be redirected to the login page before submission.
 
 ![submit story and dropdown](/static/images/story-dropdown.png)
 
-- The register page, consist of a disclaimer and functionality to allow the user to create there account sucessfully.
+- The registration page includes a disclaimer and functionality that enables users to successfully create their accounts."
 
 ![register Page](/static/images/sign-up-page.png)
 
-- The navbar has the option of a homepage, login and register. When logged in to the website, the navbar has the option to view profile. If the user uploads a pictures, it will be shown in the navbar until the user signs out.
+- The navigation bar features options such as homepage, login, and register. Upon logging in, the navbar expands to include the option to view the user's profile. Additionally, if the user uploads a picture, it will be displayed in the navbar until the user signs out.
 
 ![navbar](/static/images/navbar.png)
 
-- The profile allows the user a more personalised connection to the website and also attract other users to connect with them via there social links, a bio and upload a picture. All these are optional as uploading stories and giving comments only requires the user to be logged in. Also at the bottom of the profile page, the user can see which stories they have added to the website.
-  ![profile](/static/images/profile.png)
+- The profile feature offers users a more personalized connection to the website, enabling them to attract other users by sharing their social links, a bio, and uploading a picture. It's important to note that all of these elements are optional, as uploading stories and leaving comments only requires the user to be logged in. Additionally, at the bottom of the profile page, users can view the stories they have added to the website
 
-- When the user uploads a story, when the user clicks on the story title, it brings the user to this page where the full story is available for the viewer. Under the story title will be the details of the user and there picture.
+![profile](/static/images/profile.png)
+
+- When a user uploads a story, clicking on the story title redirects the user to a page where the full story is available for viewing. Under the story title, users will find details about the author of the story, including their bio and picture if available.
 
 ![inside card](/static/images/inside-card.png)
 
-- The comments section, allows the user to write comments under the stories, where they can also edit and delete there comments. This section also calculates how many comments this story has had.
+- The comments section allows users to write comments under the stories. Users have the option to edit and delete their comments. Additionally, the section displays the total number of comments the story has received.
 
 ![comments](/static/images/comments.png)
 
 ## Styling frontend development
 
-I had decided to use a gradient for the Nav bar, footer and background. I wanted to have an eerie look, but also wanted it to be warm and welcoming so for the navbar and footer, I used the 'moons spot' gradient and then I chose a purple gradient for the rest of the website. I had also used pictures created by AI to give my website a more original and personalised look that would differ it from other sites who attempt to attempt to foster the same entertainment. My attempt to have a both eerie and welcoming website has been successful.
+I decided to use a gradient for the navbar, footer, and background to create an eerie yet welcoming atmosphere. For the navbar and footer, I opted for the 'moons spot' gradient, while I chose a purple gradient for the rest of the website. Additionally, I incorporated pictures created by AI to give the website a more original and personalized appearance, distinguishing it from others in the same entertainment niche. Overall, the combination of gradients and AI-generated images successfully achieves the desired eerie yet welcoming ambiance for the website.
 
 ## Fixed Bugs
 
-- The problem I was having was that even though my CSRF_TRUSTED_ORIGINS were correct, the screen my dev screen would keep throwing, error. It was notived then that the numbers at the end of the URL kept iterating by one, so after changing my number at the end of my URL, I was able to see my webpage.
+- The problem I was having was that even though my CSRF_TRUSTED_ORIGINS were correct, the screen on my development environment kept throwing errors. It was noticed then that the numbers at the end of the URL kept iterating by one. So, after changing the number at the end of my URL, I was able to see my webpage.
 
 ![Iteration issues](/static/images/iteration-issue.png)
 
-- I was having integrity errors, and inroder to fix them, I had to create a new function to rectify the issue.
+- I was encountering integrity errors, and in order to fix them, I had to create a new function to rectify the issue.
 
 ![Integrity error](/static/images/integrity-error.png)
 
-- The problem was that the URL /stories/set_avatar/ was being matched by the stories_detail pattern instead of the set_avatar pattern. This happened because the set_avatar pattern was defined after the stories_detail pattern in the urlpatterns list.
+- The issue arose because the URL /stories/set_avatar/ was being matched by the stories_detail pattern instead of the set_avatar pattern. This occurred because the set_avatar pattern was defined after the stories_detail pattern in the urlpatterns list.
 
-Django processes URL patterns in the order they are defined, and it stops as soon as it finds a match. Since the stories_detail pattern was defined before the set_avatar pattern, Django matched /stories/set_avatar/ to the stories_detail pattern, causing the post_detail view to be called instead of the set_avatar view.
+Django processes URL patterns sequentially, stopping as soon as it finds a match. Because the stories_detail pattern was defined before the set_avatar pattern, Django matched /stories/set_avatar/ to the stories_detail pattern, resulting in the post_detail view being called instead of the set_avatar view.
 
 To resolve this issue, rearranged the urlpatterns list so that the set_avatar pattern is defined before the stories_detail pattern. This ensures that requests to /stories/set_avatar/ are correctly routed to the set_avatar view.
 
 ![Issue with URL](/static/images/url.png)
 
-- Before adding the slug field, there were duplicated field declarations within the Story model. This duplication caused confusion and could lead to errors. The corrected version removed the duplicated fields, ensuring clarity and consistency in the model definition-from django.utils.text import slugify
+- Before adding the slug field, there were duplicated field declarations within the Story model. This duplication caused confusion and could lead to errors. The corrected version removed the duplicated fields, ensuring clarity and consistency in the model definition.
 
 ![Slugify](/static/images/slugify.png)
 
 ## Unfixed Bug
 
-Though the profile page can be updated as many times as the user wants, the edit button will not work. It is something that will be improved for the next iteration.
+Though the profile page can be updated as many times as the user wants, the edit button will not work. This functionality is something that will be improved for the next iteration.
 
 ## Testing
 
@@ -134,7 +137,7 @@ Though the profile page can be updated as many times as the user wants, the edit
 
 ## Future features and modifications
 
-Eventually this website will allow users the option to pick an avatar instead of uploading a picture. The decoration of the website is still in working progress whereby the wesite wants to provide the user the ability to listen to the content aswell as reading it. Alongside this, an online shop where users can buy and sell there horror merchandise alongise Braydons merchandise which will consists of books. They will Braydon will act as an intermediary for payments where Braydon will get a share of the price the users items are sold at.
+Eventually, this website will allow users the option to pick an avatar instead of uploading a picture. The decoration of the website is still a work in progress, with plans to provide users the ability to listen to the content as well as reading it. Additionally, an online shop will be implemented where users can buy and sell their horror merchandise, alongside Braydon's merchandise which will consist of books. Braydon will act as an intermediary for payments, receiving a share of the price the users' items are sold at. The implementation of the Avatar option will be deferred to the next iteration due to time constraints.
 
 ## Tools and Technology used
 
@@ -160,7 +163,7 @@ Eventually this website will allow users the option to pick an avatar instead of
 
 ## Credits
 
-We would like to give a huge thanks to our facilitator David Calikes and our coding coaches Kevin and Martin at the Code institute for there exceptional guidance and support. I would also like to give a special thanks to my mentor Daisy who has supported me throughout my project
+I would like to extend a huge thanks to my facilitator, David Calikes, and my coding coaches, Kevin and Martin, at the Code Institute for their exceptional guidance and support. Additionally, I would like to give a special thanks to my mentor, Daisy, who has supported me throughout my journey. project
 
 Leonardo.ai was used to create our images for the website.
 chat gpt was used to enhance my knowledge, help with identifying bugs and assist with indenting issues

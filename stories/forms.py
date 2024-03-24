@@ -1,18 +1,17 @@
 from django import forms
 from .models import Story, Comment, Review, Profile
 
-
-
 GENRE_CHOICES = [
-        ('supernatural', 'Supernatural Horror'),
-        ('psychological', 'Psychological Horror'),
-        ('slasher', 'Slasher'),
-        ('zombie', 'Zombie Apocalypse'),
-        ('found_footage', 'Found Footage'),
-        ('monster', 'Monster'),
-        ('survival', 'Survival Horror'),
-    ]
-    ##genre = forms.ChoiceField(choices=GENRE_CHOICES)
+    ('supernatural', 'Supernatural Horror'),
+    ('psychological', 'Psychological Horror'),
+    ('slasher', 'Slasher'),
+    ('zombie', 'Zombie Apocalypse'),
+    ('found_footage', 'Found Footage'),
+    ('monster', 'Monster'),
+    ('survival', 'Survival Horror'),
+]
+
+# genre = forms.ChoiceField(choices=GENRE_CHOICES)
 class HorrorGenreForm(forms.Form):
     genre = forms.ChoiceField(label='Select Genre', choices=GENRE_CHOICES)
         
@@ -44,13 +43,15 @@ class StoryForm(forms.ModelForm):
     class Meta:
         model = Story
         fields = ['title', 'content', 'genre']     
+
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
 
+
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('body',)
-
