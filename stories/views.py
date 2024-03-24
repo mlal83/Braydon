@@ -129,44 +129,6 @@ def profile_view(request):
     return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form })
     
 
-##@login_required
-   
-##def submit_story(request):
-##    """
-##    The submit story view handles the submission of the story
-##    """
-##    if request.method == 'POST':
-       
-##        story_form = StoryForm(request.POST, request.FILES)
-##        comment_form = CommentForm(request.POST)
-
-       
-#        if story_form.is_valid():
-##            story = story_form.save(commit=False)
-##            story.author = request.user
-##            story.save()
-
-            # If story form is valid, validate and save comment form
-##            if comment_form.is_valid():
-##                comment = comment_form.save(commit=False)
-##                comment.author = request.user
-##                comment.story = story
-##                comment.save()
-##                messages.success(request, 'Story and comment submitted successfully.')
-##                return redirect('home')
-##            else:
-                # If comment form is invalid, display error message
-##                messages.error(request, 'Comment form submission failed. Please check the errors below.')
-##        else:
-            # If story form is invalid, display error message
-##            messages.error(request, 'Story form submission failed. Please check the errors below.')
-##    else:
-        # If request method is not POST, create empty forms
-##        story_form = StoryForm()
-##        comment_form = CommentForm()
-
-    # Pass the forms to the template
-##    return render(request, 'stories/stories_detail.html', {'story_form': story_form, 'comment_form': comment_form})
  
 def Comment (request, story_id):
     """
@@ -190,6 +152,14 @@ def Comment (request, story_id):
         comment_form = CommentForm()
 
     return render(request, 'stories/stories.html', {'comment_form': comment_form, 'story': story})
+def generate_unique_slug(title):
+    base_slug = slugify(title)
+    slug = base_slug
+    count = 1
+    while Story.objects.filter(slug=slug).exists():
+        slug = f"{base_slug}-{count}"
+        count += 1
+    return slug
    
 def submit_story(request):
     """
