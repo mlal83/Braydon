@@ -38,7 +38,7 @@ My goal was aimed to entertain users to engage within a community within similar
 
 ### Project Initial ERD and data base design
 
-I had created this ERD prior to creating the models so I knew exactly how to design my database which is the vore of this website. 
+I had created this ERD prior to creating the models so I knew exactly how to design my database which is the vore of this website.
 ![Project ERD](/static/images/erd3.png)
 
 ## Develop strategy and Wireframe
@@ -65,25 +65,31 @@ For our User Stories, I had decided to use Github project whereby I had designed
 
 ## Features
 
-When the user comes to this website, they will see a list of stories which they can click into to read the story. These stories were created via users and which will be in rows of three. The pictures on the car are automated, so whatever the story, the card will contain the same picture as this will create a good consistancy throughout the website.
+- When the user comes to this website, they will see a list of stories which they can click into to read the story. These stories were created via users and which will be in rows of three. The pictures on the car are automated, so whatever the story, the card will contain the same picture as this will create a good consistancy throughout the website.
+
 ![stories](/static/images/stories.png)
 
-The submit story option and drop down form are below the stories section. The user must be logged in to write there story. If they are not, after they have wrote the story and submitted, they will be redirected to the login page.  
+- The submit story option and drop down form are below the stories section. The user must be logged in to write there story. If they are not, after they have wrote the story and submitted, they will be redirected to the login page.
+
 ![submit story and dropdown](/static/images/story-dropdown.png)
 
-The register page, consist of a disclaimer and functionality to allow the user to create there account sucessfully.
+- The register page, consist of a disclaimer and functionality to allow the user to create there account sucessfully.
+
 ![register Page](/static/images/sign-up-page.png)
 
-The navbar has the option of a homepage, login and register. When logged in to the website, the navbar has the option to view profile. If the user uploads a pictures, it will be shown in the navbar until the user signs out.
+- The navbar has the option of a homepage, login and register. When logged in to the website, the navbar has the option to view profile. If the user uploads a pictures, it will be shown in the navbar until the user signs out.
+
 ![navbar](/static/images/navbar.png)
 
-The profile allows the user a more personalised connection to the website and also attract other users to connect with them via there social links, a bio and upload a picture. All these are optional as uploading stories and giving comments only requires the user to be logged in. Also at the bottom of the profile page, the user can see which stories they have added to the website.
-![profile](/static/images/profile.png)
+- The profile allows the user a more personalised connection to the website and also attract other users to connect with them via there social links, a bio and upload a picture. All these are optional as uploading stories and giving comments only requires the user to be logged in. Also at the bottom of the profile page, the user can see which stories they have added to the website.
+  ![profile](/static/images/profile.png)
 
-When the user uploads a story, when the user clicks on the story title, it brings the user to this page where the full story is available for the viewer. Under the story title will be the details of the user and there picture.
+- When the user uploads a story, when the user clicks on the story title, it brings the user to this page where the full story is available for the viewer. Under the story title will be the details of the user and there picture.
+
 ![inside card](/static/images/inside-card.png)
 
-The comments section, allows the user to write comments under the stories, where they can also edit and delete there comments. This section also calculates how many comments this story has had.
+- The comments section, allows the user to write comments under the stories, where they can also edit and delete there comments. This section also calculates how many comments this story has had.
+
 ![comments](/static/images/comments.png)
 
 ## Styling frontend development
@@ -92,25 +98,25 @@ I had decided to use a gradient for the Nav bar, footer and background. I wanted
 
 ## Fixed Bugs
 
+- The problem I was having was that even though my CSRF_TRUSTED_ORIGINS were correct, the screen my dev screen would keep throwing, error. It was notived then that the numbers at the end of the URL kept iterating by one, so after changing my number at the end of my URL, I was able to see my webpage.
+
 ![Iteration issues](/static/images/iteration-issue.png)
 
-The problem I was having was that even though my CSRF_TRUSTED_ORIGINS were correct, the screen my dev screen would keep throwing, error. It was notived then that the numbers at the end of the URL kept iterating by one, so after changing my number at the end of my URL, I was able to see my webpage.
+- I was having integrity errors, and inroder to fix them, I had to create a new function to rectify the issue.
 
 ![Integrity error](/static/images/integrity-error.png)
 
-I was having integrity errors, and inroder to fix them, I had to create a new function to rectify the issue.
-
-![Issue with URL](/static/images/url.png)
-The problem was that the URL /stories/set_avatar/ was being matched by the stories_detail pattern instead of the set_avatar pattern. This happened because the set_avatar pattern was defined after the stories_detail pattern in the urlpatterns list.
+- The problem was that the URL /stories/set_avatar/ was being matched by the stories_detail pattern instead of the set_avatar pattern. This happened because the set_avatar pattern was defined after the stories_detail pattern in the urlpatterns list.
 
 Django processes URL patterns in the order they are defined, and it stops as soon as it finds a match. Since the stories_detail pattern was defined before the set_avatar pattern, Django matched /stories/set_avatar/ to the stories_detail pattern, causing the post_detail view to be called instead of the set_avatar view.
 
 To resolve this issue, rearranged the urlpatterns list so that the set_avatar pattern is defined before the stories_detail pattern. This ensures that requests to /stories/set_avatar/ are correctly routed to the set_avatar view.
 
-![Slugify](/static/images/slugify.png)
-from django.utils.text import slugify
+![Issue with URL](/static/images/url.png)
 
-Before adding the slug field, there were duplicated field declarations within the Story model. This duplication caused confusion and could lead to errors. The corrected version removed the duplicated fields, ensuring clarity and consistency in the model definition
+- Before adding the slug field, there were duplicated field declarations within the Story model. This duplication caused confusion and could lead to errors. The corrected version removed the duplicated fields, ensuring clarity and consistency in the model definition-from django.utils.text import slugify
+
+![Slugify](/static/images/slugify.png)
 
 ## Unfixed Bug
 
@@ -132,35 +138,32 @@ Eventually this website will allow users the option to pick an avatar instead of
 
 ## Tools and Technology used
 
-HTML used for the main site content.
+- HTML used for the main site content.
 
-CSS used for design website.
+- CSS used for design website.
 
-JavaScript used for user interaction.
+- JavaScript used for user interaction.
 
-Python used for back-end programming.
+- Python used for back-end programming.
 
-Git for version control.
+- Git for version control.
 
-Bootstrap used alongside CSS to help build faster and help enhance user experience and responsiveness.
+- Bootstrap used alongside CSS to help build faster and help enhance user experience and responsiveness.
 
-Django used for Python framework.
+- Django used for Python framework.
 
-ElephantSQL for Postgres database.
+- ElephantSQL for Postgres database.
 
-Heroku was used to deploy the back-end.
+- Heroku was used to deploy the back-end.
 
-Cloudinary used for online static file storage.
+- Cloudinary used for online static file storage.
 
 ## Credits
 
 We would like to give a huge thanks to our facilitator David Calikes and our coding coaches Kevin and Martin at the Code institute for there exceptional guidance and support. I would also like to give a special thanks to my mentor Daisy who has supported me throughout my project
 
 Leonardo.ai was used to create our images for the website.
-
 chat gpt was used to enhance my knowledge, help with identifying bugs and assist with indenting issues
-
-Miro was used for ideation for the front end and backend developement.
 https://www.learningaboutelectronics.com/Articles/
 How-to-create-a-drop-down-list-in-a-Django-form.php
 Stackoverflow.com
