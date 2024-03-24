@@ -27,7 +27,7 @@
 
 Welcome to the Braydon's Horror House platform. Our platform aims to promote an entertaining experience for horror enthusiasts who wish to share there stories and experiences and to build a community where people can engage with each other.
 
-![iamresponsive](/assets/images/readme/iamresponsive.png)
+![iamresponsive](/static/images/amIResponsivePP.png)
 
 ### External user’s goal:
 
