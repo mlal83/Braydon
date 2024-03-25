@@ -10,6 +10,7 @@ urlpatterns = [
     path('story/<slug:pk>/', views.StoryDetailView.as_view(), name='stories_detail'),
     path('stories/', display_stories, name='display_stories'), 
     path('', views.StoryList.as_view(), name='home'),  
+    path('story/<int:story_id>/submit_comment/', views.submit_comment, name='submit_comment'),
     path('profile/<int:profile_id>/', views.view_profile, name='view_profile'),
     path('profile/', views.profile_view, name='profile'),
     path('accounts/', include('allauth.urls')),

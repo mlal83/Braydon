@@ -62,7 +62,6 @@ class StoryDetailView(DetailView):
         context['story_form'] = StoryForm()
         return context
 
-
 def comment_edit(request, slug, comment_id):
     """
     The comment edit view attempts to update data and sends a message that the comment
@@ -106,7 +105,6 @@ def edit_profile_form(request):
     else:
         form = ProfileForm(instance=request.user.profile)
         (request, 'profile.html', {'form': form})
-
     
 @login_required
 def profile_view(request):
@@ -128,29 +126,47 @@ def profile_view(request):
 
     return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form })
     
+def submit_comment(request, story_id):
+    story = Story.objects.get(pk=story_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.story = story
+            comment.author = request.user
+            comment.save()
+            messages.success(request, 'Comment submitted successfully.')
+            # Redirect to a valid URL or view after successful comment submission
+            return redirect('home')  # Redirecting to the home page as an example
+        else:
+            messages.error(request, 'Comment form submission failed. Please check the errors below.')
+    else:
+        form = CommentForm()
+
+    return render(request, 'submit_comment.html', {'form': form})
  
-##def Comment (request, story_id):
-##    """
-##    The submit comment view handles the submission of comments for a specific story
-##    """
-##    story = Story.objects.get(pk=story_id)
+def Comment(request, story_id):
+    """
+    The submit comment view handles the submission of comments for a specific story
+    """
+    story = Story.objects.get(pk=story_id)
 
-##    if request.method == 'POST':
-##        comment_form = CommentForm(request.POST)
-##        if comment_form.is_valid():
-##            comment = comment_form.save(commit=False)
-##            comment.author = request.user
-##            comment.story = story
-##            comment.save()
-##            messages.success(request, 'Comment submitted successfully.')
-            ##return redirect('stories_detail', slug=story.slug)
-##            return redirect('stories/stories.html', slug=story.slug)
-##        else:
-##            messages.error(request, 'Comment form submission failed. Please check the errors below.')
-##    else:
-##        comment_form = CommentForm()
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.story = story
+            comment.save()
+            messages.success(request, 'Comment submitted successfully.')
+         
+            return redirect('stories_detail', slug=story.slug)  
+        else:
+            messages.error(request, 'Comment form submission failed. Please check the errors below.')
+    else:
+        comment_form = CommentForm()
 
-##    return render(request, 'stories/stories.html', {'comment_form': comment_form, 'story': story})
+    return render(request, 'stories/stories.html', {'comment_form': comment_form, 'story': story})
 
 
    
@@ -179,38 +195,3 @@ def view_profile(request, profile_id):
     return render(request, 'profile.html', {'profile': profile})
 
 
-def comment(request, slug):
-    """
-    Displays an individual comment for the story
-   
-    """
-    queryset = Story.objects.filter(status=1)
-    story = get_object_or_404(queryset, slug=slug)
-    comments = story.comments.all().order_by("-created_on")
-    comment_count = story.comments.filter(approved=True).count()
-
-    if request.method == "POST":
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.author = request.user
-            comment.story = story
-            comment.save()
-            messages.success(
-                request,
-                'Comment submitted and awaiting approval'
-            )
-            return redirect('stories_detail', slug=story.slug)
-
-    comment_form = CommentForm()
-
-    return render(
-        request,
-        "stories_detail.html",
-        {
-            "story": story,
-            "comments": comments,
-            "comment_count": comment_count,
-            "comment_form": comment_form
-        },
-    )
