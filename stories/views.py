@@ -127,6 +127,10 @@ def profile_view(request):
     return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form })
     
 def submit_comment(request, story_id):
+    '''
+    The submit comment view handles the submission for of comments for a particular story
+    '''
+
     story = Story.objects.get(pk=story_id)
 
     if request.method == 'POST':
@@ -138,7 +142,7 @@ def submit_comment(request, story_id):
             comment.save()
             messages.success(request, 'Comment submitted successfully.')
             # Redirect to a valid URL or view after successful comment submission
-            return redirect('home')  # Redirecting to the home page as an example
+            return redirect('home')  
         else:
             messages.error(request, 'Comment form submission failed. Please check the errors below.')
     else:
@@ -148,7 +152,7 @@ def submit_comment(request, story_id):
  
 def Comment(request, story_id):
     """
-    The submit comment view handles the submission of comments for a specific story
+    View for handling comment submissionos and rendering the comment form  
     """
     story = Story.objects.get(pk=story_id)
 
@@ -189,6 +193,9 @@ def submit_story(request):
 
     
 def view_profile(request, profile_id):
+    '''
+    Function to view user profile
+    '''
     profile = get_object_or_404(UserProfile, id=profile_id) 
     return render(request, 'profile.html', {'profile': profile})
 
