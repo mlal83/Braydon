@@ -167,9 +167,9 @@ Eventually, this website will allow users the option to pick an avatar instead o
 
 I would like to extend a huge thanks to my facilitator, David Calikes, and my coding coaches, Kevin and Martin, at the Code Institute for their exceptional guidance and support. Additionally, I would like to give a special thanks to my mentor, Daisy, who has supported me throughout my journey. project
 
-Leonardo.ai was used to create our images for the website.
-chat gpt was used to enhance my knowledge, help with identifying bugs and assist with indenting issues
-https://www.learningaboutelectronics.com/Articles/
+chat gpt was used to enhance my knowledge, help with identifying bugs, assist with indenting issues and help with my function in the view which was my submit_comment.
+
+Other notable links
 How-to-create-a-drop-down-list-in-a-Django-form.php
 Stackoverflow.com
 https://gencraft.com/generate
