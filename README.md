@@ -115,7 +115,7 @@ Django processes URL patterns sequentially, stopping as soon as it finds a match
 
 To resolve this issue, rearranged the urlpatterns list so that the set_avatar pattern is defined before the stories_detail pattern. This ensures that requests to /stories/set_avatar/ are correctly routed to the set_avatar view.
 
-![Issue with URL](/static/images/url.png)
+![Issue with URL](/static/images/url3.png)
 
 - Before adding the slug field, there were duplicated field declarations within the Story model. This duplication caused confusion and could lead to errors. The corrected version removed the duplicated fields, ensuring clarity and consistency in the model definition.
 
@@ -124,6 +124,8 @@ To resolve this issue, rearranged the urlpatterns list so that the set_avatar pa
 ## Unfixed Bug
 
 Though the profile page can be updated as many times as the user wants, the edit button will not work. This functionality is something that will be improved for the next iteration.
+
+The comments and users storys are submitting successfuly to the database and I am able to submit them to the website successfully, however the modal message that it has 'successfully submitted' will not show. My code broke a few times and in the midst of fixing it, I must have triggered something. Its an improvment I must improve upon in my next iteration.
 
 ## Testing
 
@@ -177,6 +179,6 @@ https://app.diagrams.net/
 https://www.eggradients.com/gradient/moon-spot
 https://blog.logrocket.com/css-header-styles-cross-browser-compatibility/
 https://dyatmika.org/students/my-favourite-short-scary-stories/
-https://reintech.io/blog/implementing-profiles-in-django-tutorial 
+https://reintech.io/blog/implementing-profiles-in-django-tutorial
 https://app.diagrams.net/
 https://docs.djangoproject.com/en/5.0/ref/models/fields/

@@ -167,9 +167,7 @@ def Comment(request, story_id):
         comment_form = CommentForm()
 
     return render(request, 'stories/stories.html', {'comment_form': comment_form, 'story': story})
-
-
-   
+  
 def submit_story(request):
     """
     The submit story view handles the submission of the story
