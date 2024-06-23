@@ -86,6 +86,7 @@ class Comment(models.Model):
 
 RATING = ((1, "1 Star"), (2, "2 Stars"), (3, "3 Stars"), (4, "4 Stars"), (5, "5 Stars"))
 
+
 class Review(models.Model):
     """
      Model representing a review of a horror story.

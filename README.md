@@ -151,7 +151,7 @@ The comments and users storys are submitting successfuly to the database and I a
 11. Choose GitHub as the deployment method.
 12. Search for your repository and click the "Connect" button.
 13. Ensure "Main" is selected and click the "Deploy" button.
-14. Once deployment is complete, click the "View" button to see your app.
+14. Once deployment is complete, click the "View" button to see app.
 
 ## Testing
 

@@ -99,7 +99,9 @@ def comment_delete(request, slug, comment_id):
     if request.method == 'POST':
         comment.delete()
         messages.success(request, 'Comment deleted successfully.')
-    return redirect('stories_detail', slug=pk)
+        return redirect('stories_detail', slug=slug)
+        
+    return redirect('stories_detail', slug=slug)
 
 
 def edit_profile_form(request):
@@ -182,6 +184,7 @@ def Comment(request, story_id):
 
     return render(request, 'stories/stories.html', {'comment_form': comment_form, 'story': story})
   
+@login_required
 def submit_story(request):
     """
     The submit story view handles the submission of the story
@@ -201,7 +204,7 @@ def submit_story(request):
 
     return render(request, 'stories/stories.html', {'story_form': story_form})
 
-    
+@login_required    
 def view_profile(request, profile_id):
     '''
     Function to view user profile
