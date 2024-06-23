@@ -127,6 +127,32 @@ Though the profile page can be updated as many times as the user wants, the edit
 
 The comments and users storys are submitting successfuly to the database and I am able to submit them to the website successfully, however the modal message that it has 'successfully submitted' will not show. My code broke a few times and in the midst of fixing it, I must have triggered something. Its an improvment I must improve upon in my next iteration.
 
+## Deployment
+
+1. At Elephant SQL, create a new instance and save the database URL for later use.
+2. On Cloudinary, note down your cloudinary URL (environment variable), API key, API secret, and Cloud Name. Utilize the 
+   copy-to-clipboard functionality!
+3. Visit RandomKeygen to generate and copy a SECRET_KEY for later.
+4. Open Heroku and click on "New", then select "New App".
+5. Assign a name to your app and choose a nearby region.
+6. Click "Create App".
+7. After creation, navigate to the settings.
+8. Click on "Settings" and then the "Reveal Config Vars" button.
+9. Populate the config vars table with the keys and values obtained from previous steps:
+   DATABASE_URL: postgres:// (From Elephant SQL dashboard)
+   DISABLE_COLLECTSTATIC: 1
+   DEBUG: (leave empty for null value)
+   SECRET_KEY: Generate using RandomKeygen
+   CLOUDINARY_API_KEY: From Cloudinary dashboard
+   CLOUDINARY_API_SECRET: From Cloudinary dashboard
+   CLOUDINARY_CLOUD_NAME: From Cloudinary dashboard
+   CLOUDINARY_URL: cloudinary:// (From Cloudinary dashboard)
+10. Click the "Deploy" tab.
+11. Choose GitHub as the deployment method.
+12. Search for your repository and click the "Connect" button.
+13. Ensure "Main" is selected and click the "Deploy" button.
+14. Once deployment is complete, click the "View" button to see your app.
+
 ## Testing
 
 - All top level links works as expected.
