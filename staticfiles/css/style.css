@@ -122,7 +122,9 @@ body {
 }
 
 .btn-signup:hover,
-.btn-signup:active {
+.btn-edit:hover,
+.btn-signup:active,
+.btn-edit:active {
   background-color: #fff;
   color: #23bbbb;
 }
@@ -168,3 +170,34 @@ body {
   display: flex;
   justify-content: center;
 }
+
+/* before
+.btn-delete:hover,
+.btn-delete:active {
+  color: #fff;
+  background: #445261;
+}
+
+
+.btn-signup:hover,
+.btn-signup:active {
+  background-color: #fff;
+  color: #23bbbb;
+}
+
+after
+
+.btn-edit:hover,
+.btn-edit:active {
+  background-color: #fff;
+  color: #23bbbb;
+}
+
+.btn-signup:hover,
+.btn-signup:active,
+.btn-edit:hover,
+.btn-edit:active {
+  background-color: #fff;
+  color: #23bbbb;
+}
+*/

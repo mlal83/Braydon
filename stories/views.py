@@ -68,6 +68,16 @@ def comment_edit(request, slug, comment_id):
     is updated successfully
     """ 
     comment = get_object_or_404(Comment, pk=comment_id)
+    # new comment
+
+        # Check if the user is authorized to edit this comment
+    if comment.author != request.user:
+        # Handle unauthorized access here
+        messages.error(request, "You are not authorized to edit this comment.")
+        return redirect('home')  
+
+    # end of new comment
+
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
