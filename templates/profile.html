@@ -87,6 +87,18 @@
             value="{{ request.user.profile.instagram_url }}"
           />
         </div>
+      <!-- form validation for the profile model-->
+      {% if form.errors %}
+      <div class="alert alert-danger">
+        <ul>
+          {% for field, errors in form.errors.items %}
+          {% for error in errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+      </div>
+      {% endif %}
+        </ul>
 
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">Submit</button>
