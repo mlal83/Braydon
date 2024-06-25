@@ -156,11 +156,11 @@ cloudinary.config(
     secure=True,
     )
 
-#os.environ['SECRET_KEY'] = 'your_secret_key_here'
-#os.environ['DATABASE_URL'] = 'your_database_url_here'
-#os.environ['CLOUDINARY_CLOUD_NAME'] = 'your_cloudinary_cloud_name_here'
-#os.environ['CLOUDINARY_API_KEY'] = 'your_cloudinary_api_key_here'
-#os.environ['CLOUDINARY_API_SECRET'] = 'your_cloudinary_api_secret_here'
+os.environ['SECRET_KEY'] = 'your_secret_key_here'
+os.environ['DATABASE_URL'] = 'your_database_url_here'
+os.environ['CLOUDINARY_CLOUD_NAME'] = 'your_cloudinary_cloud_name_here'
+os.environ['CLOUDINARY_API_KEY'] = 'your_cloudinary_api_key_here'
+os.environ['CLOUDINARY_API_SECRET'] = 'your_cloudinary_api_secret_here'
 # Media settings
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
