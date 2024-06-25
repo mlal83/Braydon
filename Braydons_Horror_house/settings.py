@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
 from pathlib import Path
 import os
 import dj_database_url
@@ -20,26 +19,26 @@ if os.path.isfile('env.py'):
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-xaa7lat3x30.ws-eu110.gitpod.io','8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io', '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io','8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io', '.herokuapp.com', "braydons-horror-house-5e9401912ad6.herokuapp.com"]
+ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-xaa7lat3x30.ws-eu110.gitpod.io',
+                 '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io',
+                 '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
+                 '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io', 
+                 '.herokuapp.com', 
+                 "braydons-horror-house-5e9401912ad6.herokuapp.com"]
 
 CSRF_TRUSTED_ORIGINS = [
-
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu111.gitpod.io', 
      'https://8000-mlal83-braydonshorrorho-xaa7lat3x30.ws-eu110.gitpod.io',
-
 ]
 
 # Application definition
@@ -60,7 +59,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'stories',
-  
 ]
 
 SITE_ID = 1
@@ -102,17 +100,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Braydons_Horror_house.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
@@ -149,19 +138,25 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-##Static files (CSS, JavaScript, Images)
-## https://docs.djangoproject.com/en/4.2/howto/static-files/
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR,
-'static'), )
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Cloudinary configuration
+cloudinary.config(
+  cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME'), 
+  api_key = os.getenv('CLOUDINARY_API_KEY'), 
+  api_secret = os.getenv('CLOUDINARY_API_SECRET')
+)
 
+# Media settings
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
