@@ -120,7 +120,25 @@ def edit_profile_form(request):
         (request, 'profile.html', {'form': form})
     
 
+@login_required
+def profile_view(request):
+    """
+    This view manages the user profile, whether its present or creating a new user
+    """ 
+    profile, created = Profile.objects.get_or_create(user=request.user)
 
+    stories = Story.objects.filter(author=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form })
 
 def submit_comment(request, story_id):
     '''
@@ -197,45 +215,3 @@ def view_profile(request, profile_id):
     return render(request, 'profile.html', {'profile': profile})
 
 
-
-
-
-
-
-
-
-
-
-@login_required
-def profile_view(request):
-    """
-    This view manages the user profile, whether its present or creating a new user
-    """ 
-    profile, created = Profile.objects.get_or_create(user=request.user)
-    stories = Story.objects.filter(author=request.user)
-
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully')
-            return redirect('profile')
-    else:
-        form = ProfileForm(instance=profile)
-
-    # Assuming `profile.profile_picture` is a field containing the Cloudinary public ID
-    profile_picture_url = None
-    if profile.profile_picture:
-        profile_picture_url, options = cloudinary_url(
-            profile.profile_picture,
-            cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
-            secure=True
-        )
-
-    context = {
-        'profile': profile,
-        'stories': stories,
-        'form': form,
-        'profile_picture_url': profile_picture_url
-    }
-    return render(request, 'profile.html', context)
