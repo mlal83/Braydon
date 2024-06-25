@@ -144,23 +144,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
- CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
+CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 
 cloudinary.config(
     cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
     api_key=os.environ.get('CLOUDINARY_API_KEY'),
     api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
     secure=True,
-    )
+)
 
-os.environ['SECRET_KEY'] = 'your_secret_key_here'
-os.environ['DATABASE_URL'] = 'your_database_url_here'
-os.environ['CLOUDINARY_CLOUD_NAME'] = 'your_cloudinary_cloud_name_here'
-os.environ['CLOUDINARY_API_KEY'] = 'your_cloudinary_api_key_here'
-os.environ['CLOUDINARY_API_SECRET'] = 'your_cloudinary_api_secret_here'
+
 # Media settings
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
