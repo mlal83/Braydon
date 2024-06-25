@@ -154,6 +154,22 @@ cloudinary.config(
     secure=True,
     )
  
+ # Cloudinary storage configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'dlzeoq67k'),  # Replace with your Cloudinary cloud name
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY', '125821962273857'),   # Replace with your Cloudinary API key
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'Y1BMRgGSrkiMOq78OgM1eif7jME'),  # Replace with your Cloudinary API secret
+}
+
+# Update Django storage settings to use Cloudinary storage
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Ensure cloudinary.config is also set if you use other Cloudinary features
+cloudinary.config(
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', 'dlzeoq67k'),  # Replace with your Cloudinary cloud name
+    api_key=os.getenv('CLOUDINARY_API_KEY', '125821962273857'),   # Replace with your Cloudinary API key
+    api_secret=os.getenv('CLOUDINARY_API_SECRET', 'Y1BMRgGSrkiMOq78OgM1eif7jME'),  # Replace with your Cloudinary API secret
+)
 # Media settings
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_URL = '/media/'
