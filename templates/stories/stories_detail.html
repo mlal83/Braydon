@@ -10,7 +10,7 @@ cloudinary %}
         {% if profile_picture_upload %}
         <img
           class="upload-pic-in-story"
-          src="{% cloudinary_url profile_picture_upload %}"
+          src="{{ profile_picture_upload|cloudinary_url }}"
           alt="author-pic"
           style="max-width: 100%; height: auto; max-height: 200px"
         />
@@ -18,9 +18,9 @@ cloudinary %}
         <!-- Post author goes before the | the post's created date goes after -->
         <p class="post-subtitle">
           Author: {{ story.author }} {{ story.created_on }} Bio: {{ bio }}
-          Genre: {{story.genre }} Instagram: {{story.Instagram_URL}} Website:
-          {{story.Website_URL}} Facebook: {{story.Facebook_URL}} Twitter:
-          {{story.Twitter_URL}}
+          Genre: {{ story.genre }} Instagram: {{ story.Instagram_URL }} Website:
+          {{ story.Website_URL }} Facebook: {{ story.Facebook_URL }} Twitter: {{
+          story.Twitter_URL }}
         </p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
@@ -33,7 +33,7 @@ cloudinary %}
         {% else %}
         <img
           class="card-img-top"
-          src="{% cloudinary_url story.featured_image %}"
+          src="{{ story.featured_image|cloudinary_url }}"
           alt="{{ story.title }}"
         />
         {% endif %}
@@ -42,14 +42,12 @@ cloudinary %}
   </div>
 </div>
 
-<!-- Post author goes before the | the post's created date goes after -->
-
 <div class="container">
   <div class="row">
     <div class="col card mb-4 mt-3 left top story-bg">
       <div class="card-body-wide">
         <!-- Use the | safe filter inside the template tags -->
-        <p class="card-text-wide">{{ story.content | safe }}</p>
+        <p class="card-text-wide">{{ story.content|safe }}</p>
       </div>
     </div>
   </div>
@@ -78,9 +76,7 @@ cloudinary %}
             <span class="font-weight-normal"> {{ comment.created_on }} </span>
             wrote:
           </p>
-          <div id="comment{{ comment.id }}">
-            {{ comment.body | linebreaks }}
-          </div>
+          <div id="comment{{ comment.id }}">{{ comment.body|linebreaks }}</div>
           {% if not comment.approved and comment.author == user %}
           <p class="approval">This comment is awaiting approval</p>
           {% endif %} {% if user.is_authenticated and comment.author == user %}
