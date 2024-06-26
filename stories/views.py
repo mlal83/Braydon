@@ -133,6 +133,8 @@ def profile_view(request):
 
     return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form})
 
+from django.shortcuts import redirect
+
 def submit_comment(request, story_id):
     """
     The submit comment view handles the submission of comments for a particular story
@@ -147,8 +149,8 @@ def submit_comment(request, story_id):
             comment.author = request.user
             comment.save()
             messages.success(request, 'Comment submitted successfully.')
-            # Redirect to a valid URL or view after successful comment submission
-            return redirect('home', slug=story.slug)
+            # Redirect to the homepage after successful comment submission
+            return redirect('home')
         else:
             messages.error(request, 'Comment form submission failed. Please check the errors below.')
     else:
