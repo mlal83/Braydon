@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm, StoryForm, ReviewForm, ProfileForm
-from .models import Story, Profile, Comment, Review  
+from .models import Story, Profile, Comment, Review
 from django.contrib.auth.decorators import login_required
 from cloudinary.utils import cloudinary_url
 import os
@@ -15,15 +15,13 @@ def display_stories(request):
     stories = Story.objects.all()
     context = {
         'stories': stories
-        }
+    }
     return render(request, 'stories/stories.html', context)
 
-   
 class StoryList(ListView):
-
     """
-    This StoryList view Lists the storys in a more userfriendly way were the user
-    can click in to the story car which expands to the story 
+    This StoryList view Lists the stories in a more user-friendly way where the user
+    can click into the story card which expands to the story
     """
     model = Story
     template_name = "stories/stories.html"
@@ -36,17 +34,15 @@ class StoryList(ListView):
         context['story_form'] = StoryForm()
         return context
 
-    
 class StoryDetailView(DetailView):
     """
-    The storyDetail view retrieves the story, query the user, counts the number of comments and 
-    displays there reviews and provides the option to rate the story 
-    """ 
-
+    The storyDetail view retrieves the story, queries the user, counts the number of comments and 
+    displays their reviews and provides the option to rate the story 
+    """
     model = Story
     template_name = 'stories/stories_detail.html'
     context_object_name = 'story'
-      
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         story = self.get_object()
@@ -54,8 +50,11 @@ class StoryDetailView(DetailView):
         if user_profile:
             context['bio'] = user_profile.bio
             context['website_url'] = user_profile.website_url
-            context['profile_picture_upload'] = user_profile.profile_picture_upload
-            
+            if user_profile.profile_picture_upload:
+                context['profile_picture_url'] = cloudinary_url(user_profile.profile_picture_upload.public_id)[0]
+            else:
+                context['profile_picture_url'] = None
+
         context['comments'] = story.comments.all().order_by("-created_at")
         context['comment_count'] = story.comments.filter(approved=True).count()
         context['comment_form'] = CommentForm()
@@ -69,15 +68,11 @@ def comment_edit(request, slug, comment_id):
     is updated successfully
     """ 
     comment = get_object_or_404(Comment, pk=comment_id)
-    # new comment
-
-        # Check if the user is authorized to edit this comment
+    # Check if the user is authorized to edit this comment
     if comment.author != request.user:
         # Handle unauthorized access here
         messages.error(request, "You are not authorized to edit this comment.")
-        return redirect('home')  
-
-    # end of new comment
+        return redirect('home')
 
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
@@ -86,7 +81,7 @@ def comment_edit(request, slug, comment_id):
             comment.author = request.user
             comment.save()
             messages.success(request, 'Comment updated successfully.')
-            return redirect('stories_detail', slug=pk)
+            return redirect('stories_detail', slug=slug)
     else:
         form = CommentForm(instance=comment)
     return render(request, 'stories/stories_detail.html', {'form': form})
@@ -104,21 +99,19 @@ def comment_delete(request, slug, comment_id):
         
     return redirect('stories_detail', slug=slug)
 
-
 def edit_profile_form(request):
-
     """
     The edit profile view attempts to update data on the user profile
     """ 
-    if request.method =='POST':
-        form=profile_view (request.POST, request.FILES, instance=request.user.profile)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
-            form.save ()
-
+            form.save()
+            messages.success(request, 'Profile updated successfully.')
+            return redirect('profile')
     else:
         form = ProfileForm(instance=request.user.profile)
-        (request, 'profile.html', {'form': form})
-    
+    return render(request, 'profile.html', {'form': form})
 
 @login_required
 def profile_view(request):
@@ -126,7 +119,6 @@ def profile_view(request):
     This view manages the user profile, whether its present or creating a new user
     """ 
     profile, created = Profile.objects.get_or_create(user=request.user)
-
     stories = Story.objects.filter(author=request.user)
 
     if request.method == 'POST':
@@ -138,13 +130,12 @@ def profile_view(request):
     else:
         form = ProfileForm(instance=profile)
 
-    return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form })
+    return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form})
 
 def submit_comment(request, story_id):
-    '''
-    The submit comment view handles the submission for of comments for a particular story
-    '''
-
+    """
+    The submit comment view handles the submission of comments for a particular story
+    """
     story = Story.objects.get(pk=story_id)
 
     if request.method == 'POST':
@@ -156,36 +147,14 @@ def submit_comment(request, story_id):
             comment.save()
             messages.success(request, 'Comment submitted successfully.')
             # Redirect to a valid URL or view after successful comment submission
-            return redirect('home')  
+            return redirect('stories_detail', slug=story.slug)
         else:
             messages.error(request, 'Comment form submission failed. Please check the errors below.')
     else:
         form = CommentForm()
 
     return render(request, 'submit_comment.html', {'form': form})
- 
-def Comment(request, story_id):
-    """
-    View for handling comment submissionos and rendering the comment form  
-    """
-    story = Story.objects.get(pk=story_id)
 
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.story = story
-            comment.save()
-            messages.success(request, 'Comment submitted successfully.')
-         
-            return redirect('stories_detail', slug=story.slug)  
-        else:
-            messages.error(request, 'Comment form submission failed. Please check the errors below.')
-    else:
-        comment_form = CommentForm()
-
-    return render(request, 'stories/stories.html', {'comment_form': comment_form, 'story': story})
-  
 @login_required
 def submit_story(request):
     """
@@ -206,12 +175,10 @@ def submit_story(request):
 
     return render(request, 'stories/stories.html', {'story_form': story_form})
 
-@login_required    
+@login_required
 def view_profile(request, profile_id):
-    '''
+    """
     Function to view user profile
-    '''
-    profile = get_object_or_404(UserProfile, id=profile_id) 
+    """
+    profile = get_object_or_404(Profile, id=profile_id) 
     return render(request, 'profile.html', {'profile': profile})
-
-
