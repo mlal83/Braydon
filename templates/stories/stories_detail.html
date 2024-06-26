@@ -5,17 +5,16 @@ cloudinary %}
   <div class="container">
     <div class="row g-0">
       <div class="col-md-6 masthead-text">
-        <!-- Post title goes in these h1 tags -->
         <h1 class="post-title">{{ story.title }}</h1>
-        {% if profile_picture_upload %}
+        {% if profile_picture_upload %} {% with
+        profile_picture_url=profile_picture_upload|cloudinary_url %}
         <img
           class="upload-pic-in-story"
-          src="{{ profile_picture_upload|cloudinary_url }}"
+          src="{{ profile_picture_url }}"
           alt="author-pic"
           style="max-width: 100%; height: auto; max-height: 200px"
         />
-        {% endif %}
-        <!-- Post author goes before the | the post's created date goes after -->
+        {% endwith %} {% endif %}
         <p class="post-subtitle">
           Author: {{ story.author }} {{ story.created_on }} Bio: {{ bio }}
           Genre: {{ story.genre }} Instagram: {{ story.Instagram_URL }} Website:
@@ -46,12 +45,11 @@ cloudinary %}
   <div class="row">
     <div class="col card mb-4 mt-3 left top story-bg">
       <div class="card-body-wide">
-        <!-- Use the | safe filter inside the template tags -->
         <p class="card-text-wide">{{ story.content|safe }}</p>
       </div>
     </div>
   </div>
-  <!-- Displaying count of comments -->
+
   <div class="row story-bg">
     <div class="col-12">
       <strong class="text-secondary">
@@ -62,7 +60,7 @@ cloudinary %}
       <hr />
     </div>
   </div>
-  <!-- Displaying Comments -->
+
   <div class="row">
     <div class="col-md-8 card mb-4 mt-3">
       <h3>Comments:</h3>
@@ -91,7 +89,7 @@ cloudinary %}
         {% endfor %}
       </div>
     </div>
-    <!-- Creating New Comments -->
+
     <div class="col-md-4 card mb-4 mt-3">
       <div class="card-body">
         {% if user.is_authenticated %}
@@ -148,6 +146,7 @@ cloudinary %}
     </div>
   </div>
 </div>
+
 {% endblock content %} {% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}
