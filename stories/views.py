@@ -1,3 +1,4 @@
+from cloudinary.utils import cloudinary_url
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import HttpResponse
@@ -5,7 +6,7 @@ from django.views.generic import ListView, DetailView
 from .forms import CommentForm, StoryForm, ReviewForm, ProfileForm
 from .models import Story, Profile, Comment, Review
 from django.contrib.auth.decorators import login_required
-from cloudinary.utils import cloudinary_url
+
 import os
 
 def display_stories(request):
