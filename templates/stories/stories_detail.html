@@ -1,6 +1,4 @@
-{% extends 'base.html' %} {% block content %} {% load static %} 
-{% load cloudinary %}
-
+{% extends 'base.html' %} {% block content %}
 <div class="masthead">
   <div class="container">
     <div class="row g-0">
@@ -9,7 +7,7 @@
 
         <img
           class="upload-pic-in-story"
-          src="{{  profile_picture_upload.url }}"
+          src="{{ profile_picture_url }}"
           alt="author-pic"
           style="max-width: 100%; height: auto; max-height: 200px"
         />
@@ -19,26 +17,29 @@
           Bio: {{ bio }} <br />
           Genre: {{ story.genre }} <br />
           Instagram: {{ story.Instagram_URL }} <br />
-          Website: {{ story.Website_URL }} <br />
+          Website: {{ website_url }} <br />
           Facebook: {{ story.Facebook_URL }} <br />
           Twitter: {{ story.Twitter_URL }}
         </p>
       </div>
-      <div class="d-none d-md-block col-md-6 masthead-image">
-        {% if "placeholder" in story.featured_image.url %}
-        <img
-          class="card-img-top"
-          src="{% static 'images/default.jpg' %}"
-          alt="placeholder image"
-        />
-        {% else %}
-        <img
-          class="card-img-top"
-          src="{{ story.featured_image.url }}"
-          alt="{{ story.title }}"
-        />
-        {% endif %}
-      </div>
+      <!-- Commented out the right-side card -->
+      <!--
+            <div class="d-none d-md-block col-md-6 masthead-image">
+                {% if "placeholder" in story.featured_image.url %}
+                <img
+                  class="card-img-top"
+                  src="{% static 'images/default.jpg' %}"
+                  alt="placeholder image"
+                />
+                {% else %}
+                <img
+                  class="card-img-top"
+                  src="{{ story.featured_image.url }}"
+                  alt="{{ story.title }}"
+                />
+                {% endif %}
+            </div>
+            -->
     </div>
   </div>
 </div>
@@ -92,27 +93,7 @@
       </div>
     </div>
 
-    <div class="col-md-4 card mb-4 mt-3">
-      <div class="card-body">
-        {% if user.is_authenticated %}
-        <h3>Leave a comment:</h3>
-        <p>Posting as: {{ user.username }}</p>
-        <form
-          id="commentForm"
-          method="post"
-          action="{% url 'submit_comment' story_id=story.pk %}"
-          style="margin-top: 1.3em"
-        >
-          {% csrf_token %} {{ comment_form.as_p }}
-          <button id="submitButton" type="submit" class="btn btn-signup btn-lg">
-            Submit
-          </button>
-        </form>
-        {% else %}
-        <p>Log in to leave a comment</p>
-        {% endif %}
-      </div>
-    </div>
+    <!-- Additional content if any -->
   </div>
 </div>
 
