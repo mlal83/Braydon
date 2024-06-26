@@ -148,7 +148,7 @@ def submit_comment(request, story_id):
             comment.save()
             messages.success(request, 'Comment submitted successfully.')
             # Redirect to a valid URL or view after successful comment submission
-            return redirect('stories_detail', slug=story.slug)
+            return redirect('home', slug=story.slug)
         else:
             messages.error(request, 'Comment form submission failed. Please check the errors below.')
     else:
