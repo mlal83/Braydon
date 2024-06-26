@@ -8,15 +8,14 @@
     <div class="row g-0">
       <div class="col-md-6 masthead-text">
         <h1 class="post-title">{{ story.title }}</h1>
-        {% if profile_picture_upload %}
-          {% with profile_picture_url=profile_picture_upload.url|cloudinary_url %}
+
             <img
               class="upload-pic-in-story"
-              src="{{ profile_picture_url }}"
+              src="{{  profile_picture_upload.url }}"
               alt="author-pic"
               style="max-width: 100%; height: auto; max-height: 200px"
             />
-          {% endwith %}
+    
         {% endif %}
         <p class="post-subtitle">
           Author: {{ story.author }} | Created on: {{ story.created_on }} <br>
