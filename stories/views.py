@@ -179,27 +179,9 @@ def submit_story(request):
     return render(request, 'stories/stories.html', {'story_form': story_form})
 
 @login_required
-def profile_view(request):
+def view_profile(request, profile_id):
     """
-    This view manages the user profile, whether it's present or creating a new user
-    """ 
-    profile, created = Profile.objects.get_or_create(user=request.user)
-    stories = Story.objects.filter(author=request.user)
-
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
-        try:
-            if form.is_valid():
-                form.save()
-                messages.success(request, 'Profile updated successfully')
-                return redirect('profile')
-            else:
-                messages.error(request, 'Profile form submission failed. Please check the errors below.')
-        except Exception as e:
-            messages.error(request, f'Profile could not be updated: {str(e)}')
-            return redirect('home')
-
-    else:
-        form = ProfileForm(instance=profile)
-
-    return render(request, 'profile.html', {'profile': profile, 'stories': stories, 'form': form})
+    Function to view user profile
+    """
+    profile = get_object_or_404(Profile, id=profile_id) 
+    return render(request, 'profile.html', {'profile': profile})
