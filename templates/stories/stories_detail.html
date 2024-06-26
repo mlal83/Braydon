@@ -14,9 +14,10 @@ cloudinary %}
           alt="author-pic"
           style="max-width: 100%; height: auto; max-height: 200px"
         />
-        {% endwith %} {% endif %}
+        {% endwith %} 
+        {% endif %}
         <p class="post-subtitle">
-          Author: {{ story.author }} {{ story.created_on }} Bio: {{ bio }}
+          Author: {{ story.author }} | {{ story.created_on }} Bio: {{ bio }}
           Genre: {{ story.genre }} Instagram: {{ story.Instagram_URL }} Website:
           {{ story.Website_URL }} Facebook: {{ story.Facebook_URL }} Twitter: {{
           story.Twitter_URL }}
@@ -67,7 +68,7 @@ cloudinary %}
       <div class="card-body">
         {% for comment in comments %}
         <div
-          class="p-2 comments {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}"
+          class="p-2 comments {% if not comment.approved and comment.author == user %} faded {% elif not comment.approved %} d-none {% endif %}"
         >
           <p class="font-weight-bold">
             {{ comment.author }}
