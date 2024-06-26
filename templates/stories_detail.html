@@ -5,9 +5,7 @@ crispy_forms_tags %}
   <div class="container">
     <div class="row g-0">
       <div class="col-md-6 masthead-text">
-        <!-- Post title -->
         <h1 class="post-title">{{ story.title }}</h1>
-        <!--  post's created date -->
         <p class="post-subtitle">{{ story.author }} | {{ story.created_on }}</p>
       </div>
       <div class="d-none d-md-block col-md-6 masthead-image">
@@ -25,7 +23,6 @@ crispy_forms_tags %}
         />
         {% endif %}
       </div>
-      {% endfor %}
     </div>
   </div>
 </div>
@@ -39,7 +36,6 @@ crispy_forms_tags %}
     </div>
   </div>
 
-  <!-- Displaying count of comments -->
   <div class="row">
     <div class="col-12">
       <strong class="text-secondary">
@@ -51,7 +47,6 @@ crispy_forms_tags %}
     </div>
   </div>
 
-  <!-- Displaying Comments -->
   <div class="row">
     <div class="col-md-8 card mb-4 mt-3">
       <h3>Comments:</h3>
@@ -83,14 +78,13 @@ crispy_forms_tags %}
       </div>
     </div>
 
-    <!-- Creating New Comments -->
     <div class="col-md-4 card mb-4 mt-3">
       <div class="card-body">
         {% if user.is_authenticated %}
         <h3>Leave a comment:</h3>
         <p>Posting as: {{ user.username }}</p>
         <form id="commentForm" method="post" style="margin-top: 1.3em">
-          {{ comment_form }} {% csrf_token %}
+          {% csrf_token %} {{ comment_form | crispy }}
           <button id="submitButton" type="submit" class="btn btn-signup btn-lg">
             Submit
           </button>
@@ -102,7 +96,6 @@ crispy_forms_tags %}
     </div>
   </div>
 
-  <!-- List of other stories -->
   <div class="row">
     <div class="col-12">
       <h2>Other Stories</h2>
@@ -113,6 +106,7 @@ crispy_forms_tags %}
       </div>
       {% empty %}
       <p>No other stories available.</p>
+      {% endfor %}
     </div>
   </div>
 </div>
