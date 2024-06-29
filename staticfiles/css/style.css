@@ -1,16 +1,17 @@
 body {
-  background-color: #e84610; /* Dark orange background */
+  background: linear-gradient(180deg, #333333, #4a4a4f); /* Dark to slightly dark gradient background */
+  color: #de92a8; /* Light pinkish text color */
 }
 
 .brand {
   font-family: Lato, sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #4a4a4f; /* Dark gray text */
+  color: #de92a8; /* Light pinkish text color */
 }
 
 .red-o {
-  color: #e84610; /* Dark orange */
+  color: #de92a8; /* Light pinkish color */
 }
 
 .thin {
@@ -19,7 +20,7 @@ body {
 
 .light-bg {
   background-color: #f9fafc; /* Light gray background */
-  color: #445261; /* Dark gray text */
+  color: #de92a8; /* Light pinkish text color */
 }
 
 .dark-bg {
@@ -67,7 +68,7 @@ body {
 }
 
 .masthead-text {
-  background-color: #445261; /* Dark gray background */
+  background-color: #de92a8; /* Light pink background */
   color: #fff; /* White text */
   position: relative;
 }
@@ -102,7 +103,7 @@ body {
 
 .post-link:hover,
 .page-link {
-  color: #e84610; /* Dark orange */
+  color: #de92a8; /* Light pinkish color */
 }
 
 .post-title {
@@ -141,19 +142,19 @@ body {
 }
 
 .btn-like {
-  color: #e84610; /* Dark orange */
+  color: #de92a8; /* Light pinkish color */
   border: none;
   background: transparent;
 }
 
 .btn-delete {
   color: #fff; /* White text */
-  background: #e84610; /* Dark orange */
+  background: #de92a8; /* Light pinkish color */
 }
 
 .btn-like:hover,
 .btn-like:active {
-  color: #e84610; /* Dark orange */
+  color: #de92a8; /* Light pinkish color */
   background: transparent;
   border: none;
 }
@@ -169,4 +170,6 @@ body {
 .footer {
   display: flex;
   justify-content: center;
+  background-color: #de92a8; /* Light pink background */
+  color: #fff; /* White text */
 }
