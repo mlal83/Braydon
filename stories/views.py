@@ -112,7 +112,7 @@ def edit_profile_form(request):
             return redirect('profile')
     else:
         form = ProfileForm(instance=request.user.profile)
-    return render(request, 'home', {'form': form})
+    return render(request, 'profile.html', {'form': form})
 
 @login_required
 def profile_view(request):
@@ -127,7 +127,7 @@ def profile_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
-            return redirect('profile')
+            return redirect('home')
     else:
         form = ProfileForm(instance=profile)
 
