@@ -41,7 +41,7 @@ ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
                  "braydons-horror-house-5e9401912ad6.herokuapp.com",]
                 
 CSRF_TRUSTED_ORIGINS = [
-      'https://8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
+     'https://8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu111.gitpod.io', 
      'https://8000-mlal83-braydonshorrorho-xaa7lat3x30.ws-eu110.gitpod.io',
