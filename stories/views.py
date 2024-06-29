@@ -202,4 +202,4 @@ def delete_comment(request, pk, comment_id):
         messages.success(request, 'Comment deleted successfully.')
         return redirect('stories_detail', pk=pk)
         
-    return redirect('stories_detail', pk=pk)
+    return redirect('home', pk=pk)
