@@ -50,19 +50,12 @@ function cancelEdit (){
  * - Displays a confirmation modal (`deleteModal`) to prompt 
  * the user for confirmation before deletion.
  */
-// for (let button of deleteButtons) {
-//     button.addEventListener("click", (e) => {
-//         let commentId = e.target.getAttribute("data-comment_id");
-//         deleteConfirm.href = `delete_comment/${commentId}`;
-//         deleteModal.show();
-//     });
-// }
-
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
         let commentId = e.target.getAttribute("data-comment_id");
-        deleteConfirm.href = `/story/${story.pk}/delete_comment/${commentId}/`; // Replace `story.pk` with the appropriate story ID variable
+        deleteConfirm.href = `comment_delete/${commentId}`;
         deleteModal.show();
     });
 }
+
 
