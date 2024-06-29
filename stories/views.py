@@ -87,18 +87,18 @@ def comment_edit(request, slug, comment_id):
         form = CommentForm(instance=comment)
     return render(request, 'stories/stories_detail.html', {'form': form})
 
-# def comment_delete(request, slug, comment_id):
-#     """
-#     The comment delete view deletes data and also provides a success message that comment 
-#     successfully deleted
-#     """ 
-#     comment = get_object_or_404(Comment, pk=comment_id)
-#     if request.method == 'POST':
-#         comment.delete()
-#         messages.success(request, 'Comment deleted successfully.')
-#         return redirect('stories_detail', slug=slug)
+def comment_delete(request, slug, comment_id):
+    """
+    The comment delete view deletes data and also provides a success message that comment 
+    successfully deleted
+    """ 
+    comment = get_object_or_404(Comment, pk=comment_id)
+    if request.method == 'POST':
+        comment.delete()
+        messages.success(request, 'Comment deleted successfully.')
+        return redirect('stories_detail', slug=slug)
         
-#     return redirect('stories_detail', slug=slug)
+    return redirect('stories_detail', slug=slug)
 
 def edit_profile_form(request):
     """
