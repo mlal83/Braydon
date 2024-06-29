@@ -85,7 +85,7 @@ def comment_edit(request, slug, comment_id):
             return redirect('stories_detail', slug=slug)
     else:
         form = CommentForm(instance=comment)
-    return render(request, 'home', {'form': form})
+    return render(request, 'stories/stories_detail.html', {'form': form})
 
 def comment_delete(request, slug, comment_id):
     """
@@ -98,7 +98,7 @@ def comment_delete(request, slug, comment_id):
         messages.success(request, 'Comment deleted successfully.')
         return redirect('stories_detail', slug=slug)
         
-    return redirect('home', slug=slug)
+    return redirect('stories_detail', slug=slug)
 
 def edit_profile_form(request):
     """
