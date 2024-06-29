@@ -11,7 +11,8 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('profile/', views.profile_view, name='profile'),
     path('profile/<str:username>/', views.profile_view, name='profile'),
-    #path('story/<slug:pk>/delete_comment/<int:comment_id>/', views.delete_comment, name='comment_delete'),
+    path('story/<slug:pk>/delete_comment/<int:comment_id>/', views.delete_comment, name='comment_delete'),
+    
 
 
 ]
