@@ -59,3 +59,15 @@ for (let button of deleteButtons) {
 }
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  const deleteButtons = document.querySelectorAll('[data-bs-target="#deleteModal"]');
+  const deleteConfirm = document.getElementById('deleteConfirm');
+  const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+
+  for (let button of deleteButtons) {
+    button.addEventListener('click', (e) => {
+      let commentId = button.getAttribute('data-comment-id');
+      deleteConfirm.href = `delete_comment/${commentId}`;
+    });
+  }
+});
