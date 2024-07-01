@@ -186,16 +186,16 @@ def view_profile(request, profile_id):
     profile = get_object_or_404(Profile, id=profile_id) 
     return render(request, 'profile.html', {'profile': profile})
 
+
 def delete_comment(request, pk, comment_id):
     """
     The comment delete view deletes a comment and redirects to the story detail page.
     """
     comment = get_object_or_404(Comment, pk=comment_id)
     
-    # Ensure the user is authorized to delete the comment (optional, depending on your application logic)
     if comment.author != request.user:
         messages.error(request, "You are not authorized to delete this comment.")
-        return redirect('home')  # Redirect to home page or any other appropriate page
+        return redirect('home') 
     
     if request.method == 'POST':
         comment.delete()
