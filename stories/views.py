@@ -89,16 +89,20 @@ def comment_edit(request, slug, comment_id):
 
 def comment_delete(request, slug, comment_id):
     """
-    The comment delete view deletes data and also provides a success message that comment 
-    successfully deleted
-    """ 
+    view to delete comment
+    """
+    queryset = Story.objects.filter(status=1)
+    story = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
-    if request.method == 'POST':
+
+    if comment.author == request.user:
         comment.delete()
-        messages.success(request, 'Comment deleted successfully.')
-        return redirect('stories_detail', slug=slug)
-        
-    return redirect('stories_detail', slug=slug)
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+
+    return HttpResponseRedirect(reverse('stories_detail', args=[slug]))
+
 
 def edit_profile_form(request):
     """
