@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     for (let button of deleteButtons) {
         button.addEventListener("click", (e) => {
-            let commentId = button.getAttribute("data-comment-id");
+            let commentId = e.target.getAttribute("comment_id");;
             deleteConfirm.href = `delete_comment/${commentId}`;
             deleteModal.show();
         });
