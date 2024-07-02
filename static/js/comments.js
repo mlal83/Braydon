@@ -48,11 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
      * - Displays a confirmation modal (`deleteModal`) to prompt 
      * the user for confirmation before deletion.
      */
-    for (let button of deleteButtons) {
+     for (let button of deleteButtons) {
         button.addEventListener("click", (e) => {
-            let commentId = e.target.getAttribute("comment_id");;
-            deleteConfirm.href = `delete_comment/${commentId}`;
-            deleteModal.show();
+            e.preventDefault(); // Prevent default link behavior
+
+            let commentId = button.getAttribute("data-comment-id"); // Correctly retrieve data-comment-id
+            let storySlug = 'your-story-slug'; // Replace with actual story slug or retrieve dynamically
+            if (commentId) {
+                deleteConfirm.href = `/story/${storySlug}/delete_comment/${commentId}/`;
+                deleteModal.show();
+            } else {
+                console.error("Comment ID is null or undefined.");
+            }
         });
     }
 });
