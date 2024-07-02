@@ -15,13 +15,14 @@ urlpatterns = [
     path('profile/', views.profile_view, name='profile'),
     path('accounts/', include('allauth.urls')),
     
-    path('<slug:slug>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
+    #path('<slug:slug>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
     
     path('<slug:slug>/delete_comment/<int:comment_id>/', views.comment_delete, name='comment_delete'),
     path('submit-story/', views.submit_story, name='submit_story'),
     path('logout/', auth_views.LogoutView.as_view(), name='account_logout'),
-    path('story/<int:story_id>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
+    #path('story/<int:story_id>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
     path('story/<slug:slug>/delete_comment/<int:comment_id>/', views.comment_delete, name='comment_delete'),
-    path('story/<slug:slug>/delete_comment/<int:comment_id>/', views.comment_delete, name='comment_edit'),
-    
+   
+    path('<slug:slug>/edit_comment/<int:comment_id>/', views.comment_edit, name='comment_edit'),
+
 ]
