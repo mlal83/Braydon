@@ -65,44 +65,65 @@ class StoryDetailView(DetailView):
 
 def comment_edit(request, slug, comment_id):
     """
-    The comment edit view attempts to update data and sends a message that the comment
-    is updated successfully
-    """ 
-    comment = get_object_or_404(Comment, pk=comment_id)
-    # Check if the user is authorized to edit this comment
-    if comment.author != request.user:
-        # Handle unauthorized access here
-        messages.error(request, "You are not authorized to edit this comment.")
-        return redirect('home')
+    Display an individual comment for edit.
 
+    **Context**
+
+    ``post``
+        An instance of :model:`article.Post`.
+    ``comment``
+        A single comment related to the post.
+    ``comment_form``
+        An instance of :form:`blog.CommentForm`
+    """
     if request.method == "POST":
-        form = CommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.author = request.user
+
+        queryset = Story.objects.filter(status=1)
+        story = get_object_or_404(queryset, slug=slug)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.story = story
+            comment.approved = False
             comment.save()
-            messages.success(request, 'Comment updated successfully.')
-            return redirect('stories_detail', slug=slug)
-    else:
-        form = CommentForm(instance=comment)
-    return render(request, 'stories/stories_detail.html', {'form': form})
-
-def comment_delete(request, slug, comment_id):
-    """
-    view to delete comment
-    """
-    queryset = Story.objects.filter(status=1)
-    story = get_object_or_404(queryset, slug=slug)
-    comment = get_object_or_404(Comment, pk=comment_id)
-
-    if comment.author == request.user:
-        comment.delete()
-        messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
-    else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+        else:
+            messages.add_message(request, messages.ERROR,
+            'Error updating comment!')
 
     return HttpResponseRedirect(reverse('stories_detail', args=[slug]))
 
+def comment_delete(request, slug, comment_id):
+    """
+    View to delete a comment.
+    """
+    try:
+        # Retrieve the story object with the specified slug and active status
+        story = get_object_or_404(Story, slug=slug, status=1)
+        
+        # Retrieve the comment object with the specified ID
+        comment = get_object_or_404(Comment, pk=comment_id)
+        
+        # Check if the comment author matches the current user
+        if comment.author == request.user:
+            comment.delete()
+            messages.success(request, 'Comment deleted successfully.')
+        else:
+            messages.error(request, 'You can only delete your own comments.')
+        
+    except Story.DoesNotExist:
+        # Handle case where the story with the given slug and status=1 does not exist
+        messages.error(request, 'Story not found.')
+        return redirect('home')  # Redirect to a meaningful page
+    
+    except Comment.DoesNotExist:
+        # Handle case where the comment with the given ID does not exist
+        messages.error(request, 'Comment not found.')
+
+    # Redirect back to the story detail page
+    return HttpResponseRedirect(reverse('stories_detail', args=[slug]))
 
 def edit_profile_form(request):
     """
