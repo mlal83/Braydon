@@ -12,12 +12,14 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
+
+import env
 import cloudinary
 from dotenv import load_dotenv
 
 
+if os.path.isfile('env.py'):
+    import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,6 +38,7 @@ ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
                  '8000-mlal83-braydonshorrorho-xaa7lat3x30.ws-eu110.gitpod.io',
                  '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io',
                  '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
+                 '8000-mlal83-braydonshorrorho-92nd3i24k7b.ws-eu114.gitpod.io',
                  '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io', 
                  '.herokuapp.com', 
                  "braydons-horror-house-5e9401912ad6.herokuapp.com",]
@@ -43,7 +46,8 @@ ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
 CSRF_TRUSTED_ORIGINS = [
      'https://8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
-     'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu111.gitpod.io', 
+     'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu111.gitpod.io',
+     'https://8000-mlal83-braydonshorrorho-92nd3i24k7b.ws-eu114.gitpod.io', 
      'https://8000-mlal83-braydonshorrorho-xaa7lat3x30.ws-eu110.gitpod.io',
 ]
 

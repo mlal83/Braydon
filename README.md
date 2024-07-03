@@ -130,7 +130,7 @@ The comments and users storys are submitting successfuly to the database and I a
 ## Deployment
 
 1. At Elephant SQL, create a new instance and save the database URL for later use.
-2. On Cloudinary, note down your cloudinary URL (environment variable), API key, API secret, and Cloud Name. Utilize the 
+2. On Cloudinary, note down your cloudinary URL (environment variable), API key, API secret, and Cloud Name. Utilize the
    copy-to-clipboard functionality!
 3. Visit RandomKeygen to generate and copy a SECRET_KEY for later.
 4. Open Heroku and click on "New", then select "New App".
@@ -155,13 +155,7 @@ The comments and users storys are submitting successfuly to the database and I a
 
 ## Testing
 
-- All top level links works as expected.
-
-- User Account Creation works as expected.
-
-- User login and logout works as expected.
-
-- User comments and reviews have full CRUD functionality.
+![Testing](/static/images/test.jpg)
 
 ## Future features and modifications
 
