@@ -1,37 +1,39 @@
 {% extends "base.html" %} {% load i18n %} {% block head_title %} {% trans
 "Signup" %} {% endblock head_title %} {% block content %}
-
-<div class="row">
-  <div class="col-md-10">
-    <!-- Signup Form -->
-    <div class="sign-up-pic">
-      <h1>{% trans "Sign Up" %}</h1>
-      <div class="sign-up-txt">
-        <p>
-          {% blocktrans %} Already have an account? Then please
-          <a href="{{ login_url }}">sign in</a>. {% endblocktrans %}
-        </p>
-        <form
-          class="signup"
-          id="signup_form"
-          method="post"
-          action="{% url 'account_signup' %}"
-        >
-          {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
-          <input
-            type="hidden"
-            name="{{ redirect_field_name }}"
-            value="{{ redirect_field_value }}"
-          />
-          {% endif %}
-          <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-        </form>
+<div style="background-color: #e8e6f0; padding: 20px; margin-bottom: 20px">
+  <div class="row">
+    <div class="col-md-10">
+      <!-- Signup Form -->
+      <div class="sign-up-pic">
+        <h1>{% trans "Sign Up" %}</h1>
+        <div class="sign-up-txt">
+          <p>
+            {% blocktrans %} Already have an account? Then please
+            <a href="{{ login_url }}">sign in</a>. {% endblocktrans %}
+          </p>
+          <form
+            class="signup"
+            id="signup_form"
+            method="post"
+            action="{% url 'account_signup' %}"
+          >
+            {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+            <input
+              type="hidden"
+              name="{{ redirect_field_name }}"
+              value="{{ redirect_field_value }}"
+            />
+            {% endif %}
+            <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-2">
     <!-- Disclaimer Section -->
-    <div class="disclaimer">
+    <div
+      class="disclaimer"
+      style="background-color: #e8e6f0; padding: 20px; margin-bottom: 20px"
+    >
       <h2>Disclaimer</h2>
       <p>
         The content here is based on entertainment only and this website does
@@ -42,5 +44,4 @@
     </div>
   </div>
 </div>
-
 {% endblock content %}

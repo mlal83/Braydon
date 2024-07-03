@@ -1,5 +1,9 @@
 body {
-  background: linear-gradient(180deg, #333333, #4a4a4f); /* Dark to slightly dark gradient background */
+  background: linear-gradient(
+    180deg,
+    #333333,
+    #4a4a4f
+  ); /* Dark to slightly dark gradient background */
   color: #de92a8; /* Light pinkish text color */
 }
 

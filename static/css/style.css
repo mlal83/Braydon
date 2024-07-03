@@ -10,6 +10,12 @@
   padding: 5px;
 }
 
+.disclaimer {
+  background-color: #e8e6f0;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
 .nav-toggler-item {
   color: white;
 }
@@ -292,7 +298,6 @@ h2.main-story-title {
   border: none;
 }
 
-
 .faded {
   color: rgb(172, 175, 175);
 }
@@ -317,3 +322,5 @@ h2.main-story-title {
 .card-body-wide {
   background-color: white;
 }
+
+

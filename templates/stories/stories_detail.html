@@ -1,153 +1,144 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
+<div style="background-color: #e8e6f0">
+  <div class="masthead" style="margin-top: 0; padding-top: 0">
+    <div class="container">
+      <div class="row g-0">
+        <div class="col-md-12 masthead-text">
+          <h1 class="post-title" style="margin-top: 0">{{ story.title }}</h1>
+          {% if profile_picture_url %}
+          <img
+            class="upload-pic-in-story"
+            src="{{ profile_picture_url }}"
+            alt="Author's Profile Picture"
+             style="max-width: 100%; height: auto; max-height: 200px; margin-left: 60px;"
+          />
+          {% endif %}
+          <p class="post-subtitle">
+            Author: {{ story.author }} | Created on: {{ story.created_on }}
+            <br />
+            Bio: {{ bio }} <br />
+            Genre: {{ story.genre }} <br />
+            Instagram: {{ story.Instagram_URL }} <br />
+            Website: {{ story.Website_URL }} <br />
+            Facebook: {{ story.Facebook_URL }} <br />
+            Twitter: {{ story.Twitter_URL }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="masthead">
   <div class="container">
-    <div class="row g-0">
-      <div class="col-md-6 masthead-text">
-        <h1 class="post-title">{{ story.title }}</h1>
-
-        <img
-          class="upload-pic-in-story"
-          src="{{ profile_picture_upload.url }}"
-          alt="author-pic"
-          style="max-width: 100%; height: auto; max-height: 200px"
-        />
-
-        <p class="post-subtitle">
-          Author: {{ story.author }} | Created on: {{ story.created_on }} <br />
-          Bio: {{ bio }} <br />
-          Genre: {{ story.genre }} <br />
-          Instagram: {{ story.Instagram_URL }} <br />
-          Website: {{ story.Website_URL }} <br />
-          Facebook: {{ story.Facebook_URL }} <br />
-          Twitter: {{ story.Twitter_URL }}
-        </p>
-      </div>
-      <div class="d-none d-md-block col-md-6 masthead-image">
-        {% if "placeholder" in story.featured_image.url %}
-        <img
-          class="card-img-top"
-          src="{% static 'images/default.jpg' %}"
-          alt="placeholder image"
-        />
-        {% else %}
-        <img
-          class="card-img-top"
-          src="{{ story.featured_image.url }}"
-          alt="{{ story.title }}"
-        />
-        {% endif %}
+    <div class="row">
+      <div class="col card mb-4 mt-3 left top story-bg">
+        <div class="card-body-wide">
+          <p class="card-text-wide">{{ story.content|safe }}</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container">
+  <div class="row story-bg">
+    <div class="col-12">
+      <strong class="text-secondary">
+        <i class="fa fa-comments"></i> {{ comment_count }}
+      </strong>
+    </div>
+    <div class="col-12">
+      <hr />
+    </div>
+  </div>
+
   <div class="row">
-    <div class="col card mb-4 mt-3 left top story-bg">
-      <div class="card-body-wide">
-        <p class="card-text-wide">{{ story.content|safe }}</p>
+    <div class="col-md-8 card mb-4 mt-3">
+      <h3>Comments:</h3>
+      <div class="card-body">
+        {% for comment in comments %}
+        <div
+          class="p-2 comments {% if not comment.approved and comment.author == user %} faded {% elif not comment.approved %} d-none {% endif %}"
+        >
+          <p class="font-weight-bold">
+            {{ comment.author }}
+            <span class="font-weight-normal"> {{ comment.created_on }} </span>
+            wrote:
+          </p>
+          <div id="comment{{ comment.id }}">{{ comment.body|linebreaks }}</div>
+          {% if not comment.approved and comment.author == user %}
+          <p class="approval">This comment is awaiting approval</p>
+          {% endif %} {% if user.is_authenticated and comment.author == user %}
+          <button
+            class="btn btn-delete"
+            data-comment-id="{{ comment.id }}"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModal"
+          >
+            Delete
+          </button>
+          <button class="btn btn-edit" data-comment-id="{{ comment.id }}">
+            Edit
+          </button>
+          {% endif %}
+        </div>
+        {% endfor %}
       </div>
     </div>
-  </div>
-</div>
 
-<div class="row story-bg">
-  <div class="col-12">
-    <strong class="text-secondary">
-      <i class="fa fa-comments"></i> {{ comment_count }}
-    </strong>
-  </div>
-  <div class="col-12">
-    <hr />
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-8 card mb-4 mt-3">
-    <h3>Comments:</h3>
-    <div class="card-body">
-      {% for comment in comments %}
-      <div
-        class="p-2 comments {% if not comment.approved and comment.author == user %} faded {% elif not comment.approved %} d-none {% endif %}"
-      >
-        <p class="font-weight-bold">
-          {{ comment.author }}
-          <span class="font-weight-normal"> {{ comment.created_on }} </span>
-          wrote:
-        </p>
-        <div id="comment{{ comment.id }}">{{ comment.body|linebreaks }}</div>
-        {% if not comment.approved and comment.author == user %}
-        <p class="approval">This comment is awaiting approval</p>
-        {% endif %} {% if user.is_authenticated and comment.author == user %}
-        <button
-          class="btn btn-delete"
-          data-comment-id="{{ comment.id }}"
-          data-bs-toggle="modal"
-          data-bs-target="#deleteModal"
+    <div class="col-md-4 card mb-4 mt-3">
+      <div class="card-body">
+        {% if user.is_authenticated %}
+        <h3>Leave a comment:</h3>
+        <p>Posting as: {{ user.username }}</p>
+        <form
+          id="commentForm"
+          method="post"
+          action="{% url 'submit_comment' story_id=story.pk %}"
+          style="margin-top: 1.3em"
         >
-          Delete
-        </button>
-        <button class="btn btn-edit" data-comment-id="{{ comment.id }}">
-          Edit
-        </button>
+          {% csrf_token %} {{ comment_form.as_p }}
+          <button id="submitButton" type="submit" class="btn btn-signup btn-lg">
+            Submit
+          </button>
+        </form>
+        {% else %}
+        <p>Log in to leave a comment</p>
         {% endif %}
       </div>
-      {% endfor %}
     </div>
   </div>
 
-  <div class="col-md-4 card mb-4 mt-3">
-    <div class="card-body">
-      {% if user.is_authenticated %}
-      <h3>Leave a comment:</h3>
-      <p>Posting as: {{ user.username }}</p>
-      <form
-        id="commentForm"
-        method="post"
-        action="{% url 'submit_comment' story_id=story.pk %}"
-        style="margin-top: 1.3em"
-      >
-        {% csrf_token %} {{ comment_form.as_p }}
-        <button id="submitButton" type="submit" class="btn btn-signup btn-lg">
-          Submit
-        </button>
-      </form>
-      {% else %}
-      <p>Log in to leave a comment</p>
-      {% endif %}
-    </div>
-  </div>
-</div>
-
-<!-- Delete confirmation modal -->
-<div
-  class="modal fade"
-  id="deleteModal"
-  tabindex="-1"
-  aria-labelledby="deleteModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete your comment? This action cannot be
-        undone.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+  <!-- Delete confirmation modal -->
+  <div
+    class="modal fade"
+    id="deleteModal"
+    tabindex="-1"
+    aria-labelledby="deleteModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Delete comment?</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete your comment? This action cannot be
+          undone.
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
+        </div>
       </div>
     </div>
   </div>
