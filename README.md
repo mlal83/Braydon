@@ -163,6 +163,7 @@ Users are able to fill out their bio and update their profile picture. However, 
 ## Further Testing
 
 1. Testing features of website
+
 ![Testing](/static/images/test.jpg)
 
 2. Lighthouse testing using Dev tools
@@ -170,24 +171,31 @@ Users are able to fill out their bio and update their profile picture. However, 
 ![lighthouse testing - Dev tools](/static/images/lighthouse-test.png)
 
 3. Tested using CI Python Linter
+
 ![CI python Linter](/static/images/linter-results.jpg)
 
 4. The W3C Markup Validation Service for home page
+
 ![WS3 home](/static/images/ws3-home.jpg)
 
 5. The W3C Markup Validation Service for login page
+
 ![ws3 Login ](/static/images/ws3-login.png)
 
 6. Successfully signed in
+
 ![successfully signed in ](/static/images/successfully-signed-in.jpg)
 
 7. Profile Successfully updated
+
 ![profile updated ](/static/images/profile_updated.jpg)
 
 8. Comment updated successfully 
+
 ![comment updated ](/static/images/comment-update.jpg)
 
 9. Comment deleted successfully 
+
 ![comment deleted ](/static/images/comment-deleted.jpg)
 
 ## Future features and modifications
