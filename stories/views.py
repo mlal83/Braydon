@@ -211,7 +211,7 @@ def view_profile(request, profile_id):
     profile = get_object_or_404(Profile, id=profile_id) 
     return render(request, 'profile.html', {'profile': profile})
 
-
+@login_required #need this here too?
 def delete_comment(request, pk, comment_id):
     """
     The comment delete view deletes a comment and redirects to the story detail page.
