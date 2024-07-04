@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener("click", (e) => {
             e.preventDefault(); // Prevent default link behavior
 
-            let commentId = button.getAttribute("data-comment-id"); // Correctly retrieve data-comment-id
-            let storySlug = 'your-story-slug'; // Replace with actual story slug or retrieve dynamically
+            let commentId = button.getAttribute("data-comment-id"); 
+            let storySlug = 'stories_detail'; 
             if (commentId) {
                 deleteConfirm.href = `/story/${storySlug}/delete_comment/${commentId}/`;
                 deleteModal.show();
