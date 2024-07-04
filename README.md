@@ -129,9 +129,10 @@ To resolve this issue, rearranged the urlpatterns list so that the set_avatar pa
 
 ## Unfixed Bug
 
-Though the profile page can be updated as many times as the user wants, the edit button will not work. This functionality is something that will be improved for the next iteration.
+While users can update their profile page as often as they like, currently, the edit button does not clear automatically, requiring manual deletion of unwanted content. This functionality is slated for improvement in the next iteration.
 
-The comments and users storys are submitting successfuly to the database and I am able to submit them to the website successfully, however the modal message that it has 'successfully submitted' will not show. My code broke a few times and in the midst of fixing it, I must have triggered something. Its an improvment I must improve upon in my next iteration.
+Users are able to fill out their bio and update their profile picture. However, the display of social media information for other users to show is currently not functioning as intended. I am actively investigating this issue and plan to address it in the upcoming iteration. Lowercase usage has been tested but does not seem to affect functionality. Upon checking the database, the entry is available, but we are investigating why it is not populating correctly on the website.
+
 
 ## Deployment
 
@@ -159,28 +160,34 @@ The comments and users storys are submitting successfuly to the database and I a
 13. Ensure "Main" is selected and click the "Deploy" button.
 14. Once deployment is complete, click the "View" button to see app.
 
-## Testing
+## Further Testing
 
+1. Testing features of website
 ![Testing](/static/images/test.jpg)
 
+2. Lighthouse testing using Dev tools
 ![lighthouse testing - Dev tools](/static/images/lighthouse-test.png)
 
+3. Tested using CI Python Linter
 ![CI python Linter](/static/images/linter-results.jpg)
 
+4. The W3C Markup Validation Service for home page
 ![WS3 home](/static/images/ws3-home.jpg)
 
+5. The W3C Markup Validation Service for login page
 ![ws3 Login ](/static/images/ws3-login.png)
 
+6. Successfully signed in
 ![successfully signed in ](/static/images/successfully-signed-in.jpg)
 
+7. Profile Successfully updated
 ![profile updated ](/static/images/profile_updated.jpg)
 
+8. Comment updated successfully 
 ![comment updated ](/static/images/comment-update.jpg)
 
+9. Comment deleted successfully 
 ![comment deleted ](/static/images/comment-deleted.jpg)
-
-
-
 
 ## Future features and modifications
 
