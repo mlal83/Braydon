@@ -166,6 +166,7 @@ Users are able to fill out their bio and update their profile picture. However, 
 ![Testing](/static/images/test.jpg)
 
 2. Lighthouse testing using Dev tools
+
 ![lighthouse testing - Dev tools](/static/images/lighthouse-test.png)
 
 3. Tested using CI Python Linter
