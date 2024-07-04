@@ -39,9 +39,11 @@ ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
                  '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu108.gitpod.io',
                  '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu110.gitpod.io',
                  '8000-mlal83-braydonshorrorho-92nd3i24k7b.ws-eu114.gitpod.io',
-                 '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io', 
+                 '8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu109.gitpod.io',
+                 '8000-mlal83-braydonshorrorho-k1z7jh4hic2.ws.codeinstitute-ide.net', 
                  '.herokuapp.com', 
-                 "braydons-horror-house-5e9401912ad6.herokuapp.com",]
+                 'braydons-horror-house-5e9401912ad6.herokuapp.com',
+                 ]
                 
 CSRF_TRUSTED_ORIGINS = [
      'https://8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
@@ -49,6 +51,7 @@ CSRF_TRUSTED_ORIGINS = [
      'https://8000-mlal83-braydonshorrorho-o0luur7727l.ws-eu111.gitpod.io',
      'https://8000-mlal83-braydonshorrorho-92nd3i24k7b.ws-eu114.gitpod.io', 
      'https://8000-mlal83-braydonshorrorho-xaa7lat3x30.ws-eu110.gitpod.io',
+     'https://8000-mlal83-braydonshorrorho-k1z7jh4hic2.ws.codeinstitute-ide.net',
 ]
 
 # Application definition
