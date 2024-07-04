@@ -171,6 +171,15 @@ The comments and users storys are submitting successfuly to the database and I a
 
 ![ws3 Login ](/static/images/ws3-login.png)
 
+![successfully signed in ](/static/images/successfully-signed-in.jpg)
+
+![profile updated ](/static/images/profile_updated.jpg)
+
+![comment updated ](/static/images/comment-update.jpg)
+
+![comment deleted ](/static/images/comment-deleted.jpg)
+
+
 
 
 ## Future features and modifications
