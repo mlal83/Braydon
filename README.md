@@ -163,6 +163,16 @@ The comments and users storys are submitting successfuly to the database and I a
 
 ![Testing](/static/images/test.jpg)
 
+![lighthouse testing - Dev tools](/static/images/lighthouse-test.png)
+
+![CI python Linter](/static/images/linter-results.jpg)
+
+![WS3 home](/static/images/ws3-home.jpg)
+
+![ws3 Login ](/static/images/ws3-login.png)
+
+
+
 ## Future features and modifications
 
 Eventually, this website will allow users the option to pick an avatar instead of uploading a picture. The decoration of the website is still a work in progress, with plans to provide users the ability to listen to the content as well as reading it. Additionally, an online shop will be implemented where users can buy and sell their horror merchandise, alongside Braydon's merchandise which will consist of books. Braydon will act as an intermediary for payments, receiving a share of the price the users' items are sold at. The implementation of the Avatar option will be deferred to the next iteration due to time constraints.
