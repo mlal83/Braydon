@@ -88,7 +88,11 @@ h2.main-story-title {
   font-weight: 700;
   font-style: normal;
 }
-#hero-text {
+#hero-text1 {
+  font-size: 60px;
+}
+
+.hero-texts {
   text-align: center;
   color: purple;
   border: 2px solid #ccc;

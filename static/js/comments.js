@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let button of editButtons) {
         button.addEventListener("click", (e) => {
             let commentId = button.getAttribute("data-comment-id");
+            console.log(commentId);
             let commentContent = document.getElementById(`comment${commentId}`).innerText;
             commentText.value = commentContent;
             submitButton.innerText = "Update";

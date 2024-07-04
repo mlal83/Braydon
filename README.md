@@ -28,6 +28,8 @@ Welcome to the Braydon's Horror House platform. Our platform aims to promote an 
 
 ![iamresponsive](/static/images/iamresponsiveppp.png)
 
+https://braydons-horror-house-5e9401912ad6.herokuapp.com/
+
 ### External user’s goal:
 
 "The user seeks engaging content that entertains and encourages return visits to the site. Additionally, they desire to be part of a community where they can interact with other users who share similar interests. Providing the option for users to contribute their own content personalizes their experience, fostering a sense of ownership and connection. Optional user details are available to enhance the personalization of the website, adding a key personal touch."
@@ -64,6 +66,10 @@ I decided to create a visual map of the website so we could clearly conceptualis
 ## Github project
 
 I utilized the GitHub project feature to craft our User Stories based on user requirements, outlining the project scope and identifying tasks for future iterations. Additionally, I established milestones and created corresponding issues, all of which are accessible on GitHub for review.
+
+![Git project 1](/static/images/git-project1.jpg)
+
+![Git project 2](/static/images/git-project2.jpg)
 
 ## Features
 

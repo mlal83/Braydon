@@ -78,8 +78,7 @@ def comment_edit(request, slug, comment_id):
     """
     if request.method == "POST":
 
-        queryset = Story.objects.filter(status=1)
-        story = get_object_or_404(queryset, slug=slug)
+        story = get_object_or_404(Story, slug=slug)
         comment = get_object_or_404(Comment, pk=comment_id)
         comment_form = CommentForm(data=request.POST, instance=comment)
 
@@ -116,7 +115,7 @@ def comment_delete(request, slug, comment_id):
     except Story.DoesNotExist:
         # Handle case where the story with the given slug and status=1 does not exist
         messages.error(request, 'Story not found.')
-        return redirect('home')  # Redirect to a meaningful page
+        return redirect('home')  
     
     except Comment.DoesNotExist:
         # Handle case where the comment with the given ID does not exist
@@ -211,7 +210,7 @@ def view_profile(request, profile_id):
     profile = get_object_or_404(Profile, id=profile_id) 
     return render(request, 'profile.html', {'profile': profile})
 
-@login_required #need this here too?
+@login_required 
 def delete_comment(request, pk, comment_id):
     """
     The comment delete view deletes a comment and redirects to the story detail page.
