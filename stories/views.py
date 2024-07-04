@@ -1,7 +1,7 @@
 from cloudinary.utils import cloudinary_url
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm, StoryForm, ReviewForm, ProfileForm
 from .models import Story, Profile, Comment, Review
@@ -101,7 +101,7 @@ def comment_delete(request, slug, comment_id):
     """
     try:
         # Retrieve the story object with the specified slug and active status
-        story = get_object_or_404(Story, slug=slug, status=1)
+        story = get_object_or_404(Story, slug=slug)
         
         # Retrieve the comment object with the specified ID
         comment = get_object_or_404(Comment, pk=comment_id)

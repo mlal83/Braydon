@@ -13,7 +13,6 @@ from pathlib import Path
 import os
 import dj_database_url
 
-
 import cloudinary
 from dotenv import load_dotenv
 
@@ -163,14 +162,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL")
 
 APPEND_SLASH = False 
-
-# load_dotenv()
-
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-#     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-#     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
-# }
 
 
 # Media settings

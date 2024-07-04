@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let commentContent = document.getElementById(`comment${commentId}`).innerText;
             commentText.value = commentContent;
             submitButton.innerText = "Update";
-            commentForm.setAttribute("action", `edit_comment/${commentId}`);
+            commentForm.setAttribute("action", `edit_comment/${commentId}/`);
         });
     }
 
@@ -51,11 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
      for (let button of deleteButtons) {
         button.addEventListener("click", (e) => {
             e.preventDefault(); // Prevent default link behavior
-
-            let commentId = button.getAttribute("data-comment-id"); 
-            let storySlug = 'stories_detail'; 
+            let commentId = button.getAttribute("data-comment-id");             
             if (commentId) {
-                deleteConfirm.href = `/story/${storySlug}/delete_comment/${commentId}/`;
+                deleteConfirm.href = `delete_comment/${commentId}/`;
                 deleteModal.show();
             } else {
                 console.error("Comment ID is null or undefined.");
