@@ -17,7 +17,8 @@
 - Styling frontend development
 - Fixed Bugs
 - Unfixed Bugs
-- Testing
+- Deployment 
+- Further Testing and some modification in design to improve user experience
 - Future features and modifications
 - Tools and Technology used
 - Credits

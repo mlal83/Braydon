@@ -31,7 +31,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-mlal83-braydonshorrorho-la272tzjoud.ws-eu114.gitpod.io',
                  '8000-mlal83-braydonshorrorho-xaa7lat3x30.ws-eu110.gitpod.io',
