@@ -134,6 +134,8 @@ While users can update their profile page as often as they like, currently, the 
 
 Users are able to fill out their bio and update their profile picture. However, the display of social media information for other users to show is currently not functioning as intended. I am actively investigating this issue and plan to address it in the upcoming iteration. Lowercase usage has been tested but does not seem to affect functionality. Upon checking the database, the entry is available, but we are investigating why it is not populating correctly on the website.
 
+![Social media error](/static/images/social-media-issue.jpg)
+
 
 ## Deployment
 
