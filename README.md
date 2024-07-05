@@ -160,7 +160,7 @@ Users are able to fill out their bio and update their profile picture. However, 
 13. Ensure "Main" is selected and click the "Deploy" button.
 14. Once deployment is complete, click the "View" button to see app.
 
-## Further Testing
+## Further Testing and some modification in design to improve user experience
 
 1. Testing features of website
 
@@ -197,6 +197,12 @@ Users are able to fill out their bio and update their profile picture. However, 
 9. Comment deleted successfully 
 
 ![comment deleted ](/static/images/comment-deleted.jpg)
+
+10. Fully functional social media links on every page
+
+![footer](/static/images/footer.jpg)
+
+11. Admins can view and delete all submitted stories. When comments are submitted, admins must approve them. Admin can also alter them any comments.
 
 ## Future features and modifications
 
@@ -243,3 +249,4 @@ https://dyatmika.org/students/my-favourite-short-scary-stories/
 https://reintech.io/blog/implementing-profiles-in-django-tutorial
 https://app.diagrams.net/
 https://docs.djangoproject.com/en/5.0/ref/models/fields/
+https://github.com/TulaUnogi/cat-beans-cafe for ideas on ReadMe
